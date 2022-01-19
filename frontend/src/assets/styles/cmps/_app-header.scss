@@ -4,40 +4,58 @@
   .logo-font {
     font-family: "Lobster-Regular", sans-serif;
     font-size: 2em;
-    // change to variable color
-    .logo-point {
-      color: green;
-    }
   }
-  .user-info {
-    // background-color: $clr2;
-    // padding: 2px 8px;
-    color: $clr1;
-    .score {
-      background-color: $clr2;
-      color: $clr6;
-      padding: 8px;
-      margin: 10px;
-      border-radius: 50%;
-    }
+  // change to variable color
+  .logo-point {
+    color: green;
+    padding: 10px;
   }
-  .user-info .btn-link {
-    color: $clr2;
-  }
-  nav {
-    font-size: 0.8em;
-    background-color: $clr5;
-    padding: 5px;
-  }
-  nav a:first-child {
-    margin-right: 30px;
-  }
-  nav a:not(:first-child) {
-    border-top: 1px solid $clr1;
-    padding: 0 5px;
-    margin: 10px;
-  }
-  nav .active {
-    color: $clr1;
-  }
+  //   .user-info {
+  //     // background-color: $clr2;
+  //     // padding: 2px 8px;
+  //     color: $clr1;
+  //     .score {
+  //       background-color: $clr2;
+  //       color: $clr1;
+  //       padding: 8px;
+  //       margin: 10px;
+  //       border-radius: 50%;
+  //     }
+  //   }
+  //   }
+
+  //   nav {.user-info .btn-link {
+  //     color: $clr2;
+  //   }
+  //     font-size: 0.8em;
+  //     background-color: $clr5;
+  //     padding: 5px;
+  //   }
+  //   nav a:first-child {
+  //     margin-right: 30px;
+  //   }
+  //   nav a:not(:first-child) {
+  //     border-top: 1px solid $clr1;
+  //     padding: 0 5px;
+  //     margin: 10px;
+  //   }
+  //   nav .active {
+  //     color: $clr1;
+  //   }
+  //   nav {
+  //     font-size: 0.8em;
+  //     // background-color: $clr5;
+  //     padding: 5px;
+  //   }
+  //   nav a:first-child {
+  //     margin-right: 30px;
+  //   }
+  //   nav a:not(:first-child) {
+  //     // border-top: 1px solid $clr1;
+  //     padding: 0 5px;
+  //     margin: 10px;
+  //   }
+  //   nav .active {
+  //     color: $clr1;
+  //   }
 }
