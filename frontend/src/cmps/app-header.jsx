@@ -16,8 +16,8 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   return (
     <header className="app-header">
       <div className="nav-container flex align-center">
-        <NavLink className="logo clean-link" exact to="/">
-          <img src="../assets/img/logo/logo.png" alt="Ninerr logo" />
+        <NavLink className="logo-font clean-link" exact to="/">
+          Ninerr<span className="logo-point">.</span>
         </NavLink>
         <nav>
           <NavLink className="clean-link" to="/about">

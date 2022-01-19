@@ -1,7 +1,61 @@
-.app-footer{
-    background-color: #111;
-    color: $clr4;
-    padding: 20px;
-    margin: 10px;
-    text-align: center;
+.app-footer {
+  border-top: solid 1px rgb(221, 220, 220);
+  padding-top: 2em;
+  padding-bottom: 2em;
+  // background-color: rgb(248, 247, 247);
+  color: $clr4;
+  padding: 20px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 2em;
+  .footer-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .logo-font {
+    font-family: "Lobster-Regular", sans-serif;
+    font-size: 2em;
+  }
+  .copyrights-and-social-nav {
+    border-top: solid 1px rgb(221, 220, 220);
+    margin-top: 2em;
+    align-items: stretch;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    .social-nav {
+      display: flex;
+      flex-direction: row;
+      gap: 1em;
+      a:visited {
+        color: $clr4;
+      }
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .icon-wrap {
+        /* don't take the whole line */
+        // display: inline-block;
+        transition: background-color 0.35s;
+        /* height of the icon */
+        height: 2em;
+        /* width of the icon */
+        width: 2em;
+        /* space between the icon and the background edge */
+        padding: 0.25em;
+        /* make it rounded */
+        border-radius: 50%;
+      }
+      .icon-wrap:hover {
+        /* add a background on hover */
+        background-color: rgba(0, 0, 0, 0.05);
+        /* pointer cursor on hover */
+        cursor: pointer;
+      }
+    }
+  }
 }
