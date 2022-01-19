@@ -13,10 +13,10 @@ function _GigApp({ loadGigs, gigs, onAddGig }) {
 
     return (
         <div>
-            <h3>Explore all</h3>
-            <h2>here will show a list of gigs</h2>
-            <button onClick={onAddGig}>Add Gig -will be deleted</button>
-            Todo:
+            {/* <h3>Explore</h3> */}
+
+
+            {/* Todo: */}
             {/* <Filter/> */}
             <GigList gigs={gigs} className="gig-list" />
         </div>
