@@ -15,33 +15,28 @@ const routes = [
     {
         path: '/',
         component: <HomePage />,
-        label: 'Logo',
+
     },
-    // {
-    //     path: 'car',
-    //     component: <CarApp />,
-    //     label: 'Cars'
-    // },
     {
         path: 'explore',
         component: <GigApp />,
-        label: 'Explore'
+
     },
     {
         path: '/gig/edit/:gigId?',
-        component: <AddEditGig />,
+        component: <AddEditGig />
     },
     {
         path: '/gig/:gigId',
-        component: <GigDetails />,
+        component: <GigDetails />
     },
     {
         path: '/buyer',
-        component: <BuyerDetails />,
+        component: <BuyerDetails />
     },
     {
         path: '/seller',
-        component: <SellerDetails />,
+        component: <SellerDetails />
     },
     // {
     //     path: 'review',
@@ -55,8 +50,8 @@ const routes = [
     // },
     {
         path: 'about',
-        component: <AboutUs />,
-        label: 'About us'
+        component: <AboutUs />
+
     },
     // {
     //     path: 'admin',

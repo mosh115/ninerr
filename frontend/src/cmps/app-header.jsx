@@ -20,7 +20,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
                     <NavLink className="clean-link" to="/sign-up-seller">Become A Seller</NavLink>
                     <NavLink className="clean-link" to="/sign-in">Sign in</NavLink>
                     <NavLink className="clean-link" to="/sign-up-buyer">Join</NavLink>
-                    {user && <div className="user-section">{user.username}🌟</div>}
+                    {/* {user && <div className="user-section">{user.username}🌟</div>} */}
                 </nav>
             </div>
             {/* <nav> */}
