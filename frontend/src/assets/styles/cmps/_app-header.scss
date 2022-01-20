@@ -1,6 +1,7 @@
 .app-header {
+  color: $clr6;
   // background-color: $clr4;
-  border-bottom: 1px solid $clr4;
+  // border-bottom: 1px solid $clr4;
   padding: 10px;
   .logo-font {
     font-family: "Lobster-Regular", sans-serif;
@@ -16,7 +17,16 @@
   nav > * {
     padding-inline-start: 20px;
     &:hover {
-      color: $clr1;
+      border-color: $clr1;
+    }
+  }
+  .join{
+    border: solid 1.5px $clr6;
+    padding-inline: 0.8em;
+    border-radius: 10%;
+    margin-left: 1em;
+    &:hover{
+      background-color: $clr1
     }
   }
 }
