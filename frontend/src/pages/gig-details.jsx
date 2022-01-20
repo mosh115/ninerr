@@ -50,7 +50,7 @@ export function GigDetails() {
 
     if (!gig) return <h1>Loading..</h1>
     return (
-        <section className='gig-details'>
+        <section className='gig-details main-container'>
             <div className='gig-overview'>
                 <h1 className='' >{gig.title}</h1>
             </div>
