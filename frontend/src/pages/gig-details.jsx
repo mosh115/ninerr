@@ -52,22 +52,23 @@ export function GigDetails() {
     return (
         <section className='gig-details main-container'>
             <div className='gig-overview'>
-                <h1 className='' >{gig.title}</h1>
+                <h1 className='title' >{gig.title}</h1>
             </div>
-            <div className='seler-overview flex'>
+            <div className='seller-overview flex'>
                 <img className='avatar' src={`https://i.pravatar.cc/24?u=${gig._id}`} />
                 <Link to={'/#'}> {gig.seller.fullname}</Link>
-                <p>{gig.seller.level}</p>
-                <ReactStars
+                <p className='seller-level'>{gig.seller.level} <span className='stop'>|</span></p>
+
+                <ReactStars classNames="stars"
                     count={gig.seller.rate}
-                    size={16}
+                    size={15}
                     color="#ffb33e"
                     activeColor="#ffb33e"
                     edit={false}
                 />
-                <p className='rating'>{gig.seller.rate} </p>
-                <p>({gig.seller.raters})</p>
-                <p><span>{getRandomColor()}</span> Orders in Queue</p>
+                <b className='rating'>{gig.seller.rate} </b>
+                <p className='raters'>({gig.seller.raters})<span className='stop'>|</span></p>
+                <p className='qweue'><span>{getRandomColor()}</span> Orders in Queue</p>
 
             </div>
             <div className='gallery'>
@@ -75,7 +76,7 @@ export function GigDetails() {
             </div>
 
             <div className='about-gig'>
-                <h2>About The Gig</h2>
+                <h2>About This Gig</h2>
                 <p>{gig.title}</p>
                 <p>{gig.description}</p>
             </div>

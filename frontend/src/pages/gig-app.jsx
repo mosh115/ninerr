@@ -12,7 +12,7 @@ function _GigApp({ loadGigs, gigs, onAddGig }) {
     }, [])
 
     return (
-        <div>
+        <div className="main-container">
             {/* <h3>Explore</h3> */}
 
 
