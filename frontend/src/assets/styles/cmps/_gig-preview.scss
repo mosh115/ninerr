@@ -3,44 +3,66 @@
     position: relative;
     border: 1px solid $clr4;
     width: 100%;
-    .avatar {
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        // padding-right: 5px;
-        margin-right: 7px;
-    }
-    .seller-info {
-        align-items: center;
-        font-size: 14px;
-        line-height: 18px;
-        padding: 12px 12px 8px;
-    }
     .carusel {
+        width: 100%;
+
         &img {
             aspect-ratio: 16 / 9;
         }
-        width: 100%;
     }
-    .gig-rating .star img {
-        color: $clr5;
-        font-weight: 700;
-        width: 17px;
-        height: 17px;
-        margin-right: 5px;
-        vertical-align: -0.16em;
-    }
-    .footer {
-        justify-content: space-between;
-    }
-    .footer small {
-        text-transform: uppercase;
-    }
-    .gig-title {
-        padding-inline-start: 0.5em;
-        &:hover {
-            // text-decoration: inherit;
-            color: $clr1;
+
+    .preview-card {
+        padding: 8px;
+
+        .avatar {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            // padding-right: 5px;
+            margin-right: 7px;
+        }
+        .seller-info {
+            align-items: center;
+            font-size: 14px;
+            line-height: 18px;
+            // padding: 0 12px 8px;
+        }
+        .gig-rating {
+            align-items: center;
+            margin-bottom: 25px;
+            .star {
+                // margin-inline-start: 0.5em;
+                color: $clr5;
+                font-weight: 700;
+                width: 15px;
+                height: 15px;
+                margin-right: 5px;
+                // vertical-align: -0.16em;
+            }
+            .rating {
+                color: $clr5;
+            }
+        }
+        .footer {
+            // margin-inline-start: 0.5em;
+            align-items: center;
+            justify-content: space-between;
+            .small {
+                text-transform: uppercase;
+            }
+            .heart {
+                cursor: pointer;
+                width: 16px;
+                height: 16px;
+                color: $clr7;
+            }
+        }
+        .gig-title {
+            // padding-inline-start: 0.5em;
+            &:hover {
+                // text-decoration: inherit;
+                color: $clr1;
+            }
         }
     }
 }

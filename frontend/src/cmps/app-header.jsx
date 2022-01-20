@@ -16,7 +16,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   return (
     <header className="app-header">
       <div className="nav-container flex align-center">
-        <NavLink className="logo-font clean-link" exact to="/">
+        <NavLink className="logo-font clean-link" to="/">
           Ninerr<span className="logo-point">.</span>
         </NavLink>
         <nav>
@@ -35,7 +35,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
           <NavLink className="clean-link" to="/sign-up-buyer">
             Join
           </NavLink>
-          {user && <div className="user-section">{user.username}🌟</div>}
+          {/* {user && <div className="user-section">{user.username}🌟</div>} */}
         </nav>
       </div>
       {/* <nav> */}
@@ -68,7 +68,6 @@ function mapStateToProps(state) {
   return {
     users: state.userModule.users,
     user: state.userModule.user,
-    count: state.userModule.count,
     isLoading: state.systemModule.isLoading,
   }
 }
