@@ -18,6 +18,7 @@ import { LoginSignup } from "./login-signup.jsx"
 function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   //navbar scroll when active state
   const [navbar, setNavbar] = useState(false)
+  const [subNavbar, setSubNavbar] = useState(false)
 
   //navbar scroll changeBackground function
   const changeBackground = () => {
@@ -26,6 +27,11 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
       setNavbar(true)
     } else {
       setNavbar(false)
+    }
+    if (window.scrollY >= 250){
+      setSubNavbar(true)
+    } else {
+      setSubNavbar (false)
     }
   }
   useEffect(() => {
@@ -62,11 +68,11 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
           </nav>
           
       </div>
-      <div className="sub-nav">
-          <span>Website design</span>
-                        <span>Wordpress</span>
-                        <span>Logo design</span>
-                        <span>Music</span>
+      <div className={subNavbar ? "sub-nav" : "sub-nav hidden"}>
+          <span>Graphics & Design</span>
+                        <span>Digital Marketing</span>
+                        <span>Writing & Translation</span>
+                        <span>Video & Animation</span>
                         <span>Programming</span>
 
           </div>

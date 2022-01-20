@@ -1,4 +1,9 @@
 .app-header {
+  height: 3em;
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
   color: $clr6;
   .logo-font {
     font-family: "Lobster-Regular", sans-serif;
@@ -34,7 +39,7 @@
   }
   // when scrolling the page:
   .navbar.white{
-    background-color: beige;
+    background-color: $clr6;
     color: $clr3;
     nav > * {
       &:hover {
@@ -50,5 +55,20 @@
       }
     }
   }
+  .sub-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 0.5px solid $clr3;
+    width: 90%;
+    position: fixed;
+    margin-top: 3em;
+    color: $clr3;
+    background-color: $clr6;
+    &.hidden{
+      visibility: hidden;
+    }
+  }
+
 
 }
