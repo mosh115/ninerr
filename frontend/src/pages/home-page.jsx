@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { FaSearch } from "react-icons/fa"
-
+import { FaSearch, FaRegCheckCircle } from "react-icons/fa"
+import workingWomen from '../assets/img/home-page/16.jpg';
+import FreeLancerImage from '../assets/img/home-page/14.jpg';
+import {PopularServiceList} from '../cmps/popular-service-list'
 class _HomePage extends React.Component {
     state = {}
 
@@ -25,47 +27,78 @@ class _HomePage extends React.Component {
                         <span>Music</span>
                     </div>
                 </div>
-                <div>Trusted by:
-                    facebook
-                    Google
-                    NETFLIX
-                    P&G
-                    PayPal</div>
-                <div>Recently Viewed & More</div>
-                <div>Popular professional services</div>
-                <div>
-                    A whole world of freelance talent at your fingertips
-                    The best for every budget
-                    Find high-quality services at every price point. No hourly rates, just project-based pricing.
-
-                    Quality work done quickly
-                    Find the right freelancer to begin working on your project within minutes.
-
-                    Protected payments, every time
-                    Always know what you'll pay upfront. Your payment isn't released until you approve the work.
-
-                    24/7 support
-                    Questions? Our round-the-clock support team is available to help anytime, anywhere.
-
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ut perspiciatis fuga iste temporibus corrupti tempore exercitationem labore, esse ad facere ex deserunt asperiores, dolor neque dolorem minima id accusantium?</p>
-
-
+                <section className='social-proof-line'>Trusted by:
+                    <span>Fakelook</span>
+                    <span>Coogle</span>
+                    <span>BigFoot</span>
+                    <span>B&B</span>
+                    <span>PayUs</span>
+                </section>
+                <section className='recently-viewed-section'>
+                    <h2>Recently Viewed & More</h2>
+                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                    </section>
+                <section className='popular-services'>
+                <PopularServiceList/>
+                    
+                    </section>
+                <section className='more-details-about-us'>
+                    <div>
+                        <h2>A whole world of freelance talent at your fingertips</h2>
+                        <h3> <span><FaRegCheckCircle /></span>The best for every budget</h3>
+                        Find high-quality services at every price point. No hourly rates, just project-based pricing.
+                        <h3><span><FaRegCheckCircle /></span>Quality work done quickly</h3>
+                        Find the right freelancer to begin working on your project within minutes.
+                        <h3><span><FaRegCheckCircle /></span>Protected payments, every time</h3>
+                        Always know what you'll pay upfront. Your payment isn't released until you approve the work.
+                        <h3><span><FaRegCheckCircle /></span>24/7 support</h3>
+                        Questions? Our round-the-clock support team is available to help anytime, anywhere.
+                    </div>
+                    <div>
+                        <img src={workingWomen} alt="working women" />
+                    </div>
+                </section>
+                <section className='explore-market-place'>
+                    <h2>Explore the marketplace</h2>
+                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                </section>
+                <section className='get-inspired-with-projects'>
+                    <h2>Get inspired with projects made by our freelancers</h2>
+                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                </section>
+                <section className='ninerr-guides'>
+                    <h2>Ninerr guides</h2>
+                    <div>
+                        <div>
+                            <h3>Start an online business and work from home</h3>
+                            <h4>A complete guide to starting a small business online</h4>
+                        </div>
+                        <div>
+                            <h3>Digital marketing made easy</h3>
+                            <h4>A practical guide to understand what is digital marketing</h4>
+                        </div>
+                        <div>
+                            <h3>Create a logo for your business</h3>
+                            <h4>A step by step for creating a memorable business logo</h4>
+                        </div>
+                    </div>
+                </section>
+                <section className='find-the-talent'>
+                    <div>
+                        <h2>Find the talent needed to get your business growing.</h2>
+                        <button>Get Started</button>
+                    </div>
+                    <img src={FreeLancerImage} alt="FreeLancer woman image" />
+                </section>
             </section >
         )
     }
