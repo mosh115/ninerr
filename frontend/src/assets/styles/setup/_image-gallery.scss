@@ -15,8 +15,8 @@ $ig-shadow: 0 2px 2px lighten($ig-black, 10%);
 
 // SVG ICON STYLES
 .image-gallery-icon {
-    color: $ig-white;
-    transition: all 0.3s ease-out;
+    color: $clr2;
+    // transition: all 0.3s ease-out;
     appearance: none;
     background-color: transparent;
     border: 0;
@@ -28,9 +28,9 @@ $ig-shadow: 0 2px 2px lighten($ig-black, 10%);
 
     @media (hover: hover) and (pointer: fine) {
         &:hover {
-            color: $ig-blue;
+            // color: $ig-blue;
             .image-gallery-svg {
-                transform: scale(1.1);
+                // transform: scale(1.1);
             }
         }
     }
@@ -88,32 +88,43 @@ $ig-shadow: 0 2px 2px lighten($ig-black, 10%);
 
 .image-gallery-left-nav,
 .image-gallery-right-nav {
-    padding: 50px 10px;
+    background-color: #fff;
+    position: absolute;
+    z-index: 4;
     top: 50%;
-    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    margin-top: -24px;
+    text-align: center;
+    border-radius: 50%;
+
+    // box-shadow: 0 2px 5px 0 rgb(0 0 0 / 15%);
+    // padding: 50px 10px;
+    // top: 50%;
+    // transform: translateY(-50%);
     // opacity: 0;
     // &:hover {
     //   opacity: 1;
     // }
 
     .image-gallery-svg {
-        height: 40px;
-        width: 30px;
+        height: 25px;
+        width: 20px;
     }
 
-    @media (max-width: $ig-small-screen) {
-        .image-gallery-svg {
-            height: 72px;
-            width: 36px;
-        }
-    }
+    // @media (max-width: $ig-small-screen) {
+    //     .image-gallery-svg {
+    //         height: 72px;
+    //         width: 36px;
+    //     }
+    // }
 
-    @media (max-width: $ig-xsmall-screen) {
-        .image-gallery-svg {
-            height: 48px;
-            width: 24px;
-        }
-    }
+    // @media (max-width: $ig-xsmall-screen) {
+    //     .image-gallery-svg {
+    //         height: 48px;
+    //         width: 24px;
+    //     }
+    // }
 
     &[disabled] {
         cursor: disabled;
@@ -123,11 +134,11 @@ $ig-shadow: 0 2px 2px lighten($ig-black, 10%);
 }
 
 .image-gallery-left-nav {
-    left: 0;
+    left: -28px;
 }
 
 .image-gallery-right-nav {
-    right: 0;
+    right: -28px;
 }
 // End of Icon styles
 
@@ -360,23 +371,25 @@ $ig-shadow: 0 2px 2px lighten($ig-black, 10%);
 
     .image-gallery-thumbnails-container {
         cursor: pointer;
-        text-align: center;
+        text-align: start;
         white-space: nowrap;
+        margin-top: 10px;
     }
 }
 
 .image-gallery-thumbnail {
     display: inline-block;
-    border: 4px solid transparent;
+    // border: 4px solid transparent;
     transition: border 0.3s ease-out;
     width: 100px;
     background: transparent;
     padding: 0;
+    opacity: 0.4;
 
-    @media (max-width: $ig-small-screen) {
-        border: 3px solid transparent;
-        width: 81px;
-    }
+    // @media (max-width: $ig-small-screen) {
+    //     border: 3px solid transparent;
+    //     width: 81px;
+    // }
 
     + .image-gallery-thumbnail {
         margin-left: 2px;
@@ -396,23 +409,24 @@ $ig-shadow: 0 2px 2px lighten($ig-black, 10%);
     &.active,
     &:focus {
         outline: none;
-        border: 4px solid $ig-blue;
+        opacity: 1;
+        // border: 4px solid $ig-blue;
 
-        @media (max-width: $ig-small-screen) {
-            border: 3px solid $ig-blue;
-        }
+        // @media (max-width: $ig-small-screen) {
+        //     border: 3px solid $ig-blue;
+        // }
     }
 
-    @media (hover: hover) and (pointer: fine) {
-        &:hover {
-            outline: none;
-            border: 4px solid $ig-blue;
+    // @media (hover: hover) and (pointer: fine) {
+    //     &:hover {
+    //         outline: none;
+    //         border: 4px solid $ig-blue;
 
-            @media (max-width: $ig-small-screen) {
-                border: 3px solid $ig-blue;
-            }
-        }
-    }
+    //         @media (max-width: $ig-small-screen) {
+    //             border: 3px solid $ig-blue;
+    //         }
+    //     }
+    // }
 }
 
 .image-gallery-thumbnail-label {

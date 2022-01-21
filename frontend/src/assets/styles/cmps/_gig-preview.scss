@@ -1,15 +1,9 @@
 .gig-preview {
+    overflow: hidden;
     background-color: $clr6;
     position: relative;
     border: 1px solid $clr4;
     width: 100%;
-    .carusel {
-        width: 100%;
-
-        &img {
-            aspect-ratio: 16 / 9;
-        }
-    }
 
     .preview-card {
         padding: 8px;
@@ -18,37 +12,66 @@
             width: 25px;
             height: 25px;
             border-radius: 50%;
-            // padding-right: 5px;
             margin-right: 7px;
         }
         .seller-info {
+            a {
+                font-family: caveat;
+                font-weight: bold;
+                color: $clr2;
+            }
             align-items: center;
             font-size: 14px;
             line-height: 18px;
-            // padding: 0 12px 8px;
+
+            .seler-level {
+                color: $clr5;
+            }
+        }
+        .gig-title {
+            color: $clr2;
+            // font-family: Roboto-bold;
+            &:hover {
+                color: $clr1;
+            }
         }
         .gig-rating {
             align-items: center;
             margin-bottom: 25px;
+            font-size: 14px;
             .star {
-                // margin-inline-start: 0.5em;
+                transform: translateY(-1.5px);
                 color: $clr5;
                 font-weight: 700;
                 width: 15px;
                 height: 15px;
                 margin-right: 5px;
-                // vertical-align: -0.16em;
             }
             .rating {
                 color: $clr5;
+                padding-inline-end: 3px;
+            }
+            .raters {
+                color: $clr7;
             }
         }
         .footer {
-            // margin-inline-start: 0.5em;
             align-items: center;
             justify-content: space-between;
+            border-top: 1px solid $clr4;
+            padding-top: 5px;
             .small {
+                color: $clr8;
+                font-weight: bold;
+                padding-inline-end: 3px;
+                font-size: 10px;
                 text-transform: uppercase;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                // vertical-align: top;
+            }
+            .price {
+                color: $clr9;
             }
             .heart {
                 cursor: pointer;
@@ -57,12 +80,64 @@
                 color: $clr7;
             }
         }
-        .gig-title {
-            // padding-inline-start: 0.5em;
-            &:hover {
-                // text-decoration: inherit;
-                color: $clr1;
+    }
+    .image-gallery-icon {
+        color: $clr2;
+        // transition: all 0.3s ease-out;
+        appearance: none;
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+        outline: none;
+        position: absolute;
+        z-index: 4;
+        // filter: drop-shadow($ig-shadow);
+
+        &:hover {
+            background-color: white;
+        }
+
+        // @media (hover: hover) and (pointer: fine) {
+        //     &:hover {
+        //         // color: $ig-blue;
+        //         .image-gallery-svg {
+        //             // transform: scale(1.1);
+        //         }
+        //     }
+        // }
+        .image-gallery-left-nav,
+        .image-gallery-right-nav {
+            background-color: #fff;
+            position: absolute;
+            z-index: 4;
+            top: 50%;
+            width: 30px;
+            height: 100px;
+            margin-top: -24px;
+            text-align: center;
+            border-radius: 2em;
+
+            // box-shadow: 0 2px 5px 0 rgb(0 0 0 / 15%);
+            // padding: 50px 10px;
+            // top: 50%;
+            // transform: translateY(-50%);
+            // opacity: 0;
+            // &:hover {
+            //     opacity: 1;
+            // }
+
+            .image-gallery-svg {
+                height: 40px;
+                width: 20px;
             }
+        }
+
+        .image-gallery-left-nav {
+            left: -24px;
+        }
+
+        .image-gallery-right-nav {
+            right: -24px;
         }
     }
 }
