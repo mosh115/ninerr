@@ -1,0 +1,22 @@
+.login-background {
+    position: absolute;
+    background-color: rgba(0,0,0,.65);
+    height: 100%;
+    width: 100%;
+}
+.signIn-up-section {
+    width: 400px;
+    background-color: white;
+    padding: 0 36px 24px;
+    border-radius: 4px;
+    input {
+    background-color: #fff;
+    font: inherit;
+    color: #404145;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #c5c6c9;
+    width: 100%;
+    resize: none;
+    }
+}
