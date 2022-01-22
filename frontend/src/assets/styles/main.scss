@@ -21,6 +21,10 @@
 @import "views/review-app";
 
 // Components
+
+@import "cmps/explore-market-place";
+@import "cmps/market-place-service";
+@import "cmps/popular-service-list";
 @import "cmps/popular-service-card";
 @import "cmps/progress-bar";
 @import "cmps/app-header";

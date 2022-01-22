@@ -13,10 +13,7 @@ html {
     line-height: 1.6;
     color: $clr3;
     //  background image
-    max-height: 100vh;
-    background-image: url("../../img/home-page/2.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    
 }
 
 body {
@@ -24,6 +21,11 @@ body {
     margin: 0;
     // max-width: 1024px;
     // margin: auto;
+    
+    max-height: 100vh;
+    background-image: url("../../img/home-page/2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 h1,

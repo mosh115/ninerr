@@ -22,7 +22,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
 
   //navbar scroll changeBackground function
   const changeBackground = () => {
-    console.log(window.scrollY)
+    // console.log(window.scrollY)
     if (window.scrollY >= 20) {
       setNavbar(true)
     } else {

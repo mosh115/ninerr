@@ -11,8 +11,8 @@ import {
 
 function _AppFooter() {
   return (
-    <footer className="app-footer">
-      <div className="footer-links">
+    <footer className="app-footer  main-layout">
+      <div className="footer-links ">
         <div>Categories</div>
         <div>about</div>
         <div>contact</div>

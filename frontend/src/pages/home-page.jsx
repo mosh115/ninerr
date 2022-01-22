@@ -1,19 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { FaSearch, FaRegCheckCircle } from "react-icons/fa"
+
 import workingWomen from '../assets/img/home-page/16.jpg';
 import FreeLancerImage from '../assets/img/home-page/14.jpg';
-import {PopularServiceList} from '../cmps/popular-service-list'
+import { PopularServiceList } from '../cmps/popular-service-list'
+import { GigApp } from '../pages/gig-app'
+import {ExploreMarketPlace} from '../cmps/explore-market-place'
+
 class _HomePage extends React.Component {
     state = {}
-
-
 
     render() {
 
         return (
             <section className='home-page'>
-                <div className='upper-fold'>
+                <div className='upper-fold main-layout'>
                     <h1>Find the perfect <span className='freelance-word-in-title'>freelance</span>  <br /> services for your business</h1>
                     <form className='home-page-search-box'>
                         <div className='search-box-icon'><i><FaSearch /></i> </div>
@@ -34,39 +36,38 @@ class _HomePage extends React.Component {
                     <span>B&B</span>
                     <span>PayUs</span>
                 </section>
-                <section className='recently-viewed-section'>
+                <section className='recently-viewed-section main-layout'>
                     <h2>Recently Viewed & More</h2>
-                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                    </section>
-                <section className='popular-services'>
-                <PopularServiceList/>
-                    
-                    </section>
-                <section className='more-details-about-us'>
-                    <div>
-                        <h2>A whole world of freelance talent at your fingertips</h2>
-                        <h3> <span><FaRegCheckCircle /></span>The best for every budget</h3>
-                        Find high-quality services at every price point. No hourly rates, just project-based pricing.
-                        <h3><span><FaRegCheckCircle /></span>Quality work done quickly</h3>
-                        Find the right freelancer to begin working on your project within minutes.
-                        <h3><span><FaRegCheckCircle /></span>Protected payments, every time</h3>
-                        Always know what you'll pay upfront. Your payment isn't released until you approve the work.
-                        <h3><span><FaRegCheckCircle /></span>24/7 support</h3>
-                        Questions? Our round-the-clock support team is available to help anytime, anywhere.
-                    </div>
-                    <div>
-                        <img src={workingWomen} alt="working women" />
-                    </div>
+                    <GigApp/>
                 </section>
-                <section className='explore-market-place'>
+                <section className='popular-services main-layout'>
+                    <h2>Popular professional services</h2>
+                    <PopularServiceList />
+                </section>
+                <section>
+                    <div className='more-details-about-us'>
+                        <div>
+                            <h2>A whole world of freelance talent at your fingertips</h2>
+                            <h3> <span><FaRegCheckCircle /></span>The best for every budget</h3>
+                            Find high-quality services at every price point. No hourly rates, just project-based pricing.
+                            <h3><span><FaRegCheckCircle /></span>Quality work done quickly</h3>
+                            Find the right freelancer to begin working on your project within minutes.
+                            <h3><span><FaRegCheckCircle /></span>Protected payments, every time</h3>
+                            Always know what you'll pay upfront. Your payment isn't released until you approve the work.
+                            <h3><span><FaRegCheckCircle /></span>24/7 support</h3>
+                            Questions? Our round-the-clock support team is available to help anytime, anywhere.
+                        </div>
+                        <div>
+                            <img src={workingWomen} alt="working women" />
+                        </div>
+                    </div>
+
+                </section>
+                <section className='explore-market-place main-layout'>
                     <h2>Explore the marketplace</h2>
-                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                    <div className='market-place-items'>
+                    <ExploreMarketPlace/>
+                    </div>
                 </section>
                 <section className='get-inspired-with-projects'>
                     <h2>Get inspired with projects made by our freelancers</h2>
@@ -75,7 +76,7 @@ class _HomePage extends React.Component {
                     <h3>image&link1    image&link2    inage&link3    image&link4</h3>
                     <h3>image&link1    image&link2    inage&link3    image&link4</h3>
                 </section>
-                <section className='ninerr-guides'>
+                <section className='ninerr-guides main-layout'>
                     <h2>Ninerr guides</h2>
                     <div>
                         <div>
@@ -92,7 +93,7 @@ class _HomePage extends React.Component {
                         </div>
                     </div>
                 </section>
-                <section className='find-the-talent'>
+                <section className='find-the-talent full'>
                     <div>
                         <h2>Find the talent needed to get your business growing.</h2>
                         <button>Get Started</button>
@@ -107,6 +108,7 @@ class _HomePage extends React.Component {
 function mapStateToProps(state) {
     return {
         count: state.userModule.count
+     
     }
 }
 

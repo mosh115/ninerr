@@ -36,3 +36,16 @@
     grid-gap: 16px;
     // grid-auto-rows: 400px;
 }
+
+//doron use this definition because he is pissed of with the time that he 
+//wasted on git on friday and saturday morning
+// instead of sitting relaxed on saturday to learn the layouts
+
+.main-layout{
+    padding-inline-end: 20px;
+    padding-inline-start: 20px;
+    &.full {
+        padding-inline-start: 0px;
+        padding-inline-end: 0px;
+        }
+}
