@@ -78,7 +78,8 @@ class _HomePage extends React.Component {
                 </section>
                 <section className='ninerr-guides main-layout'>
                     <h2>Ninerr guides</h2>
-                    <div>
+
+                    <div className='guides-items'>
                         <div>
                             <h3>Start an online business and work from home</h3>
                             <h4>A complete guide to starting a small business online</h4>
