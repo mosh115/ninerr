@@ -94,8 +94,8 @@ function _createGigs() {
                 _id: "u101",
                 fullname: "Dudu Da",
                 avatarUrl: "url",
-                level: "basic/premium",
-                rate: 4,
+                level: "Level 2 Seller",
+                rate: 4.0,
                 raters: 4067,
             },
             daysToMake: 3,
@@ -116,7 +116,7 @@ function _createGigs() {
                 _id: "u102",
                 fullname: "Puki Ma",
                 avatarUrl: "url",
-                level: "basic/premium",
+                level: "Top Rated Seller",
                 rate: 4.7,
                 raters: 562,
             },
@@ -140,11 +140,54 @@ function _createUsers() {
 
     const users = [
         {
-            _id: _makeId(),
-            fullname: "User 1",
+            _id: "u101",
+            fullname: "digitalredcube",
             imgUrl: "/img/img1.jpg",
             // isAdmin: false,
-            username: "user1",
+            username: "digitalredcube",
+            password: "secret",
+            isSeller: false,
+
+            level: "",
+            reviews: [
+                {
+                    id: _makeId(),
+                    txt: "This is the second project that I have completed with the provider dubbed yourhighness. I can confidently say If you are looking for a professional voice-over that will take your production to the next level, look no further. Being a professional myself I understand the value of working with someone as responsive as he has been. If things keep progressing I have plans of putting him on the payroll so you better act fast!",
+                    rate: 4,
+                    by: {
+                        _id: "u101",
+                        fullname: "dearjerber",
+                        imgUrl: "/img/img2.jpg"
+                    }
+                },
+                {
+                    id: _makeId(),
+                    txt: "In the restaurant industry, success hinges on service and quality. So when we needed VOs for broadcast to promote a local food and beverage event, we hit Sean up with our short order. He delivered on tone, on quality and on time. And when we had a minor script change, his response was prompt, not missing a beat. The results sizzle!",
+                    rate: 5,
+                    by: {
+                        _id: "u102",
+                        fullname: "rogarguello",
+                        imgUrl: "/img/img2.jpg"
+                    }
+                },
+                {
+                    id: _makeId(),
+                    txt: "Second time working with yourhighness and it definitely won't be the last as I plan on working with him at least 8,642 more times! He must also work as a mind-reader, cause he always seems to know exactly how you want it to be read without saying it!",
+                    rate: 5,
+                    by: {
+                        _id: "u103",
+                        fullname: "Ben Sherman",
+                        imgUrl: "/img/img2.jpg"
+                    }
+                }
+            ],
+        },
+        {
+            _id: "u102",
+            fullname: "jessica56",
+            imgUrl: "/img/img1.jpg",
+            // isAdmin: false,
+            username: "jessica56",
             password: "secret",
             isSeller: false,
 
@@ -152,11 +195,31 @@ function _createUsers() {
             reviews: [
                 {
                     id: _makeId(),
-                    txt: "Very kind and works fast",
+                    txt: "This is the second project that I have completed with the provider dubbed yourhighness. I can confidently say If you are looking for a professional voice-over that will take your production to the next level, look no further. Being a professional myself I understand the value of working with someone as responsive as he has been. If things keep progressing I have plans of putting him on the payroll so you better act fast!",
                     rate: 4,
                     by: {
+                        _id: "u101",
+                        fullname: "dearjerber",
+                        imgUrl: "/img/img2.jpg"
+                    }
+                },
+                {
+                    id: _makeId(),
+                    txt: "In the restaurant industry, success hinges on service and quality. So when we needed VOs for broadcast to promote a local food and beverage event, we hit Sean up with our short order. He delivered on tone, on quality and on time. And when we had a minor script change, his response was prompt, not missing a beat. The results sizzle!",
+                    rate: 5,
+                    by: {
                         _id: "u102",
-                        fullname: "user2",
+                        fullname: "rogarguello",
+                        imgUrl: "/img/img2.jpg"
+                    }
+                },
+                {
+                    id: _makeId(),
+                    txt: "Second time working with yourhighness and it definitely won't be the last as I plan on working with him at least 8,642 more times! He must also work as a mind-reader, cause he always seems to know exactly how you want it to be read without saying it!",
+                    rate: 5,
+                    by: {
+                        _id: "u103",
+                        fullname: "Ben Sherman",
                         imgUrl: "/img/img2.jpg"
                     }
                 }
