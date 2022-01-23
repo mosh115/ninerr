@@ -81,23 +81,40 @@ export function onEditGig(gigToSave) {
             })
     }
 }
+export function onSetPage(page) {
+    return (dispatch) => {
+        // gigService.save(gigToSave)
+        //     .then(savedGig => {
+        //         console.log('Updated Gig:', savedGig);
+        dispatch({
+            type: 'SET_PAGE',
+            page: page
+        })
+        // showSuccessMsg('Gig updated')
+        // }
+        // .catch(err => {
+        //     showErrorMsg('Cannot update gig')
+        //     console.log('Cannot save gig', err)
+        // })
+    }
+}
 
-export function addToGigt(gig) {
-    return (dispatch) => {
-        dispatch({
-            type: 'ADD_TO_GIGT',
-            gig
-        })
-    }
-}
-export function removeFromGigt(gigId) {
-    return (dispatch) => {
-        dispatch({
-            type: 'REMOVE_FROM_GIGT',
-            gigId
-        })
-    }
-}
+// export function addToGigt(gig) {
+//     return (dispatch) => {
+//         dispatch({
+//             type: 'ADD_TO_GIGT',
+//             gig
+//         })
+//     }
+// }
+// export function removeFromGigt(gigId) {
+//     return (dispatch) => {
+//         dispatch({
+//             type: 'REMOVE_FROM_GIGT',
+//             gigId
+//         })
+//     }
+// }
 
 export function checkout() {
     return async (dispatch, getState) => {

@@ -7,111 +7,125 @@ import FreeLancerImage from '../assets/img/home-page/14.jpg';
 import { PopularServiceList } from '../cmps/popular-service-list'
 import { GigApp } from '../pages/gig-app'
 import { ExploreMarketPlace } from '../cmps/explore-market-place'
+import { onSetPage } from '../store/gig.actions'
+import { useEffect } from 'react';
 
-class _HomePage extends React.Component {
-    state = {}
+function _HomePage() {
 
-    render() {
+    useEffect(() => {
+        console.log('test');
+        onSetPage('home-page')
+    }, [])
 
-        return (
-            <section className='home-page'>
-                    <img className='home-page-hero' src={workingWomen} alt='' />
-                <div className='upper-fold main-layout'>
-                    <h1>Find the perfect <span className='freelance-word-in-title'>freelance</span>  <br /> services for your business</h1>
-                    <form className='home-page-search-box'>
-                        <div className='search-box-icon'><i><FaSearch /></i> </div>
-                        <input type="search" name="search-box" placeholder='Try "Building a mobile app"' />
-                        <button>Search</button>
-                    </form>
-                    <div className='popular-categories'>Popular:
-                        <span>Website design</span>
-                        <span>Wordpress</span>
-                        <span>Logo design</span>
-                        <span>Music</span>
+    return (
+        <section className='home-page'>
+            <img className='home-page-hero' src={workingWomen} alt='' />
+            <div className='upper-fold main-layout'>
+                <h1>Find the perfect <span className='freelance-word-in-title'>freelance</span>  <br /> services for your business</h1>
+                <form className='home-page-search-box'>
+                    <div className='search-box-icon'><i><FaSearch /></i> </div>
+                    <input type="search" name="search-box" placeholder='Try "Building a mobile app"' />
+                    <button>Search</button>
+                </form>
+                <div className='popular-categories'>Popular:
+                    <span>Website design</span>
+                    <span>Wordpress</span>
+                    <span>Logo design</span>
+                    <span>Music</span>
+                </div>
+            </div>
+            <section className='social-proof-line'>Trusted by:
+                <span>Fakelook</span>
+                <span>Coogle</span>
+                <span>BigFoot</span>
+                <span>B&B</span>
+                <span>PayUs</span>
+            </section>
+            <section className='recently-viewed-section main-layout'>
+                <h2>Recently Viewed & More</h2>
+                <GigApp />
+            </section>
+            <section className='popular-services main-layout'>
+                <h2>Popular professional services</h2>
+                <PopularServiceList />
+            </section>
+            <section>
+                <div className='more-details-about-us'>
+                    <div>
+                        <h2>A whole world of freelance talent at your fingertips</h2>
+                        <h3> <span><FaRegCheckCircle /></span>The best for every budget</h3>
+                        Find high-quality services at every price point. No hourly rates, just project-based pricing.
+                        <h3><span><FaRegCheckCircle /></span>Quality work done quickly</h3>
+                        Find the right freelancer to begin working on your project within minutes.
+                        <h3><span><FaRegCheckCircle /></span>Protected payments, every time</h3>
+                        Always know what you'll pay upfront. Your payment isn't released until you approve the work.
+                        <h3><span><FaRegCheckCircle /></span>24/7 support</h3>
+                        Questions? Our round-the-clock support team is available to help anytime, anywhere.
+                    </div>
+                    <div>
+                        <img src={workingWomen} alt="working women" />
                     </div>
                 </div>
-                <section className='social-proof-line'>Trusted by:
-                    <span>Fakelook</span>
-                    <span>Coogle</span>
-                    <span>BigFoot</span>
-                    <span>B&B</span>
-                    <span>PayUs</span>
-                </section>
-                <section className='recently-viewed-section main-layout'>
-                    <h2>Recently Viewed & More</h2>
-                    <GigApp />
-                </section>
-                <section className='popular-services main-layout'>
-                    <h2>Popular professional services</h2>
-                    <PopularServiceList />
-                </section>
-                <section>
-                    <div className='more-details-about-us'>
-                        <div>
-                            <h2>A whole world of freelance talent at your fingertips</h2>
-                            <h3> <span><FaRegCheckCircle /></span>The best for every budget</h3>
-                            Find high-quality services at every price point. No hourly rates, just project-based pricing.
-                            <h3><span><FaRegCheckCircle /></span>Quality work done quickly</h3>
-                            Find the right freelancer to begin working on your project within minutes.
-                            <h3><span><FaRegCheckCircle /></span>Protected payments, every time</h3>
-                            Always know what you'll pay upfront. Your payment isn't released until you approve the work.
-                            <h3><span><FaRegCheckCircle /></span>24/7 support</h3>
-                            Questions? Our round-the-clock support team is available to help anytime, anywhere.
-                        </div>
-                        <div>
-                            <img src={workingWomen} alt="working women" />
-                        </div>
-                    </div>
 
-                </section>
-                <section className='explore-market-place main-layout'>
-                    <h2>Explore the marketplace</h2>
-                    <div className='market-place-items'>
-                        <ExploreMarketPlace />
-                    </div>
-                </section>
-                <section className='get-inspired-with-projects'>
-                    <h2>Get inspired with projects made by our freelancers</h2>
-                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                    <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                </section>
-                <section className='ninerr-guides main-layout'>
-                    <h2>Ninerr guides</h2>
+            </section>
+            <section className='explore-market-place main-layout'>
+                <h2>Explore the marketplace</h2>
+                <div className='market-place-items'>
+                    <ExploreMarketPlace />
+                </div>
+            </section>
+            <section className='get-inspired-with-projects'>
+                <h2>Get inspired with projects made by our freelancers</h2>
+                <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+                <h3>image&link1    image&link2    inage&link3    image&link4</h3>
+            </section>
+            <section className='ninerr-guides main-layout'>
+                <h2>Ninerr guides</h2>
 
-                    <div className='guides-items'>
-                        <div>
-                            <h3>Start an online business and work from home</h3>
-                            <h4>A complete guide to starting a small business online</h4>
-                        </div>
-                        <div>
-                            <h3>Digital marketing made easy</h3>
-                            <h4>A practical guide to understand what is digital marketing</h4>
-                        </div>
-                        <div>
-                            <h3>Create a logo for your business</h3>
-                            <h4>A step by step for creating a memorable business logo</h4>
-                        </div>
-                    </div>
-                </section>
-                <section className='find-the-talent full'>
+                <div className='guides-items'>
                     <div>
-                        <h2>Find the talent needed to get your business growing.</h2>
-                        <button>Get Started</button>
+                        <h3>Start an online business and work from home</h3>
+                        <h4>A complete guide to starting a small business online</h4>
                     </div>
-                    <img src={FreeLancerImage} alt="FreeLancer woman image" />
-                </section>
-            </section >
-        )
-    }
+                    <div>
+                        <h3>Digital marketing made easy</h3>
+                        <h4>A practical guide to understand what is digital marketing</h4>
+                    </div>
+                    <div>
+                        <h3>Create a logo for your business</h3>
+                        <h4>A step by step for creating a memorable business logo</h4>
+                    </div>
+                </div>
+            </section>
+            <section className='find-the-talent full'>
+                <div>
+                    <h2>Find the talent needed to get your business growing.</h2>
+                    <button>Get Started</button>
+                </div>
+                <img src={FreeLancerImage} alt="FreeLancer woman image" />
+            </section>
+        </section >
+    )
 }
+
 
 function mapStateToProps(state) {
     return {
-        count: state.userModule.count
-
+        count: state.userModule.count,
+        gig: state.gigModule.page,
     }
 }
 
-export const HomePage = connect(mapStateToProps)(_HomePage)
+const mapDispatchToProps = {
+    onSetPage
+
+    // onLogin,
+    // onSignup,
+    // onLogout,
+    // loadUsers,
+    // removeUser,
+}
+export const HomePage = connect(mapStateToProps, mapDispatchToProps)(_HomePage)
+
