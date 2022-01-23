@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
-import { Link, NavLink } from "react-router-dom"
-import routes from "../routes"
+import { NavLink } from "react-router-dom"
+// import routes from "../routes"
 
 // this is for the nav bar to change bcg color when scrolling
 import { useState, useEffect } from "react"
@@ -19,10 +19,12 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   //navbar scroll when active state
   const [navbar, setNavbar] = useState(false)
   const [subNavbar, setSubNavbar] = useState(false)
+  const [isSignIn, toggleSignIn] = useState(false)
+  const [isSignUp, toggleSignUp] = useState(false)
 
   //navbar scroll changeBackground function
   const changeBackground = () => {
-    console.log(window.scrollY)
+    // console.log(window.scrollY)
     if (window.scrollY >= 20) {
       setNavbar(true)
     } else {
@@ -48,7 +50,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
         <NavLink className="logo-font clean-link" to="/">
           Ninerr<span className="logo-point">.</span>
         </NavLink>
-        <nav>
+        <nav className="flex align-center space-between">
           <NavLink className="clean-link" to="/about">
             About
           </NavLink>
@@ -58,12 +60,12 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
           <NavLink className="clean-link" to="/sign-up-seller">
             Become A Seller
           </NavLink>
-          <NavLink className="clean-link" to="/sign-in">
+          <div className="pointer" onClick={()=>{toggleSignIn(true)}}>
             Sign in
-          </NavLink>
-          <NavLink className="clean-link join" to="/sign-up-buyer">
+          </div>
+          <div className="join pointer" onClick={()=>{toggleSignIn(true); toggleSignUp(true)}}>
             Join
-          </NavLink>
+          </div>
           {user && <div className="user-section">{user.username}🌟</div>}
         </nav>
 
@@ -74,8 +76,8 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
         <span>Writing & Translation</span>
         <span>Video & Animation</span>
         <span>Programming</span>
-
       </div>
+      {isSignIn && <LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup}/>}
       {/* <nav> */}
       {/* {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
                 {user &&
