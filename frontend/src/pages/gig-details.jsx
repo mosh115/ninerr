@@ -1,33 +1,40 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { gigService } from '../services/gig.service';
 import { Link } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
+import { gigService } from '../services/gig.service';
+import { userService } from '../services/user.service';
 import { utilService } from '../services/util.service';
 import ImageGallery from 'react-image-gallery';
 import { ProgressBar } from '../cmps/progress-bar'
 import { FaStar } from "react-icons/fa";
+import { ReviewItem } from '../cmps/review-item';
 
-// import { render } from "react-dom";
+
 
 export function GigDetails() {
 
     const [gig, setGig] = useState()
+    const [userSeller, setUserSeller] = useState()
 
     useEffect(() => {
-        loadGig()
+        loadGigAndSeller()
     }, [])
 
 
     const { gigId } = useParams();
 
-    async function loadGig() {
+    async function loadGigAndSeller() {
         let gig = await gigService.getById(gigId)
+        console.log('gig', gig);
+        const seller = await userService.getById(gig.seller._id)
+        console.log('seller', seller);
         setGig(gig)
+        setUserSeller(seller)
     }
 
-    function getRandomColor() {
+    function getRandomNum() {
         return utilService.getRandomIntInclusive(1, 80)
     }
 
@@ -48,32 +55,40 @@ export function GigDetails() {
 
 
 
-    if (!gig) return <h1>Loading..</h1>
+    if (!gig || !userSeller) return <h1>Loading..</h1>
     return (
         <section className='gig-details main-container'>
-            <div className='gig-overview'>
-                <h1 className='title' >{gig.title}</h1>
-            </div>
-            <div className='seller-overview flex'>
-                <img className='avatar' src={`https://i.pravatar.cc/24?u=${gig._id}`} />
-                <Link to={'/#'}> {gig.seller.fullname}</Link>
-                <p className='seller-level'>{gig.seller.level} <span className='stop'>|</span></p>
+            <section className='details-container flex'>
+                <section>
+                    <div className='gig-overview'>
+                        <h1 className='title' >{gig.title}</h1>
+                    </div>
+                    <div className='seller-overview flex'>
+                        <img className='avatar' src={`https://i.pravatar.cc/24?u=${gig._id}`} />
+                        <Link to={'/#'}> {gig.seller.fullname}</Link>
+                        <p className='seller-level'>{gig.seller.level} <span className='stop'>|</span></p>
 
-                <ReactStars classNames="stars"
-                    count={gig.seller.rate}
-                    size={15}
-                    color="#ffb33e"
-                    activeColor="#ffb33e"
-                    edit={false}
-                />
-                <b className='rating'>{gig.seller.rate} </b>
-                <p className='raters'>({gig.seller.raters})<span className='stop'>|</span></p>
-                <p className='qweue'><span>{getRandomColor()}</span> Orders in Queue</p>
+                        <ReactStars classNames="stars"
+                            count={gig.seller.rate}
+                            size={15}
+                            color="#ffb33e"
+                            activeColor="#ffb33e"
+                            edit={false}
+                        />
+                        <b className='rating'>{gig.seller.rate} </b>
+                        <p className='raters'>({gig.seller.raters})<span className='stop'>|</span></p>
+                        <p className='qweue'><span>{getRandomNum()}</span> Orders in Queue</p>
 
-            </div>
-            <div className='gallery'>
-                <ImageGallery items={images} showThumbnails={true} showPlayButton={false} />
-            </div>
+                    </div>
+                    <div className='gallery'>
+                        <ImageGallery items={images} showThumbnails={true} showPlayButton={false} />
+                    </div>
+                </section>
+                <section className='gig-order'>
+
+                </section>
+
+            </section>
 
             <div className='about-gig'>
                 <h2>About This Gig</h2>
@@ -165,6 +180,7 @@ export function GigDetails() {
                     </ul>
                 </section>
             </div>
+            {userSeller.reviews.map((review) => <ReviewItem review={review} />)}
 
 
 
