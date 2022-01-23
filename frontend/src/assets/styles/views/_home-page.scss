@@ -74,14 +74,15 @@
         margin-bottom: 30%;
     }
     .social-proof-line{
-        color: $clr3;
+        margin-top: 1.5em;
+        margin-bottom: 3em;
+        color: $clr7;
         font-weight: 800;
         display: flex;
         flex-direction: row;
         justify-content: center;
         gap: 1.5em;
         font-size: 1.3em;
-        // width: 50%;
     }
     .recently-viewed-section{
         h2{
@@ -89,6 +90,7 @@
         }
     }
     .popular-services{
+        margin-top: 3em;
         h2{
             font-size: 2em;
         }
