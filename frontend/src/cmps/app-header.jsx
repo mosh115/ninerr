@@ -1,6 +1,8 @@
 import React from "react"
 import { connect } from "react-redux"
 import { NavLink } from "react-router-dom"
+import { utilService } from '../services/util.service'
+
 // import routes from "../routes"
 import { FaSearch } from "react-icons/fa"
 // this is for the nav bar to change bcg color when scrolling
@@ -22,6 +24,14 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   const [isSignIn, toggleSignIn] = useState(false)
   const [isSignUp, toggleSignUp] = useState(false)
 
+
+  useEffect(() => {
+    if (isSignIn) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'unset';
+  }, [isSignIn])
+
+
+
   //navbar scroll changeBackground function
   const changeBackground = () => {
     // console.log(window.scrollY)
@@ -41,6 +51,17 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
     // adding the event when scroll change background
     window.addEventListener("scroll", changeBackground)
   })
+  // useEffect(() => {
+  //   if (isSignIn) document.body.style.overflow = 'hidden';
+  //   else document.body.style.overflow = 'unset';
+  // }, [isSignIn])
+
+  const randomAvatarColor = () => {
+    const colors = ['#0F2347', '#1C3F6E', '#2E67A0', '#5AACCF', '#80C271'];
+    let randIdx = utilService.getRandomIntInclusive(0, colors.length - 1);
+    console.log(colors[randIdx]);
+    return colors[randIdx];
+  }
 
   return (
     <header className="app-header">
@@ -66,13 +87,19 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
           <NavLink className="clean-link" to="/sign-up-seller">
             Become A Seller
           </NavLink>
-          <div className="pointer" onClick={() => { toggleSignIn(true) }}>
+          {!user && <React.Fragment><div className="pointer" onClick={() => { toggleSignIn(true) }}>
             Sign in
           </div>
-          <div className="join pointer" onClick={() => { toggleSignIn(true); toggleSignUp(true) }}>
-            Join
-          </div>
-          {user && <div className="user-section">{user.username}🌟</div>}
+            <div className="join pointer" onClick={() => { toggleSignIn(true); toggleSignUp(true) }}>
+              Join
+            </div>
+          </React.Fragment>}
+          {user && <React.Fragment>
+            <div className="pointer" onClick={() => { onLogout() }}>logout</div>
+            <div className="user-avatar pointer" style={{ backgroundColor: randomAvatarColor() }}>
+              <p>{user.username[0].toUpperCase()}</p>
+            </div>
+          </React.Fragment>}
         </nav>
 
       </div>

@@ -88,6 +88,7 @@
     .join {
       border-color: $clr1;
       color: $clr1;
+      // transition: all .2s ease;
       &:hover {
         background-color: $clr1;
         color: $clr6;
@@ -112,6 +113,25 @@
     background-color: $clr6;
     &.hidden {
       visibility: hidden;
+    }
+  }
+  .user-avatar {
+    position: relative;
+    margin-inline-start: 1em;
+    // margin-inline-end: 1em;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+    overflow: hidden;
+    p{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
     }
   }
 }
