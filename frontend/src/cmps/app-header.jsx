@@ -22,6 +22,14 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   const [isSignIn, toggleSignIn] = useState(false)
   const [isSignUp, toggleSignUp] = useState(false)
 
+
+  useEffect(() => {
+    if (isSignIn) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'unset';
+  }, [isSignIn])
+
+
+
   //navbar scroll changeBackground function
   const changeBackground = () => {
     // console.log(window.scrollY)

@@ -31,7 +31,7 @@ const routes = [
         component: <GigDetails />
     },
     {
-        path: '/buyer',
+        path: '/user',
         component: <BuyerDetails />
     },
     {
