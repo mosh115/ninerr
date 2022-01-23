@@ -61,22 +61,22 @@ export function LoginSignup(props) {
                             {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
                         </select> */}
                         <input
-                        type="text"
-                        name="username"
-                        value={credentials.username}
-                        placeholder="Email / Username"
-                        onChange={handleChange}
-                        required
-                        autoFocus
+                            type="text"
+                            name="username"
+                            value={credentials.username}
+                            placeholder="Email / Username"
+                            onChange={handleChange}
+                            required
+                            autoFocus
                         />
                         <input
-                        type="password"
-                        name="password"
-                        value={credentials.password}
-                        placeholder="Password"
-                        onChange={handleChange}
-                        required
-                    />
+                            type="password"
+                            name="password"
+                            value={credentials.password}
+                            placeholder="Password"
+                            onChange={handleChange}
+                            required
+                        />
                         <button>Continue</button>
                     </form>
                     <div className="form-footer flex justify-center align-center">
