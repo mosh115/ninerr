@@ -24,7 +24,7 @@ function _HomePage() {
     const [topFold, setTopFold] = useState(true)
 
     const unFixTopFold = () => {
-        if (window.scrollY >= 50) {
+        if (window.scrollY >= 150) {
             setTopFold(false)
         } else {
             setTopFold(true)
