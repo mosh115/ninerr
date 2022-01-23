@@ -60,10 +60,10 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
           <NavLink className="clean-link" to="/sign-up-seller">
             Become A Seller
           </NavLink>
-          <div className="pointer" onClick={()=>{toggleSignIn(true)}}>
+          <div className="pointer" onClick={() => { toggleSignIn(true) }}>
             Sign in
           </div>
-          <div className="join pointer" onClick={()=>{toggleSignIn(true); toggleSignUp(true)}}>
+          <div className="join pointer" onClick={() => { toggleSignIn(true); toggleSignUp(true) }}>
             Join
           </div>
           {user && <div className="user-section">{user.username}🌟</div>}
@@ -77,7 +77,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
         <span>Video & Animation</span>
         <span>Programming</span>
       </div>
-      {isSignIn && <LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup}/>}
+      {isSignIn && <LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
       {/* <nav> */}
       {/* {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
                 {user &&
@@ -103,12 +103,14 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
 
 function mapStateToProps(state) {
   return {
+    gig: state.gigModule.page,
     users: state.userModule.users,
     user: state.userModule.user,
     isLoading: state.systemModule.isLoading,
   }
 }
 const mapDispatchToProps = {
+
   onLogin,
   onSignup,
   onLogout,
