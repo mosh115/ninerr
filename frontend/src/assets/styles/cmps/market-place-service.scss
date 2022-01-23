@@ -1,0 +1,30 @@
+.market-place-service{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h3{
+        margin-top: 0%;
+
+    }
+    i{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3em;
+    }
+    // border-bottom: 2px solid $clr1;
+    hr{
+        transition: 1000ms;
+        border: solid 1px $clr4 ;
+        width: 30%;
+        
+    }
+    &:hover{
+        hr{
+            width: 60%;
+            border: solid 1px $clr1 ;
+        }
+        
+    }
+}
