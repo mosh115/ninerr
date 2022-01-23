@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { NavLink } from "react-router-dom"
 // import routes from "../routes"
-
+import { FaSearch } from "react-icons/fa"
 // this is for the nav bar to change bcg color when scrolling
 import { useState, useEffect } from "react"
 
@@ -50,6 +50,12 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
         <NavLink className="logo-font clean-link" to="/">
           Ninerr<span className="logo-point">.</span>
         </NavLink>
+        {/* <form className='navbar-search-box'> */}
+        <form className={subNavbar ? 'navbar-search-box ' : 'navbar-search-box hidden'}>
+          <div className='search-box-icon'><i><FaSearch /></i> </div>
+          <input type="search" name="search-box" placeholder='"Find Services"' />
+          <button>Search</button>
+        </form>
         <nav className="flex align-center space-between">
           <NavLink className="clean-link" to="/about">
             About

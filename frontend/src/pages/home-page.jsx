@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { FaSearch, FaRegCheckCircle } from "react-icons/fa"
 
 import workingWomen from '../assets/img/home-page/16.jpg';
+import CoolMan from '../assets/img/home-page/6.jpg';
 import FreeLancerImage from '../assets/img/home-page/14.jpg';
 import { PopularServiceList } from '../cmps/popular-service-list'
 import { GigApp } from '../pages/gig-app'
@@ -10,30 +11,52 @@ import { ExploreMarketPlace } from '../cmps/explore-market-place'
 import { onSetPage } from '../store/gig.actions'
 import { useEffect } from 'react';
 
+// this is for the top-fold to become un-fixed when starting to scroll the page
+import { useState } from "react"
+
 function _HomePage() {
 
     useEffect(() => {
-        console.log('test');
         onSetPage('home-page')
     }, [])
 
+    // this is for the top-fold to become un-fixed when starting to scroll the page
+    const [topFold, setTopFold] = useState(true)
+
+    const unFixTopFold = () => {
+        if (window.scrollY >= 50) {
+            setTopFold(false)
+        } else {
+            setTopFold(true)
+        }
+    }
+    useEffect(() => {
+        unFixTopFold()
+        window.addEventListener("scroll", unFixTopFold)
+    })
+
+
     return (
         <section className='home-page'>
-            <img className='home-page-hero' src={workingWomen} alt='' />
-            <div className='upper-fold main-layout'>
-                <h1>Find the perfect <span className='freelance-word-in-title'>freelance</span>  <br /> services for your business</h1>
-                <form className='home-page-search-box'>
-                    <div className='search-box-icon'><i><FaSearch /></i> </div>
-                    <input type="search" name="search-box" placeholder='Try "Building a mobile app"' />
-                    <button>Search</button>
-                </form>
-                <div className='popular-categories'>Popular:
-                    <span>Website design</span>
-                    <span>Wordpress</span>
-                    <span>Logo design</span>
-                    <span>Music</span>
+            <section>
+                <img className='home-page-hero' src={CoolMan} alt='' />
+                {/* <div className='top-fold main-layout'> */}
+                <div className={ topFold ? 'top-fold main-layout' : 'top-fold main-layout hidden'}>
+                    <h1>Find the perfect <span className='freelance-word-in-title'>freelance</span>  <br /> services for your business</h1>
+                    <form className='home-page-search-box'>
+                        <div className='search-box-icon'><i><FaSearch /></i> </div>
+                        <input type="search" name="search-box" placeholder='Try "Building a mobile app"' />
+                        <button>Search</button>
+                    </form>
+                    <div className='popular-categories'>Popular:
+                        <span>Website design</span>
+                        <span>Wordpress</span>
+                        <span>Logo design</span>
+                        <span>Music</span>
+                    </div>
                 </div>
-            </div>
+            </section>
+
             <section className='social-proof-line'>Trusted by:
                 <span>Fakelook</span>
                 <span>Coogle</span>

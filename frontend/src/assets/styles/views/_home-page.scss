@@ -1,4 +1,13 @@
 .home-page{
+    .top-fold{
+        transition: 200ms;
+        color: $clr6;
+        position: fixed;
+        top: 80px;
+        &.hidden{
+            visibility: hidden;
+        }
+    }
     h1{
         margin-top: 25vh;
         font-size: 48px;
@@ -130,7 +139,5 @@
         }
         margin-bottom: 2em;
     }
-    .upper-fold{
-        color: $clr6;
-    }
+    
 }

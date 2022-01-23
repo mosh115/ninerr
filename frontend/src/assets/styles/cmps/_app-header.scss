@@ -12,7 +12,49 @@
   .logo-point {
     color: $clr1;
   }
+ 
 
+  form{
+
+    border: 0.5px solid $clr1;
+    height: 2em;
+    display:  flex;
+    flex-direction: row;
+    align-items: center;
+    .search-box-icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $clr6;
+        width: 10%;
+        height: 100%;
+        
+        border-bottom-left-radius: 5%;
+        border-top-left-radius: 5%;
+    }
+    i{
+        padding-top: 5px;
+        color: $clr3;
+    }
+    button{
+        margin: 0%;
+        border-bottom-right-radius: 5%;
+        border-top-right-radius: 5%;
+        padding-inline: 1em;
+        width: fit-content;
+        height: 100%;
+    }
+    input{
+        border: none;
+        height: 100%;
+    }
+    input:focus{
+        outline: none;
+    }
+    &.hidden{
+      visibility: hidden;
+    }
+}
   .nav-container {
     z-index: 5;
     position: fixed;
