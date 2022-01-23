@@ -12,7 +12,6 @@ html {
     // font-family: roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
     color: $clr3;
-    //  background image
     
 }
 
@@ -21,11 +20,12 @@ body {
     margin: 0;
     // max-width: 1024px;
     // margin: auto;
-    
-    max-height: 100vh;
-    background-image: url("../../img/home-page/2.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+
+        //  background image
+    // max-height: 100vh;
+    // background-image: url("../../img/home-page/2.jpg");
+    // background-size: cover;
+    // background-repeat: no-repeat;
 }
 
 h1,

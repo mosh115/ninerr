@@ -6,7 +6,7 @@ import workingWomen from '../assets/img/home-page/16.jpg';
 import FreeLancerImage from '../assets/img/home-page/14.jpg';
 import { PopularServiceList } from '../cmps/popular-service-list'
 import { GigApp } from '../pages/gig-app'
-import {ExploreMarketPlace} from '../cmps/explore-market-place'
+import { ExploreMarketPlace } from '../cmps/explore-market-place'
 
 class _HomePage extends React.Component {
     state = {}
@@ -15,6 +15,7 @@ class _HomePage extends React.Component {
 
         return (
             <section className='home-page'>
+                    <img className='home-page-hero' src={workingWomen} alt='' />
                 <div className='upper-fold main-layout'>
                     <h1>Find the perfect <span className='freelance-word-in-title'>freelance</span>  <br /> services for your business</h1>
                     <form className='home-page-search-box'>
@@ -38,7 +39,7 @@ class _HomePage extends React.Component {
                 </section>
                 <section className='recently-viewed-section main-layout'>
                     <h2>Recently Viewed & More</h2>
-                    <GigApp/>
+                    <GigApp />
                 </section>
                 <section className='popular-services main-layout'>
                     <h2>Popular professional services</h2>
@@ -66,7 +67,7 @@ class _HomePage extends React.Component {
                 <section className='explore-market-place main-layout'>
                     <h2>Explore the marketplace</h2>
                     <div className='market-place-items'>
-                    <ExploreMarketPlace/>
+                        <ExploreMarketPlace />
                     </div>
                 </section>
                 <section className='get-inspired-with-projects'>
@@ -109,7 +110,7 @@ class _HomePage extends React.Component {
 function mapStateToProps(state) {
     return {
         count: state.userModule.count
-     
+
     }
 }
 

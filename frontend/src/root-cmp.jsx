@@ -14,14 +14,14 @@ export class RootCmp extends React.Component {
         return (
             <div>
                 {/* i moved appheader and footer inside main  */}
-                <main>
                 <AppHeader />
+                <main>
                     <Routes>
                         {routes.map(route => <Route key={route.path} exact='true' element={route.component} path={route.path} />)}
                         {/* <Route path="user/:id" element={<UserDetails />} /> */}
                     </Routes>
-                <AppFooter />
                 </main>
+                <AppFooter />
             </div>
         )
     }
