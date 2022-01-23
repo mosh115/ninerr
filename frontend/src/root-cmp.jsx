@@ -13,7 +13,6 @@ export class RootCmp extends React.Component {
     render() {
         return (
             <div>
-                {/* i moved appheader and footer inside main  */}
                 <AppHeader />
                 <main>
                     <Routes>

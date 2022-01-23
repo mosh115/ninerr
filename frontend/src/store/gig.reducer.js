@@ -1,12 +1,17 @@
 const initialState = {
     gigs: [],
-    lastRemovedGig: null
+    lastRemovedGig: null,
+    page: null
 }
 export function gigReducer(state = initialState, action) {
     var newState = state
     var gigs
-    var gigt
+    // var page
+
     switch (action.type) {
+        case 'SET_PAGE':
+            newState = { ...state, page: action.page }
+            break
         case 'SET_GIGS':
             newState = { ...state, gigs: action.gigs }
             break
