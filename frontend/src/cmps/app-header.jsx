@@ -28,7 +28,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   const [isPopoverNav, togglePopoverNav] = useState(false)
 
   let location = useLocation();
-  console.log('location', location);
+  // console.log('location', location);
 
   useEffect(() => {
 
@@ -98,7 +98,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
             </div>
           </React.Fragment>}
           {user && <React.Fragment>
-            <div className="user-avatar pointer" onClick={() => { togglePopoverNav(true) }} style={{backgroundColor: user.avatarColor}}>
+            <div className="user-avatar pointer" onClick={() => { togglePopoverNav(true) }} style={{ backgroundColor: user.avatarColor }}>
               <p>{user.username[0].toUpperCase()}</p>
               <div className="dot"></div>
             </div>
@@ -115,8 +115,9 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
         <span>Programming & Tech</span>
         <span>Business</span>
       </div>
-      {isSignIn && !user &&<LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
-      {isPopoverNav && <PopoverNav togglePopoverNav={togglePopoverNav} onLogout={onLogout}/>}
+      {isSignIn && !user && <LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
+      {isPopoverNav && <PopoverNav togglePopoverNav={togglePopoverNav} onLogout={onLogout} user={user}
+      />}
       {/* <nav> */}
       {/* {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
                 {user &&

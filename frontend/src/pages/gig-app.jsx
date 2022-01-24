@@ -12,7 +12,7 @@ function _GigApp({ loadGigs, gigs, AddGig }) {
     }, [])
 
 
-    console.log('gigApp', gigs)
+    // console.log('gigApp', gigs)
     // if (!gigs) return <h1>Loading...</h1>
     return (
         <div className="main-container">

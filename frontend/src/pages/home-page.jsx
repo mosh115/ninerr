@@ -25,8 +25,8 @@ function _HomePage(props) {
     //     onSetHeaderBackground('SET_TRANSPARENT')
     // }, [])
 
-    console.log('props: ',props)
-    
+    // console.log('props: ',props)
+
 
     // this is for the top-fold to become un-fixed when starting to scroll the page
     const [topFold, setTopFold] = useState(true)

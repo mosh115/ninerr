@@ -27,9 +27,9 @@ export function GigDetails() {
     const { gigId } = useParams();
 
     async function loadGigAndSeller() {
-        console.log(gigId);
+        // console.log(gigId);
         let gig = await gigService.getById(gigId)
-        console.log('giggggg', gig);
+        // console.log('giggggg', gig);
         const seller = await userService.getById(gig.seller._id)
         // console.log('seller', seller);
         setGig(gig)

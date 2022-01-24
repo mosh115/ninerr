@@ -22,7 +22,7 @@ export function PopoverNav(props) {
             <ul className="popover-nav" onClick={stopPropagation}>
                 <div className="triangle2"></div>
                 <div className="triangle1"></div>
-                <Link to="/profile"><li onClick={onClosePopNav} className="pointer">Profile</li></Link>
+                <Link to={`/profile`}><li onClick={onClosePopNav} className="pointer">Profile</li></Link>
                 <li className="line"></li>
                 <li onClick={() => { onLogout(); onClosePopNav() }} className="pointer">Logout</li>
             </ul>

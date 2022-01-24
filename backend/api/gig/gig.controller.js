@@ -3,7 +3,7 @@ const logger = require('../../services/logger.service')
 
 // GET LIST
 async function getGigs(req, res) {
-  console.log('in server', req);
+  // console.log('in server', req);
   try {
     let { filterBy } = req.query;
     if (filterBy) filterBy = JSON.parse(filterBy)
