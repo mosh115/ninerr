@@ -1,54 +1,63 @@
 .gig-details {
-    .details-container {
-        padding: 0 35px;
-        width: 65%;
+    h2 {
+        padding-bottom: 25px;
     }
-
-    margin-top: 150px;
-    .seller-overview {
-        margin-bottom: 20px;
-        font-size: 14px;
-
+    .gig-overview {
         .title {
             font-size: 28px;
             padding-bottom: 16px;
             line-height: 130%;
             margin: 0;
-        }
-        .avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-        }
-        a {
-            font-size: 14px;
-            padding-inline-start: 12px;
-            padding-inline-end: 5px;
+            font-weight: 700;
             color: $clr9;
         }
-        .seller-level {
-            color: $clr5;
-        }
-        span {
-            padding: 0 1.5px;
-            // color: $clr3;
-        }
-        .stop {
-            padding: 0 5px;
-            color: $clr3;
-        }
-        .react-stars {
-            transform: translateY(-1px);
-        }
-        .rating {
-            padding-inline-start: 4px;
-            color: $clr5;
-        }
-        .raters {
-            padding-inline-start: 4px;
-        }
-        .qweue {
-            color: $clr10;
+    }
+    .details-container {
+        padding: 0 35px;
+        width: 60%;
+
+        margin-top: 150px;
+
+        .seller-overview {
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+
+            .avatar {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+            }
+            a {
+                font-size: 14px;
+                padding-inline-start: 12px;
+                padding-inline-end: 5px;
+                color: $clr9;
+            }
+            .seller-level {
+                color: $clr5;
+            }
+            span {
+                padding: 0 1.5px;
+                // color: $clr3;
+            }
+            .stop {
+                padding: 0 5px;
+                color: $clr3;
+            }
+            .react-stars {
+                transform: translateY(-1px);
+            }
+            .rating {
+                padding-inline-start: 4px;
+                color: $clr5;
+            }
+            .raters {
+                padding-inline-start: 4px;
+            }
+            .qweue {
+                color: $clr10;
+            }
         }
     }
 
@@ -124,25 +133,52 @@
     }
 
     .reviews {
+        margin-bottom: 24px;
         .details {
             width: 100%;
             color: $clr9;
+            h2 {
+                font-weight: 700;
+                line-height: 42px;
+                margin: 0;
+                font-size: rem(20px);
+                span {
+                    padding: 0 1.5px;
+                }
+                .react-stars {
+                    padding-inline-start: 4px;
+                    // transform: translateY(3px);
+                }
+                .rating {
+                    padding-inline-start: 4px;
+                    color: $clr5;
+                }
+            }
         }
-        h2 {
-            font-weight: 700;
-            line-height: 42px;
-            margin: 0;
-            font-size: rem(20px);
-            span {
-                padding: 0 1.5px;
+        .ranking {
+            width: 50%;
+            padding: 0 16px;
+            // padding-bottom: 25px;
+            h6 {
+                padding-top: 4px;
+                margin: 0;
+                padding-bottom: 16px;
+                font-weight: 600;
+                font-size: rem(16px);
             }
-            .react-stars {
-                padding-inline-start: 4px;
-                // transform: translateY(3px);
-            }
-            .rating {
-                padding-inline-start: 4px;
-                color: $clr5;
+            ul {
+                color: $clr10;
+                margin: 0;
+                padding: 0;
+                li {
+                    padding-bottom: 8px;
+                    font-weight: 400;
+                    line-height: 24px;
+                    .star {
+                        margin-inline-start: 2px;
+                        color: $clr5;
+                    }
+                }
             }
         }
     }
