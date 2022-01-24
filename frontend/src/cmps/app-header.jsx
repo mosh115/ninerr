@@ -67,16 +67,19 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
     <header className="app-header">
       <div className=
         {navbar ? "navbar white nav-container flex align-center space-between" :
-          "navbar nav-container flex align-center space-between"} >
-        <NavLink className="logo-font clean-link" to="/">
-          Ninerr<span className="logo-point">.</span>
-        </NavLink>
-        {/* <form className='navbar-search-box'> */}
-        <form className={subNavbar ? 'navbar-search-box ' : 'navbar-search-box hidden'}>
-          <div className='search-box-icon'><i><FaSearch /></i> </div>
-          <input type="search" name="search-box" placeholder='"Find Services"' />
-          <button>Search</button>
-        </form>
+          "navbar white nav-container flex align-center space-between"} >
+        <div className="logo-and-search-box">
+          <NavLink className="logo-font clean-link" to="/">
+            Ninerr<span className="logo-point">.</span>
+          </NavLink>
+          <form className={subNavbar ? 'navbar-search-box ' : 'navbar-search-box hidden'}>
+            <div className='search-box-icon'><i><FaSearch /></i> </div>
+            <input type="search" name="search-box" placeholder="Find Services" />
+            <button>Search</button>
+          </form>
+        </div>
+
+
         <nav className="flex align-center space-between">
           <NavLink className="clean-link" to="/about">
             About
@@ -108,7 +111,9 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
         <span>Digital Marketing</span>
         <span>Writing & Translation</span>
         <span>Video & Animation</span>
-        <span>Programming</span>
+        <span>Music & Audio</span>
+        <span>Programming & Tech</span>
+        <span>Business</span>
       </div>
       {isSignIn && <LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
       {/* <nav> */}
