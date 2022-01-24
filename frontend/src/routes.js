@@ -4,8 +4,7 @@ import { AboutUs } from './pages/about-us.jsx'
 import { GigApp } from './pages/gig-app.jsx'
 import { GigDetails } from './pages/gig-details.jsx'
 import { AddEditGig } from './pages/add-edit-gig.jsx'
-import { BuyerDetails } from './pages/buyer-details.jsx'
-import { SellerDetails } from './pages/seller-details.jsx'
+import { UserProfile } from './pages/user-profile.jsx'
 // import { ReviewApp } from './pages/review-app.jsx'
 // import { ChatApp } from './pages/chat-app.jsx'
 // import { AdminApp } from './pages/admin-app.jsx'
@@ -18,7 +17,7 @@ const routes = [
 
     },
     {
-        path: 'explore',
+        path: '/explore',
         component: <GigApp />,
 
     },
@@ -31,13 +30,10 @@ const routes = [
         component: <GigDetails />
     },
     {
-        path: '/user',
-        component: <BuyerDetails />
+        path: '/profile',
+        component: <UserProfile />
     },
-    {
-        path: '/seller',
-        component: <SellerDetails />
-    },
+    
     // {
     //     path: 'review',
     //     component: <ReviewApp />,

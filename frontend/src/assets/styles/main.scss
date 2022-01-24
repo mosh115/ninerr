@@ -19,6 +19,7 @@
 @import "views/gig-app";
 @import "views/gig-details";
 @import "views/review-app";
+@import "views/user-profile";
 
 // Components
 
@@ -34,4 +35,5 @@
 @import "cmps/gig-preview";
 @import "cmps/review-item";
 @import "cmps/login-signup";
+@import "cmps/popover-nav";
 @import "cmps/table-rating";

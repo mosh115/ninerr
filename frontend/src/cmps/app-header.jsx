@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 import { utilService } from '../services/util.service'
 
 // import routes from "../routes"
@@ -16,6 +16,8 @@ import {
   removeUser,
 } from "../store/user.actions.js"
 import { LoginSignup } from "./login-signup.jsx"
+import { PopoverNav } from "./popover-nav.jsx"
+
 
 function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   //navbar scroll when active state
@@ -23,9 +25,13 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   const [subNavbar, setSubNavbar] = useState(false)
   const [isSignIn, toggleSignIn] = useState(false)
   const [isSignUp, toggleSignUp] = useState(false)
+  const [isPopoverNav, togglePopoverNav] = useState(false)
 
+  let location = useLocation();
+  console.log('location', location);
 
   useEffect(() => {
+
     if (isSignIn) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'unset';
   }, [isSignIn])
@@ -34,6 +40,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
 
   //navbar scroll changeBackground function
   const changeBackground = () => {
+
     // console.log(window.scrollY)
     if (window.scrollY >= 20) {
       setNavbar(true)
@@ -55,13 +62,6 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   //   if (isSignIn) document.body.style.overflow = 'hidden';
   //   else document.body.style.overflow = 'unset';
   // }, [isSignIn])
-
-  const randomAvatarColor = () => {
-    const colors = ['#0F2347', '#1C3F6E', '#2E67A0', '#5AACCF', '#80C271'];
-    let randIdx = utilService.getRandomIntInclusive(0, colors.length - 1);
-    console.log(colors[randIdx]);
-    return colors[randIdx];
-  }
 
   return (
     <header className="app-header">
@@ -98,9 +98,9 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
             </div>
           </React.Fragment>}
           {user && <React.Fragment>
-            <div className="pointer" onClick={() => { onLogout() }}>logout</div>
-            <div className="user-avatar pointer" style={{ backgroundColor: randomAvatarColor() }}>
+            <div className="user-avatar pointer" onClick={() => { togglePopoverNav(true) }} style={{backgroundColor: user.avatarColor}}>
               <p>{user.username[0].toUpperCase()}</p>
+              <div className="dot"></div>
             </div>
           </React.Fragment>}
         </nav>
@@ -115,7 +115,8 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
         <span>Programming & Tech</span>
         <span>Business</span>
       </div>
-      {isSignIn && <LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
+      {isSignIn && !user &&<LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
+      {isPopoverNav && <PopoverNav togglePopoverNav={togglePopoverNav} onLogout={onLogout}/>}
       {/* <nav> */}
       {/* {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
                 {user &&

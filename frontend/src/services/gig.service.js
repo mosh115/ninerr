@@ -1,51 +1,55 @@
 
-import { storageService } from './async-storage.service.js'
-import { utilService } from './util.service.js'
+// import { storageService } from './async-storage.service.js'
+// import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
+import { httpService } from './http.service.js'
 
-const STORAGE_KEY = 'gig'
+// const STORAGE_KEY = 'gig'
+const END_POINT = 'gig'
 const listeners = []
+
 
 export const gigService = {
     query,
     getById,
     save,
     remove,
-    getEmptyGig,
     subscribe
 
 }
 window.cs = gigService;
 
 
-function query() {
-    return storageService.query(STORAGE_KEY)
+function query(filterBy) {
+    console.log('query in gig service');
+    // return storageService.query(STORAGE_KEY)
+    return httpService.get(END_POINT, filterBy)
 }
 function getById(gigId) {
-    return storageService.get(STORAGE_KEY, gigId)
+    // console.log(gigId);
+    // return storageService.get(STORAGE_KEY, gigId)
+    return httpService.get(`${END_POINT}/${gigId}`)
 }
 function remove(gigId) {
     // return new Promise((resolve, reject) => {
     //     setTimeout(reject, 2000)
     // })
     // return Promise.reject('Not now!');
-    return storageService.remove(STORAGE_KEY, gigId)
+    // return storageService.remove(STORAGE_KEY, gigId)
+    return httpService.remove(END_POINT, gigId)
 }
 function save(gig) {
     if (gig._id) {
-        return storageService.put(STORAGE_KEY, gig)
+        // return storageService.put(STORAGE_KEY, gig)
+        return httpService.put(END_POINT, gig)
     } else {
         gig.owner = userService.getLoggedinUser()
-        return storageService.post(STORAGE_KEY, gig)
+        // return storageService.post(STORAGE_KEY, gig)
+        return httpService.post(END_POINT, gig)
     }
 }
 
-function getEmptyGig() {
-    return {
-        vendor: 'Susita-' + (Date.now() % 1000),
-        price: utilService.getRandomIntInclusive(1000, 9000),
-    }
-}
+
 
 function subscribe(listener) {
     listeners.push(listener)

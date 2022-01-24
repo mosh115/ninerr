@@ -3,99 +3,88 @@ import { userService } from "../services/user.service.js";
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 export function loadGigs() {
+    return async (dispatch, getState) => {
+        try {
+            const filterBy = {}
+            console.log('get gigs in action');
+            // const { filterBy } = getState().gigModule
+            const gigs = await gigService.query(filterBy)
+            dispatch({ type: 'SET_GIGS', gigs })
+
+        } catch (err) {
+            console.log('Cannot load gigs', err);
+        }
+    }
+}
+
+
+// gigService.subscribe((gigs) => {
+//     console.log('Got notified');
+//     dispatch({
+//         type: 'SET_GIGS',
+//         gigs
+//     })
+// })
+
+
+export function removeGig(gigId) {
+
+    return async (dispatch) => {
+        try {
+            await gigService.remove(gigId)
+            dispatch({ type: 'REMOVE_GIG', gigId })
+            // dispatch({ type: 'SET_MSG', msg: { txt: 'removed gig', type: 'success' } })
+
+        } catch (err) {
+            console.log('Cannot remove gig', err);
+        }
+    }
+}
+
+export function addGig(gigToAdd) {
+
+    return async (dispatch) => {
+        try {
+            const gig = await gigService.save(gigToAdd)
+            dispatch({ type: 'ADD_GIG', gig })
+
+        } catch (err) {
+            console.log('Cannot add gig');
+        }
+    }
+}
+
+
+export function updateGig(gigToUpdate) {
+
+    return async (dispatch) => {
+        try {
+            const gig = await gigService.save(gigToUpdate)
+            dispatch({ type: 'UPDATE_GIG', gig })
+
+        } catch (err) {
+            console.log('Cannot update gig');
+
+        }
+    }
+}
+
+export function setFilter(filterBy) {
     return (dispatch) => {
-        gigService.query()
-            .then(gigs => {
-                console.log('Gigs from DB:', gigs)
-                dispatch({
-                    type: 'SET_GIGS',
-                    gigs
-                })
-            })
-            .catch(err => {
-                showErrorMsg('Cannot load gigs')
-                console.log('Cannot load gigs', err)
-            })
+        dispatch({ type: 'SET_FILTER', filterBy })
 
-        gigService.subscribe((gigs) => {
-            console.log('Got notified');
-            dispatch({
-                type: 'SET_GIGS',
-                gigs
-            })
-        })
     }
 }
 
-export function onRemoveGig(gigId) {
-    return (dispatch, getState) => {
-        gigService.remove(gigId)
-            .then(() => {
-                console.log('Deleted Succesfully!');
-                dispatch({
-                    type: 'REMOVE_GIG',
-                    gigId
-                })
-                showSuccessMsg('Gig removed')
-            })
-            .catch(err => {
-                showErrorMsg('Cannot remove gig')
-                console.log('Cannot remove gig', err)
-            })
-    }
-}
 
-export function onAddGig() {
-    return (dispatch) => {
-        const gig = gigService.getEmptyGig();
-        gigService.save(gig)
-            .then(savedGig => {
-                console.log('Added Gig', savedGig);
-                dispatch({
-                    type: 'ADD_GIG',
-                    gig: savedGig
-                })
-                showSuccessMsg('Gig added')
-            })
-            .catch(err => {
-                showErrorMsg('Cannot add gig')
-                console.log('Cannot add gig', err)
-            })
-    }
-}
-
-export function onEditGig(gigToSave) {
-    return (dispatch) => {
-        gigService.save(gigToSave)
-            .then(savedGig => {
-                console.log('Updated Gig:', savedGig);
-                dispatch({
-                    type: 'UPDATE_GIG',
-                    gig: savedGig
-                })
-                showSuccessMsg('Gig updated')
-            })
-            .catch(err => {
-                showErrorMsg('Cannot update gig')
-                console.log('Cannot save gig', err)
-            })
-    }
-}
 export function onSetPage(page) {
     return (dispatch) => {
-        // gigService.save(gigToSave)
-        //     .then(savedGig => {
-        //         console.log('Updated Gig:', savedGig);
+
         dispatch({
             type: 'SET_PAGE',
             page: page
         })
-        // showSuccessMsg('Gig updated')
-        // }
-        // .catch(err => {
-        //     showErrorMsg('Cannot update gig')
-        //     console.log('Cannot save gig', err)
-        // })
+
     }
 }
 
