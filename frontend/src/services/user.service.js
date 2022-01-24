@@ -1,4 +1,5 @@
 import { storageService } from './async-storage.service'
+import { utilService } from './util.service'
 // import { httpService } from './http.service'
 import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_LOGIN, SOCKET_EMIT_LOGOUT } from './socket.service'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
@@ -55,7 +56,8 @@ async function login(userCred) {
     // if (user) return _saveLocalUser(user)
 }
 async function signup(userCred) {
-    // userCred.score = 10000;
+    userCred.createdAt = Date.now()
+    userCred.avatarColor = _randomAvatarColor();
     const user = await storageService.post('user', userCred)
     // const user = await httpService.post('auth/signup', userCred)
     socketService.emit(SOCKET_EMIT_LOGIN, user._id);
@@ -85,6 +87,12 @@ function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER) || 'null')
 }
 
+const _randomAvatarColor = () => {
+    const colors = ['#0F2347', '#1C3F6E', '#2E67A0', '#5AACCF', '#80C271'];
+    let randIdx = utilService.getRandomIntInclusive(0, colors.length - 1);
+    // console.log(colors[randIdx]);
+    return colors[randIdx];
+  }
 
 // (async ()=>{
 //     await userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',score: 10000, isAdmin: false})
