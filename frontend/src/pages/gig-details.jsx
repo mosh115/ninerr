@@ -7,7 +7,7 @@ import { gigService } from '../services/gig.service';
 import { userService } from '../services/user.service';
 import { utilService } from '../services/util.service';
 import ImageGallery from 'react-image-gallery';
-import { ProgressBar } from '../cmps/progress-bar'
+// import { ProgressBar } from '../cmps/progress-bar'
 import { FaStar } from "react-icons/fa";
 import { ReviewItem } from '../cmps/review-item';
 import { TableRating } from '../cmps/table-rating';
@@ -27,11 +27,13 @@ export function GigDetails() {
     const { gigId } = useParams();
 
     async function loadGigAndSeller() {
+        console.log(gigId);
         let gig = await gigService.getById(gigId)
-        // console.log('gig', gig);
+        console.log('giggggg', gig);
         const seller = await userService.getById(gig.seller._id)
         // console.log('seller', seller);
         setGig(gig)
+        // console.log(gig);
         setUserSeller(seller)
     }
 

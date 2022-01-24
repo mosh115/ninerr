@@ -18,7 +18,7 @@ const routes = [
 
     },
     {
-        path: 'explore',
+        path: '/explore',
         component: <GigApp />,
 
     },

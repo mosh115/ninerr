@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 import { utilService } from '../services/util.service'
 
 // import routes from "../routes"
@@ -17,6 +17,7 @@ import {
 } from "../store/user.actions.js"
 import { LoginSignup } from "./login-signup.jsx"
 
+
 function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   //navbar scroll when active state
   const [navbar, setNavbar] = useState(false)
@@ -24,8 +25,11 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   const [isSignIn, toggleSignIn] = useState(false)
   const [isSignUp, toggleSignUp] = useState(false)
 
+  let location = useLocation();
+  console.log('location', location);
 
   useEffect(() => {
+
     if (isSignIn) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'unset';
   }, [isSignIn])
@@ -34,6 +38,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
 
   //navbar scroll changeBackground function
   const changeBackground = () => {
+
     // console.log(window.scrollY)
     if (window.scrollY >= 20) {
       setNavbar(true)
