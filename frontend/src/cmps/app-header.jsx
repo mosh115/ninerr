@@ -1,6 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
-import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
+import { utilService } from '../services/util.service'
 
 // import routes from "../routes"
 import { FaSearch } from "react-icons/fa"
@@ -17,6 +18,7 @@ import {
 import { LoginSignup } from "./login-signup.jsx"
 import { PopoverNav } from "./popover-nav.jsx"
 
+
 function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   //navbar scroll when active state
   const [navbar, setNavbar] = useState(false)
@@ -25,8 +27,11 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   const [isSignUp, toggleSignUp] = useState(false)
   const [isPopoverNav, togglePopoverNav] = useState(false)
 
+  let location = useLocation();
+  console.log('location', location);
 
   useEffect(() => {
+
     if (isSignIn) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'unset';
   }, [isSignIn])
@@ -35,6 +40,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
 
   //navbar scroll changeBackground function
   const changeBackground = () => {
+
     // console.log(window.scrollY)
     if (window.scrollY >= 20) {
       setNavbar(true)
@@ -61,16 +67,19 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
     <header className="app-header">
       <div className=
         {navbar ? "navbar white nav-container flex align-center space-between" :
-          "navbar nav-container flex align-center space-between"} >
-        <NavLink className="logo-font clean-link" to="/">
-          Ninerr<span className="logo-point">.</span>
-        </NavLink>
-        {/* <form className='navbar-search-box'> */}
-        <form className={subNavbar ? 'navbar-search-box ' : 'navbar-search-box hidden'}>
-          <div className='search-box-icon'><i><FaSearch /></i> </div>
-          <input type="search" name="search-box" placeholder='"Find Services"' />
-          <button>Search</button>
-        </form>
+          "navbar white nav-container flex align-center space-between"} >
+        <div className="logo-and-search-box">
+          <NavLink className="logo-font clean-link" to="/">
+            Ninerr<span className="logo-point">.</span>
+          </NavLink>
+          <form className={subNavbar ? 'navbar-search-box ' : 'navbar-search-box hidden'}>
+            <div className='search-box-icon'><i><FaSearch /></i> </div>
+            <input type="search" name="search-box" placeholder="Find Services" />
+            <button>Search</button>
+          </form>
+        </div>
+
+
         <nav className="flex align-center space-between">
           <NavLink className="clean-link" to="/about">
             About
@@ -102,7 +111,9 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
         <span>Digital Marketing</span>
         <span>Writing & Translation</span>
         <span>Video & Animation</span>
-        <span>Programming</span>
+        <span>Music & Audio</span>
+        <span>Programming & Tech</span>
+        <span>Business</span>
       </div>
       {isSignIn && !user &&<LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
       {isPopoverNav && <PopoverNav togglePopoverNav={togglePopoverNav} onLogout={onLogout}/>}

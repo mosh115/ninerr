@@ -1,6 +1,10 @@
 const initialState = {
     gigs: [],
-    lastRemovedGig: null,
+    filterBy: {
+        title: '',
+        labels: [],
+    },
+    // lastRemovedGig: null,
     page: null
 }
 export function gigReducer(state = initialState, action) {
@@ -27,13 +31,17 @@ export function gigReducer(state = initialState, action) {
             gigs = state.gigs.map(gig => (gig._id === action.gig._id) ? action.gig : gig)
             newState = { ...state, gigs }
             break
-
-        case 'UNDO_REMOVE_GIG':
-            if (state.lastRemovedGig) {
-                newState = { ...state, gigs: [...state.gigs, state.lastRemovedGig], lastRemovedGig: null }
-            }
-            break
+        case 'SET_FILTER':
+            return { ...state, filterBy: action.filterBy }
         default:
+            newState = state
+
+        // case 'UNDO_REMOVE_GIG':
+        //     if (state.lastRemovedGig) {
+        //         newState = { ...state, gigs: [...state.gigs, state.lastRemovedGig], lastRemovedGig: null }
+        //     }
+        //     break
+        // default:
     }
     // For debug:
     window.gigState = newState

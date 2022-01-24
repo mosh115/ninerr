@@ -8,8 +8,6 @@ function _UserProfile({ user }) {
     const formatDate = (value) => {
         let date = new Date(value);
         let mmm_yyyy = date.toUTCString().split(' ').splice(2,2)
-        // const month = date.toUTCString('default', { month: 'short' });
-        // const year = date.toLocaleString('default', { year: 'numeric' });
         return mmm_yyyy[0] + ' ' + mmm_yyyy[1];
     }
     return (

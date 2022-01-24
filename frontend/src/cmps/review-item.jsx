@@ -7,7 +7,7 @@ export function ReviewItem({ review }) {
     return (
         <div className='review-item flex'>
             <section>
-                <img className='avatar' src={`https://i.pravatar.cc/24?u=${review._id}`} />
+                <img className='avatar' src={`https://i.pravatar.cc/32?u=${review._id}`} />
             </section>
             <section>
                 <header>
@@ -16,7 +16,7 @@ export function ReviewItem({ review }) {
                         <FaStar className='star' />
                         <p className='rating'>{review.rate} </p>
                     </section>
-                    <section>
+                    <section className='from flex'>
                         <Flags.US title="United States" className="flag" />
                         <p>United States</p>
                     </section>

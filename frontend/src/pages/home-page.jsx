@@ -11,14 +11,22 @@ import { ExploreMarketPlace } from '../cmps/explore-market-place'
 import { onSetPage } from '../store/gig.actions'
 import { useEffect } from 'react';
 
+
 // this is for the top-fold to become un-fixed when starting to scroll the page
 import { useState } from "react"
 
-function _HomePage() {
+function _HomePage(props) {
 
     useEffect(() => {
         onSetPage('home-page')
     }, [])
+
+    // useEffect(() => {
+    //     onSetHeaderBackground('SET_TRANSPARENT')
+    // }, [])
+
+    console.log('props: ',props)
+    
 
     // this is for the top-fold to become un-fixed when starting to scroll the page
     const [topFold, setTopFold] = useState(true)
@@ -40,8 +48,8 @@ function _HomePage() {
         <section className='home-page'>
             <section>
                 <img className='home-page-hero' src={CoolMan} alt='' />
-                {/* <div className='top-fold main-layout'> */}
-                <div className={ topFold ? 'top-fold main-layout' : 'top-fold main-layout hidden'}>
+
+                <div className={topFold ? 'top-fold main-layout' : 'top-fold main-layout hidden'}>
                     <h1>Find the perfect <span className='freelance-word-in-title'>freelance</span>  <br /> services for your business</h1>
                     <form className='home-page-search-box'>
                         <div className='search-box-icon'><i><FaSearch /></i> </div>
@@ -64,26 +72,35 @@ function _HomePage() {
                 <span>B&B</span>
                 <span>PayUs</span>
             </section>
-            <section className='recently-viewed-section main-layout'>
+            {/* This section should appear (if we  have extra time) only for logged and experienced user */}
+            {/* <section className='recently-viewed-section main-layout'>
                 <h2>Recently Viewed & More</h2>
                 <GigApp />
-            </section>
+            </section> */}
             <section className='popular-services main-layout'>
                 <h2>Popular professional services</h2>
                 <PopularServiceList />
             </section>
             <section>
                 <div className='more-details-about-us'>
-                    <div>
+                    <div className='content'>
                         <h2>A whole world of freelance talent at your fingertips</h2>
-                        <h3> <span><FaRegCheckCircle /></span>The best for every budget</h3>
-                        Find high-quality services at every price point. No hourly rates, just project-based pricing.
-                        <h3><span><FaRegCheckCircle /></span>Quality work done quickly</h3>
-                        Find the right freelancer to begin working on your project within minutes.
-                        <h3><span><FaRegCheckCircle /></span>Protected payments, every time</h3>
-                        Always know what you'll pay upfront. Your payment isn't released until you approve the work.
-                        <h3><span><FaRegCheckCircle /></span>24/7 support</h3>
-                        Questions? Our round-the-clock support team is available to help anytime, anywhere.
+                        <div>
+                            <h3> <span><FaRegCheckCircle /></span>The best for every budget</h3>
+                            <h4>Find high-quality services at every price point. No hourly rates, just project-based pricing.</h4>
+                        </div>
+                        <div>
+                            <h3><span><FaRegCheckCircle /></span>Quality work done quickly</h3>
+                            <h4>Find the right freelancer to begin working on your project within minutes.</h4>
+                        </div>
+                        <div>
+                            <h3><span><FaRegCheckCircle /></span>Protected payments, every time</h3>
+                            <h4>Always know what you'll pay upfront. Your payment isn't released until you approve the work.</h4>
+                        </div>
+                        <div>
+                            <h3><span><FaRegCheckCircle /></span>24/7 support</h3>
+                            <h4>Questions? Our round-the-clock support team is available to help anytime, anywhere.</h4>
+                        </div>
                     </div>
                     <div>
                         <img src={workingWomen} alt="working women" />
@@ -91,13 +108,16 @@ function _HomePage() {
                 </div>
 
             </section>
+
             <section className='explore-market-place main-layout'>
                 <h2>Explore the marketplace</h2>
                 <div className='market-place-items'>
                     <ExploreMarketPlace />
                 </div>
             </section>
-            <section className='get-inspired-with-projects'>
+
+            {/* These 2 sections will appear only if we have extra time. now we don't have it LOL */}
+            {/* <section className='get-inspired-with-projects'>
                 <h2>Get inspired with projects made by our freelancers</h2>
                 <h3>image&link1    image&link2    inage&link3    image&link4</h3>
                 <h3>image&link1    image&link2    inage&link3    image&link4</h3>
@@ -121,7 +141,7 @@ function _HomePage() {
                         <h4>A step by step for creating a memorable business logo</h4>
                     </div>
                 </div>
-            </section>
+            </section> */}
             <section className='find-the-talent full'>
                 <div>
                     <h2>Find the talent needed to get your business growing.</h2>
@@ -142,8 +162,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    onSetPage
-
+    onSetPage,
     // onLogin,
     // onSignup,
     // onLogout,

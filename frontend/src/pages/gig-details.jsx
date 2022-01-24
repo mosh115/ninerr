@@ -7,9 +7,10 @@ import { gigService } from '../services/gig.service';
 import { userService } from '../services/user.service';
 import { utilService } from '../services/util.service';
 import ImageGallery from 'react-image-gallery';
-import { ProgressBar } from '../cmps/progress-bar'
+// import { ProgressBar } from '../cmps/progress-bar'
 import { FaStar } from "react-icons/fa";
 import { ReviewItem } from '../cmps/review-item';
+import { TableRating } from '../cmps/table-rating';
 
 
 
@@ -26,11 +27,13 @@ export function GigDetails() {
     const { gigId } = useParams();
 
     async function loadGigAndSeller() {
+        console.log(gigId);
         let gig = await gigService.getById(gigId)
-        // console.log('gig', gig);
+        console.log('giggggg', gig);
         const seller = await userService.getById(gig.seller._id)
         // console.log('seller', seller);
         setGig(gig)
+        // console.log(gig);
         setUserSeller(seller)
     }
 
@@ -61,25 +64,18 @@ export function GigDetails() {
 
             <section className='details-container'>
                 <div className='gig-overview'>
-                    <h1 className='title' >{gig.title}</h1>
+                    <h1 className='title'>{gig.title}</h1>
                 </div>
                 <div className='seller-overview flex'>
                     <img className='avatar' src={`https://i.pravatar.cc/24?u=${gig._id}`} />
                     <Link to={'/#'}> {gig.seller.fullname}</Link>
                     <p className='seller-level'>{gig.seller.level} <span className='stop'>|</span></p>
-
-                    <ReactStars classNames="stars"
-                        count={gig.seller.rate}
-                        size={15}
-                        color="#ffb33e"
-                        activeColor="#ffb33e"
-                        edit={false}
-                    />
+                    <ReactStars classNames="stars" count={gig.seller.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
                     <b className='rating'>{gig.seller.rate} </b>
                     <p className='raters'>({gig.seller.raters})<span className='stop'>|</span></p>
                     <p className='qweue'><span>{getRandomNum()}</span> Orders in Queue</p>
-
                 </div>
+
                 <div className='gallery'>
                     <ImageGallery items={images} showThumbnails={true} showPlayButton={false} />
                 </div>
@@ -99,13 +95,7 @@ export function GigDetails() {
                     <div className='seller-info'>
                         <Link className='name' to={'/#'}> {gig.seller.fullname}</Link>
                         <div className='flex'>
-                            <ReactStars
-                                count={gig.seller.rate}
-                                size={16}
-                                color="#ffb33e"
-                                activeColor="#ffb33e"
-                                edit={false}
-                            />
+                            <ReactStars count={gig.seller.rate} size={16} color="#ffb33e" activeColor="#ffb33e" edit={false} />
                             <p className='rating'>{gig.seller.rate} </p>
                             <p className='raters'>({gig.seller.raters})</p>
 
@@ -120,7 +110,6 @@ export function GigDetails() {
                         <li className='flex column'>Avg. response time<strong>1 hour</strong></li>
                         <li className='flex column'>Last Delivey<strong>1 day</strong></li>
                     </ul>
-
                 </div>
 
                 <div className='reviews'>
@@ -136,45 +125,17 @@ export function GigDetails() {
                             <p className='rating'>{gig.seller.rate} </p>
                         </h2>
                     </div>
-                </div>
-                <div className='flex' >
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td><span>5 Stars</span></td>
-                                <td><ProgressBar completed="80" /></td>
-                                <td>(72)</td>
-                            </tr>
-                            <tr>
-                                <td><span>4 Stars</span></td>
-                                <td><ProgressBar completed="10" /></td>
-                                <td>(4)</td>
-                            </tr>
-                            <tr>
-                                <td><span>3 Stars</span></td>
-                                <td><ProgressBar completed="0" /></td>
-                                <td>(0)</td>
-                            </tr>
-                            <tr>
-                                <td><span>2 Stars</span></td>
-                                <td><ProgressBar completed="0" /></td>
-                                <td>(0)</td>
-                            </tr>
-                            <tr>
-                                <td><span>1 Star</span></td>
-                                <td><ProgressBar completed="10" /></td>
-                                <td>(38)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <section>
-                        <h6>Rating Breakdown</h6>
-                        <ul className='clean-list'>
-                            <li>Seller comunication level <span> 4.9 <FaStar className='star' /></span></li>
-                            <li>Recommend to a friend <span> 4.9 <FaStar className='star' /></span></li>
-                            <li>Service as described <span> 4.9 <FaStar className='star' /></span></li>
-                        </ul>
-                    </section>
+                    <div className='flex' >
+                        <TableRating />
+                        <section className='ranking'>
+                            <h6>Rating Breakdown</h6>
+                            <ul className='clean-list'>
+                                <li className='flex space-between'>Seller comunication level <span> 4.9 <FaStar className='star' /></span></li>
+                                <li className='flex space-between'>Recommend to a friend <span> 4.9 <FaStar className='star' /></span></li>
+                                <li className='flex space-between'>Service as described <span> 4.9 <FaStar className='star' /></span></li>
+                            </ul>
+                        </section>
+                    </div>
                 </div>
                 {userSeller.reviews.map((review) => <ReviewItem review={review} key={review._id} />)}
 
@@ -183,31 +144,6 @@ export function GigDetails() {
             <aside className='aside'>
 
             </aside>
-
-
-            <ul>
-                {/* {gig.reviews.map(review => <li key={review}>{review}</li>)} */}
-
-            </ul>
-
-
-
-
-
-
-            {/* GigDetails<br />
-
-        Todo:<br />
-        get id from params<br />
-
-        gig nav<br />
-        gig title<br />
-        avatar--name--level--stars--raters--num orders in queue<br />
-        gig images carrousel<br />
-        about the seller<br />
-        reviews<br />
-
-        checkout */}
 
 
         </section>)

@@ -1,20 +1,21 @@
 import React, { useEffect } from "react"
 import { connect } from "react-redux"
-
 import { GigList } from "../cmps/gig-list.jsx"
-
-import { loadGigs, onAddGig } from "../store/gig.actions.js"
+import { loadGigs, addGig } from "../store/gig.actions.js"
 import { showSuccessMsg } from "../services/event-bus.service.js"
 
-function _GigApp({ loadGigs, gigs, onAddGig }) {
+function _GigApp({ loadGigs, gigs, AddGig }) {
+
     useEffect(() => {
+        // console.log('useEffect in explosre');
         loadGigs()
     }, [])
 
+
+    console.log('gigApp', gigs)
+    // if (!gigs) return <h1>Loading...</h1>
     return (
         <div className="main-container">
-            {/* <h3>Explore</h3> */}
-
 
             {/* Todo: */}
             {/* <Filter/> */}
@@ -30,7 +31,7 @@ function mapStateToProps(state) {
 }
 const mapDispatchToProps = {
     loadGigs,
-    onAddGig,
+    addGig,
 }
 
 export const GigApp = connect(mapStateToProps, mapDispatchToProps)(_GigApp)
