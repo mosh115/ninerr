@@ -10,6 +10,8 @@ import HeroImage4 from '../assets/img/home-page/19.jpg';
 import HeroImage5 from '../assets/img/home-page/28.jpg';
 import HeroImage6 from '../assets/img/home-page/27.jpg';
 import HeroImage7 from '../assets/img/home-page/6.jpg';
+import HeroImage8 from '../assets/img/home-page/98.png';
+import HeroImage9 from '../assets/img/home-page/99.png';
 import workingWomen from '../assets/img/home-page/16.jpg';
 import FreeLancerImage from '../assets/img/home-page/14.jpg';
 
@@ -20,24 +22,20 @@ import { onSetPage } from '../store/gig.actions'
 import { useEffect } from 'react';
 import { useState } from "react"
 
-const images = [HeroImage1, HeroImage2, HeroImage3,HeroImage4,HeroImage5, HeroImage6, HeroImage7];
+const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5, HeroImage6, HeroImage7, HeroImage8,HeroImage9];
+
 
 function _HomePage(props) {
-    
+
     useEffect(() => {
         onSetPage('home-page')
     }, [])
-    
+
     //cycling between hero images
-    const [heroImgIdx, setHeroImgIdx] = useState(0)
-
-
-    let heroImgInterval = setInterval(() => {
-        heroImgIdx < 6 ? setHeroImgIdx(heroImgIdx++) : heroImgIdx = 0
-    }, 3000);
-    
-
-
+    let [heroImg, setHeroImg] = useState({ idx: 0 })
+    useEffect(() => {
+        setTimeout(() => setHeroImg(prev => (prev.idx < images.length-1 ? { idx: prev.idx + 1} : { idx: 0 })), 5000);
+    })
 
 
     // this is for the top-fold to become un-fixed when starting to scroll the page
@@ -59,7 +57,7 @@ function _HomePage(props) {
     return (
         <section className='home-page'>
             <section>
-                <img className='home-page-hero' src={images[4]} alt='image of a person' />
+                <img className='home-page-hero' src={images[heroImg.idx]} alt='image of a person' />
 
                 <div className={topFold ? 'top-fold main-layout' : 'top-fold main-layout hidden'}>
                     <h1>Find the perfect <span className='curly-word-style'>freelance</span>  <br /> services for your business</h1>

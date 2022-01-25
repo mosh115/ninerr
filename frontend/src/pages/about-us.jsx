@@ -26,7 +26,7 @@ export function AboutUs() {
                 the first year. We will pay the free lancers for you</p>
             </div>
             
-            <h3>Could it be better? </h3>
+            <h3>Could it be any better? Probably not ...</h3>
             <button>Start exploring </button>
         </section>
     )
