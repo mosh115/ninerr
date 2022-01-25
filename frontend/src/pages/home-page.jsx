@@ -20,22 +20,22 @@ import { onSetPage } from '../store/gig.actions'
 import { useEffect } from 'react';
 import { useState } from "react"
 
-const images = [HeroImage1, HeroImage2, HeroImage3,HeroImage4,HeroImage5, HeroImage6, HeroImage7];
+const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5, HeroImage6, HeroImage7];
 
 function _HomePage(props) {
-    
+
     useEffect(() => {
         onSetPage('home-page')
     }, [])
-    
+
     //cycling between hero images
     const [heroImgIdx, setHeroImgIdx] = useState(0)
 
 
-    let heroImgInterval = setInterval(() => {
-        heroImgIdx < 6 ? setHeroImgIdx(heroImgIdx++) : heroImgIdx = 0
-    }, 3000);
-    
+    // let heroImgInterval = setInterval(() => {
+    //     heroImgIdx < 6 ? setHeroImgIdx(heroImgIdx++) : heroImgIdx = 0
+    // }, 3000);
+
 
 
 

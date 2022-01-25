@@ -2,19 +2,19 @@ import { userService } from "../services/user.service.js";
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from "../services/socket.service.js";
 
-export function loadUsers() {
-    return async dispatch => {
-        try {
-            dispatch({ type: 'LOADING_START' })
-            const users = await userService.getUsers()
-            dispatch({ type: 'SET_USERS', users })
-        } catch (err) {
-            console.log('UserActions: err in loadUsers', err)
-        } finally {
-            dispatch({ type: 'LOADING_DONE' })
-        }
-    }
-}
+// export function loadUsers() {
+//     return async dispatch => {
+//         try {
+//             dispatch({ type: 'LOADING_START' })
+//             const users = await userService.getUsers()
+//             dispatch({ type: 'SET_USERS', users })
+//         } catch (err) {
+//             console.log('UserActions: err in loadUsers', err)
+//         } finally {
+//             dispatch({ type: 'LOADING_DONE' })
+//         }
+//     }
+// }
 
 export function removeUser(userId) {
     return async dispatch => {
@@ -23,6 +23,21 @@ export function removeUser(userId) {
             dispatch({ type: 'REMOVE_USER', userId })
         } catch (err) {
             console.log('UserActions: err in removeUser', err)
+        }
+    }
+}
+
+export function updateUser(userToUpdate) {
+    console.log('action', userToUpdate);
+
+    return async (dispatch) => {
+        try {
+            const user = await userService.update(userToUpdate)
+            dispatch({ type: 'SET_USER', user })
+
+        } catch (err) {
+            console.log('Cannot update user');
+
         }
     }
 }
