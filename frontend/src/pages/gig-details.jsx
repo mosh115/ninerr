@@ -29,8 +29,8 @@ export function GigDetails() {
     async function loadGigAndSeller() {
         // console.log(gigId);
         let gig = await gigService.getById(gigId)
-        // console.log('giggggg', gig);
-        const seller = await userService.getById(gig.seller._id)
+        console.log('gig', gig);
+        const seller = await userService.getById(gig.owner._id)
         // console.log('seller', seller);
         setGig(gig)
         // console.log(gig);
@@ -41,24 +41,12 @@ export function GigDetails() {
         return utilService.getRandomIntInclusive(1, 80)
     }
 
-    const images = [
-        {
-            original: 'https://picsum.photos/id/1018/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1018/250/150/',
-        },
-        {
-            original: 'https://picsum.photos/id/1015/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1015/250/150/',
-        },
-        {
-            original: 'https://picsum.photos/id/1019/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1019/250/150/',
-        },
-    ];
+
 
 
 
     if (!gig || !userSeller) return <h1>Loading..</h1>
+    const images = gig.imgUrls.map(img => { return { original: img, thumbnail: img } })
     return (
         <section className='gig-details flex '>
 
@@ -67,12 +55,12 @@ export function GigDetails() {
                     <h1 className='title'>{gig.title}</h1>
                 </div>
                 <div className='seller-overview flex'>
-                    <img className='avatar' src={userSeller.img || `https://i.pravatar.cc/24?u=${userSeller._id}`} />
-                    <Link to={'/#'}> {gig.seller.fullname}</Link>
-                    <p className='seller-level'>{gig.seller.level} <span className='stop'>|</span></p>
-                    <ReactStars classNames="stars" count={gig.seller.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
-                    <b className='rating'>{gig.seller.rate} </b>
-                    <p className='raters'>({gig.seller.raters})<span className='stop'>|</span></p>
+                    <img className='avatar' src={userSeller.imgUrl || `https://i.pravatar.cc/24?u=${userSeller._id}`} />
+                    <Link to={'/#'}> {gig.owner.fullname}</Link>
+                    <p className='seller-level'>{gig.owner.level} <span className='stop'>|</span></p>
+                    <ReactStars classNames="stars" count={gig.owner.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
+                    <b className='rating'>{gig.owner.rate} </b>
+                    <p className='raters'>({gig.owner.raters})<span className='stop'>|</span></p>
                     <p className='qweue'><span>{getRandomNum()}</span> Orders in Queue</p>
                 </div>
 
@@ -93,11 +81,12 @@ export function GigDetails() {
                         <img className='avatar' src={userSeller.img || `https://i.pravatar.cc/110?u=${gig._id}`} />
                     </div>
                     <div className='seller-info'>
-                        <Link className='name' to={'/#'}> {gig.seller.fullname}</Link>
+                        <Link className='name' to={'/#'}> {gig.owner.fullname}</Link>
+                        <p>{userSeller.shortAbout}</p>
                         <div className='flex'>
-                            <ReactStars count={gig.seller.rate} size={16} color="#ffb33e" activeColor="#ffb33e" edit={false} />
-                            <p className='rating'>{gig.seller.rate} </p>
-                            <p className='raters'>({gig.seller.raters})</p>
+                            <ReactStars count={gig.owner.rate} size={16} color="#ffb33e" activeColor="#ffb33e" edit={false} />
+                            <p className='rating'>{gig.owner.rate} </p>
+                            <p className='raters'>({gig.owner.raters})</p>
 
                         </div>
                         <button className='btn-contact-me'>Contact Me</button>
@@ -115,15 +104,15 @@ export function GigDetails() {
 
                 <div className='reviews'>
                     <div className='details flex align-center'>
-                        <h2 className='flex'>{gig.seller.raters} Reviews
+                        <h2 className='flex'>{gig.owner.raters} Reviews
                             <ReactStars
-                                count={gig.seller.rate}
+                                count={gig.owner.rate}
                                 size={16}
                                 color="#ffb33e"
                                 activeColor="#ffb33e"
                                 edit={false}
                             />
-                            <p className='rating'>{gig.seller.rate} </p>
+                            <p className='rating'>{gig.owner.rate} </p>
                         </h2>
                     </div>
                     <div className='flex' >
@@ -138,7 +127,7 @@ export function GigDetails() {
                         </section>
                     </div>
                 </div>
-                {userSeller.reviews.map((review) => <ReviewItem review={review} key={review._id} />)}
+                {/* {userSeller.reviews.map((review) => <ReviewItem review={review} key={review._id} />)} */}
 
 
             </section>

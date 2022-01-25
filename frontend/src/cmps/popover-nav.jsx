@@ -1,10 +1,14 @@
 // import { useState, useEffect } from 'react'
 // import { userService } from '../services/user.service'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+
+
+
 
 
 export function PopoverNav(props) {
     // console.log(props);
+    let navigate = useNavigate();
 
     const stopPropagation = (ev) => {
         ev.stopPropagation()
@@ -12,6 +16,9 @@ export function PopoverNav(props) {
 
     const onLogout = () => {
         props.onLogout();
+
+        navigate('/');
+
     }
     const onClosePopNav = () => {
         props.togglePopoverNav();
