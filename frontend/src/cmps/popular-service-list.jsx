@@ -3,16 +3,19 @@ import Wordpress from '../assets/img/home-page/popular-professional-services/wor
 import VoiceOver from '../assets/img/home-page/popular-professional-services/voice-over.jpg';
 import VideoExplainer from '../assets/img/home-page/popular-professional-services/video-explainer.jpg';
 import LogoDesign from '../assets/img/home-page/popular-professional-services/logo-design.jpg';
+import SocialMedia from '../assets/img/home-page/popular-professional-services/social-media.jpg';
 
 import { PopularServiceCard } from './popular-service-card';
 
 export function PopularServiceList() {
   
     const popularServices = [
-        { img: Wordpress, title: 'Wordpress' },
-        { img: VoiceOver, title: 'VoiceOver' },
-        { img: VideoExplainer, title: 'VideoExplainer' },
-        { img: LogoDesign, title: 'LogoDesign' }
+        { img: Wordpress, title: 'Wordpress', subTitle: 'Customize your site' },
+        { img: VoiceOver, title: 'Voice Over' , subTitle: 'Share your message' },
+        { img: VideoExplainer, title: 'Video Explainer', subTitle: 'Engage your audience'  },
+        { img: LogoDesign, title: 'Logo Design' , subTitle: 'Build your brand' },
+        { img: SocialMedia, title: 'Social Media' , subTitle: 'Reach more costumers' }
+
     ]
 
     return (

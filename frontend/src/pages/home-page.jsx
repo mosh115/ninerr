@@ -1,38 +1,49 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { NavLink, useLocation } from "react-router-dom"
 import { FaSearch, FaRegCheckCircle } from "react-icons/fa"
 
+import HeroImage1 from '../assets/img/home-page/21.jpg';
+import HeroImage2 from '../assets/img/home-page/20.jpg';
+import HeroImage3 from '../assets/img/home-page/18.jpg';
+import HeroImage4 from '../assets/img/home-page/19.jpg';
+import HeroImage5 from '../assets/img/home-page/28.jpg';
+import HeroImage6 from '../assets/img/home-page/27.jpg';
+import HeroImage7 from '../assets/img/home-page/6.jpg';
 import workingWomen from '../assets/img/home-page/16.jpg';
-import CoolMan from '../assets/img/home-page/6.jpg';
 import FreeLancerImage from '../assets/img/home-page/14.jpg';
+
 import { PopularServiceList } from '../cmps/popular-service-list'
 import { GigApp } from '../pages/gig-app'
 import { ExploreMarketPlace } from '../cmps/explore-market-place'
 import { onSetPage } from '../store/gig.actions'
 import { useEffect } from 'react';
-
-
-// this is for the top-fold to become un-fixed when starting to scroll the page
 import { useState } from "react"
 
-function _HomePage(props) {
+const images = [HeroImage1, HeroImage2, HeroImage3,HeroImage4,HeroImage5, HeroImage6, HeroImage7];
 
+function _HomePage(props) {
+    
     useEffect(() => {
         onSetPage('home-page')
     }, [])
-
-    // useEffect(() => {
-    //     onSetHeaderBackground('SET_TRANSPARENT')
-    // }, [])
-
-    console.log('props: ',props)
     
+    //cycling between hero images
+    const [heroImgIdx, setHeroImgIdx] = useState(0)
+
+
+    let heroImgInterval = setInterval(() => {
+        heroImgIdx < 6 ? setHeroImgIdx(heroImgIdx++) : heroImgIdx = 0
+    }, 3000);
+    
+
+
 
     // this is for the top-fold to become un-fixed when starting to scroll the page
     const [topFold, setTopFold] = useState(true)
 
     const unFixTopFold = () => {
-        if (window.scrollY >= 150) {
+        if (window.scrollY >= 350) {
             setTopFold(false)
         } else {
             setTopFold(true)
@@ -47,10 +58,10 @@ function _HomePage(props) {
     return (
         <section className='home-page'>
             <section>
-                <img className='home-page-hero' src={CoolMan} alt='' />
+                <img className='home-page-hero' src={images[4]} alt='image of a person' />
 
                 <div className={topFold ? 'top-fold main-layout' : 'top-fold main-layout hidden'}>
-                    <h1>Find the perfect <span className='freelance-word-in-title'>freelance</span>  <br /> services for your business</h1>
+                    <h1>Find the perfect <span className='curly-word-style'>freelance</span>  <br /> services for your business</h1>
                     <form className='home-page-search-box'>
                         <div className='search-box-icon'><i><FaSearch /></i> </div>
                         <input type="search" name="search-box" placeholder='Try "Building a mobile app"' />
@@ -143,8 +154,8 @@ function _HomePage(props) {
                 </div>
             </section> */}
             <section className='find-the-talent full'>
-                <div>
-                    <h2>Find the talent needed to get your business growing.</h2>
+                <div className='content'>
+                    <h2>Find the <span className='curly-word-style'>talent</span>  needed to get your business <span className='curly-word-style'>growing</span>.</h2>
                     <button>Get Started</button>
                 </div>
                 <img src={FreeLancerImage} alt="FreeLancer woman image" />

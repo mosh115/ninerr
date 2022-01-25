@@ -20,22 +20,21 @@ import { PopoverNav } from "./popover-nav.jsx"
 
 
 function _AppHeader({ onLogin, onSignup, onLogout, user }) {
-  //navbar scroll when active state
+
   const [navbar, setNavbar] = useState(false)
   const [subNavbar, setSubNavbar] = useState(false)
   const [isSignIn, toggleSignIn] = useState(false)
   const [isSignUp, toggleSignUp] = useState(false)
   const [isPopoverNav, togglePopoverNav] = useState(false)
 
-  let location = useLocation();
-  console.log('location', location);
+  //gets the current page's path
+  let currLocation = useLocation().pathname
 
   useEffect(() => {
 
     if (isSignIn) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'unset';
   }, [isSignIn])
-
 
 
   //navbar scroll changeBackground function
@@ -66,7 +65,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   return (
     <header className="app-header">
       <div className=
-        {navbar ? "navbar white nav-container flex align-center space-between" :
+        {(currLocation === '/' && !navbar)? "navbar nav-container flex align-center space-between" :
           "navbar white nav-container flex align-center space-between"} >
         <div className="logo-and-search-box">
           <NavLink className="logo-font clean-link" to="/">
@@ -98,7 +97,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
             </div>
           </React.Fragment>}
           {user && <React.Fragment>
-            <div className="user-avatar pointer" onClick={() => { togglePopoverNav(true) }} style={{backgroundColor: user.avatarColor}}>
+            <div className="user-avatar pointer" onClick={() => { togglePopoverNav(true) }} style={{ backgroundColor: user.avatarColor }}>
               <p>{user.username[0].toUpperCase()}</p>
               <div className="dot"></div>
             </div>
@@ -115,8 +114,8 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
         <span>Programming & Tech</span>
         <span>Business</span>
       </div>
-      {isSignIn && !user &&<LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
-      {isPopoverNav && <PopoverNav togglePopoverNav={togglePopoverNav} onLogout={onLogout}/>}
+      {isSignIn && !user && <LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
+      {isPopoverNav && <PopoverNav togglePopoverNav={togglePopoverNav} onLogout={onLogout} />}
       {/* <nav> */}
       {/* {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
                 {user &&

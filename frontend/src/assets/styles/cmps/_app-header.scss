@@ -49,6 +49,7 @@
     input{
         border: none;
         height: 100%;
+        
     }
     &.hidden{
       visibility: hidden;
@@ -56,6 +57,10 @@
     &:hover{
       border: 0.5px solid $clr3;
     }
+    input:focus{
+      outline: none;
+      
+  }
   }
   .logo-and-search-box{
     display: flex;
@@ -88,6 +93,7 @@
   .navbar.white {
     background-color: $clr6;
     color: $clr8;
+    border-bottom: 0.5px solid $clr4;
     nav > * {
       &:hover {
         color: $clr1;
@@ -116,7 +122,9 @@
     border-top: 0.5px solid $clr4;
     border-bottom: 0.5px solid $clr4;
     width: 100%;
-    padding-inline-start: 20px;
+    padding-inline-start: 20px;   
+    // list-style: none; 
+    // height: 300px;
     padding-inline-end: 20px;
     position: fixed;
     margin-top: 4.5em;
