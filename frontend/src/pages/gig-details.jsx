@@ -67,7 +67,7 @@ export function GigDetails() {
                     <h1 className='title'>{gig.title}</h1>
                 </div>
                 <div className='seller-overview flex'>
-                    <img className='avatar' src={`https://i.pravatar.cc/24?u=${gig._id}`} />
+                    <img className='avatar' src={userSeller.img || `https://i.pravatar.cc/24?u=${userSeller._id}`} />
                     <Link to={'/#'}> {gig.seller.fullname}</Link>
                     <p className='seller-level'>{gig.seller.level} <span className='stop'>|</span></p>
                     <ReactStars classNames="stars" count={gig.seller.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
@@ -90,7 +90,7 @@ export function GigDetails() {
                 <h2>About The Seller</h2>
                 <div className='about-seller flex'>
                     <div className='profile-info'>
-                        <img className='avatar' src={`https://i.pravatar.cc/110?u=${gig._id}`} />
+                        <img className='avatar' src={userSeller.img || `https://i.pravatar.cc/110?u=${gig._id}`} />
                     </div>
                     <div className='seller-info'>
                         <Link className='name' to={'/#'}> {gig.seller.fullname}</Link>
@@ -105,11 +105,12 @@ export function GigDetails() {
                 </div>
                 <div className='table-info'>
                     <ul className='stats clean-list flex'>
-                        <li className='flex column'>From<strong>United States</strong></li>
+                        <li className='flex column'>From<strong>{userSeller.from}</strong></li>
                         <li className='flex column'>Member since<strong>2015</strong></li>
                         <li className='flex column'>Avg. response time<strong>1 hour</strong></li>
                         <li className='flex column'>Last Delivey<strong>1 day</strong></li>
                     </ul>
+                    <p>{userSeller.about}</p>
                 </div>
 
                 <div className='reviews'>
@@ -130,7 +131,7 @@ export function GigDetails() {
                         <section className='ranking'>
                             <h6>Rating Breakdown</h6>
                             <ul className='clean-list'>
-                                <li className='flex space-between'>Seller comunication level <span> 4.9 <FaStar className='star' /></span></li>
+                                <li className='flex space-between'>Seller comunication level <span> 5 <FaStar className='star' /></span></li>
                                 <li className='flex space-between'>Recommend to a friend <span> 4.9 <FaStar className='star' /></span></li>
                                 <li className='flex space-between'>Service as described <span> 4.9 <FaStar className='star' /></span></li>
                             </ul>

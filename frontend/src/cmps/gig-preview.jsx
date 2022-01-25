@@ -7,23 +7,10 @@ import ImageGallery from 'react-image-gallery';
 
 
 export function GigPreview({ gig }) {
+    console.log(gig);
 
-    const images = [
-        {
-            original: 'https://picsum.photos/id/1018/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1018/250/150/',
-        },
-        {
-            original: 'https://picsum.photos/id/1015/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1015/250/150/',
-        },
-        {
-            original: 'https://picsum.photos/id/1019/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1019/250/150/',
-        },
-    ];
-
-
+    const images = gig.imgUrls.map(img => { return { original: img } })
+    // console.log(images);
 
     return (
         <article className="gig-preview" key={gig._id}>
@@ -41,8 +28,8 @@ export function GigPreview({ gig }) {
                 <section className='seller-info flex'>
                     <img className='avatar' src={`https://i.pravatar.cc/24?u=${gig._id}`} />
                     <div>
-                        <Link className='seller-name' to={'/#'}> {gig.seller.fullname}</Link>
-                        <p className='seler-level'>{gig.seller.level}</p>
+                        <Link className='seller-name' to={'/#'}> {gig.owner.fullname}</Link>
+                        <p className='seler-level'>{gig.owner.level}</p>
                     </div>
                 </section>
 
@@ -50,8 +37,8 @@ export function GigPreview({ gig }) {
                 <section className='gig-rating flex'>
                     <FaStar className='star' />
                     {/* <span className='star'>{star}</span> */}
-                    <p className='rating'>{gig.seller.rate} </p>
-                    <p className='raters'>({gig.seller.raters})</p>
+                    <p className='rating'>{gig.owner.rate} </p>
+                    <p className='raters'>({gig.owner.raters})</p>
                 </section>
                 <footer className='footer flex'>
                     <FaHeart className='heart' />
@@ -68,20 +55,3 @@ export function GigPreview({ gig }) {
         </article>
     )
 }
-{/* 
-
-
-
-            <h4>{gig.vendor}</h4>
-            <h1>⛐</h1>
-            <p>Price: <span>${gig.price.toLocaleString()}</span></p>
-            <p>Owner: <span>{gig.owner && gig.owner.fullname}</span></p>
-            {/* <div>
-                                <button onClick={() => { onRemoveGig(gig._id) }}>x</button>
-                                <button onClick={() => { editGig(gig) }}>Edit</button>
-                            </div> */}
-
-{/* <button className="buy" onClick={() => { onAddToGigt(gig) }}>Add to Gigt</button> */ }
-//         </li>) */}
-
-// }
