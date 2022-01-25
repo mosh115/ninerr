@@ -20,10 +20,10 @@ import { onSetPage } from '../store/gig.actions'
 import { useEffect } from 'react';
 import { useState } from "react"
 
-const images = [HeroImage1, HeroImage2, HeroImage3,HeroImage4,HeroImage5, HeroImage6, HeroImage7];
+const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5, HeroImage6, HeroImage7];
 
 function _HomePage(props) {
-    
+
     useEffect(() => {
         onSetPage('home-page')
     }, [])

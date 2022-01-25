@@ -12,7 +12,7 @@ import {
   onLogin,
   onLogout,
   onSignup,
-  loadUsers,
+  // loadUsers,
   removeUser,
 } from "../store/user.actions.js"
 import { LoginSignup } from "./login-signup.jsx"
@@ -65,7 +65,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   return (
     <header className="app-header">
       <div className=
-        {(currLocation === '/' && !navbar)? "navbar nav-container flex align-center space-between" :
+        {(currLocation === '/' && !navbar) ? "navbar nav-container flex align-center space-between" :
           "navbar white nav-container flex align-center space-between"} >
         <div className="logo-and-search-box">
           <NavLink className="logo-font clean-link" to="/">
@@ -152,7 +152,7 @@ const mapDispatchToProps = {
   onLogin,
   onSignup,
   onLogout,
-  loadUsers,
+  // loadUsers,
   removeUser,
 }
 

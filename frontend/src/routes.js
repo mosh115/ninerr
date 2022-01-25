@@ -5,6 +5,7 @@ import { GigApp } from './pages/gig-app.jsx'
 import { GigDetails } from './pages/gig-details.jsx'
 import { AddEditGig } from './pages/add-edit-gig.jsx'
 import { UserProfile } from './pages/user-profile.jsx'
+import { EditUser } from './pages/edit-user.jsx'
 // import { ReviewApp } from './pages/review-app.jsx'
 // import { ChatApp } from './pages/chat-app.jsx'
 // import { AdminApp } from './pages/admin-app.jsx'
@@ -36,6 +37,10 @@ const routes = [
     {
         path: '/profile',
         component: <UserProfile />
+    },
+    {
+        path: '/profile/edit',
+        component: <EditUser />
     },
 
     // {
