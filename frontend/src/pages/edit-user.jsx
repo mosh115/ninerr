@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
 import { uploadImg } from '../services/cloudinary.service';
 
-export function AddEditGig() {
-
-    // const [title, setTitle] = useState()
-    // const [price, setPrice] = useState()
-    // const [daysToMake, setDaysToMake] = useState()
-    // const [title, setTitle] = useState()
-    // const [title, setTitle] = useState()
-    // const [title, setTitle] = useState()
-    // const [title, setTitle] = useState()
+export function EditUser() {
 
 
     const [inputValues, setInputValue] = useState({
-        title: "",
+        level: "",
+        about: "",
         price: "",
         daysToMake: "",
         description: "",
