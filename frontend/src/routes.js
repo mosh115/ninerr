@@ -6,6 +6,10 @@ import { GigDetails } from './pages/gig-details.jsx'
 import { AddEditGig } from './pages/add-edit-gig.jsx'
 import { UserProfile } from './pages/user-profile.jsx'
 import { EditUser } from './pages/edit-user.jsx'
+import { Privacy } from './cmps/privacy.jsx'
+import { Terms } from './cmps/terms.jsx'
+import { Contact } from './cmps/contact.jsx'
+
 // import { ReviewApp } from './pages/review-app.jsx'
 // import { ChatApp } from './pages/chat-app.jsx'
 // import { AdminApp } from './pages/admin-app.jsx'
@@ -56,6 +60,21 @@ const routes = [
     {
         path: 'about',
         component: <AboutUs />
+
+    },
+    {
+        path: 'privacy',
+        component: <Privacy />
+
+    },
+    {
+        path: 'terms',
+        component: <Terms />
+
+    },
+    {
+        path: 'contact',
+        component: <Contact />
 
     },
     // {

@@ -34,7 +34,7 @@ function _HomePage(props) {
     //cycling between hero images
     let [heroImg, setHeroImg] = useState({ idx: 0 })
     useEffect(() => {
-        setTimeout(() => setHeroImg(prev => (prev.idx < images.length-1 ? { idx: prev.idx + 1} : { idx: 0 })), 5000);
+        setTimeout(() => setHeroImg(prev => (prev.idx < images.length-1 ? { idx: prev.idx + 1} : { idx: 0 })), 9000);
     })
 
 

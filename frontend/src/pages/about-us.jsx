@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-
+import React from 'react'
+import { NavLink} from "react-router-dom"
 
 export function AboutUs() {
 
@@ -27,7 +27,10 @@ export function AboutUs() {
             </div>
             
             <h3>Could it be any better? Probably not ...</h3>
-            <button>Start exploring </button>
+            <NavLink className="clean-link" to="/explore">
+                <button>Start exploring </button>
+          </NavLink>
+            
         </section>
     )
 }

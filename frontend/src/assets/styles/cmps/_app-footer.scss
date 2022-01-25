@@ -1,4 +1,5 @@
 .app-footer {
+  
   border-top: solid 1px $clr4;
   padding-top: 2em;
   // padding: 1em 0;
@@ -13,10 +14,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    &:hover {
+    .footer-link:hover {
       cursor: pointer;
-
-      // text-decoration: underline;
+      text-decoration: underline;
     }
   }
   .logo-font {

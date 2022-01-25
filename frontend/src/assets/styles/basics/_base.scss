@@ -17,6 +17,8 @@ html {
 body {
     font-size: rem(16px);
     margin: 0;
+    //this should keep the footer in the bottom even when there is not too much content in the page
+    min-height: 100vh; 
 }
 
 h1,
