@@ -39,6 +39,7 @@ function _HomePage(props) {
 
 
 
+
     // this is for the top-fold to become un-fixed when starting to scroll the page
     const [topFold, setTopFold] = useState(true)
 

@@ -21,8 +21,12 @@ const routes = [
         component: <GigApp />,
 
     },
+    // {
+    //     path: '/gig/edit/:gigId?',
+    //     component: <AddEditGig />
+    // },
     {
-        path: '/gig/edit/:gigId?',
+        path: '/add',
         component: <AddEditGig />
     },
     {
@@ -33,7 +37,7 @@ const routes = [
         path: '/profile',
         component: <UserProfile />
     },
-    
+
     // {
     //     path: 'review',
     //     component: <ReviewApp />,

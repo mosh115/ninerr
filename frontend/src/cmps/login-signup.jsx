@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import { userService } from '../services/user.service'
+import { useHistory, useLocation } from "react-router-dom";
 
 export function LoginSignup(props) {
+    // let history = useHistory();
+    // let location = useLocation();
     // console.log(props);
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const [isSignup, setIsSignup] = useState(props.isSignUp)
@@ -28,6 +31,7 @@ export function LoginSignup(props) {
         if (!credentials.username) return;
         props.onLogin(credentials);
         clearState()
+        // history.push(location.pathname);
     }
 
     const onSignup = (ev = null) => {
@@ -35,6 +39,7 @@ export function LoginSignup(props) {
         if (!credentials.username || !credentials.password || !credentials.fullname) return;
         props.onSignup(credentials);
         clearState()
+        // history.push(location.pathname);
     }
 
     const toggleSignup = (ev) => {

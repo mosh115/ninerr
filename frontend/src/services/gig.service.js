@@ -5,7 +5,7 @@ import { userService } from './user.service.js'
 import { httpService } from './http.service.js'
 
 // const STORAGE_KEY = 'gig'
-const END_POINT = 'gig'
+// const END_POINT = 'gig'
 const listeners = []
 
 
@@ -21,14 +21,14 @@ window.cs = gigService;
 
 
 function query(filterBy) {
-    console.log('query in gig service');
+    // console.log('query in gig service');
     // return storageService.query(STORAGE_KEY)
-    return httpService.get(END_POINT, filterBy)
+    return httpService.get('gig', filterBy)
 }
 function getById(gigId) {
     // console.log(gigId);
     // return storageService.get(STORAGE_KEY, gigId)
-    return httpService.get(`${END_POINT}/${gigId}`)
+    return httpService.get(`gig/${gigId}`)
 }
 function remove(gigId) {
     // return new Promise((resolve, reject) => {
@@ -36,16 +36,16 @@ function remove(gigId) {
     // })
     // return Promise.reject('Not now!');
     // return storageService.remove(STORAGE_KEY, gigId)
-    return httpService.remove(END_POINT, gigId)
+    return httpService.remove('gig', gigId)
 }
 function save(gig) {
     if (gig._id) {
         // return storageService.put(STORAGE_KEY, gig)
-        return httpService.put(END_POINT, gig)
+        return httpService.put('gig', gig)
     } else {
         gig.owner = userService.getLoggedinUser()
         // return storageService.post(STORAGE_KEY, gig)
-        return httpService.post(END_POINT, gig)
+        return httpService.post('gig', gig)
     }
 }
 

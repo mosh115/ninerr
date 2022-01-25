@@ -21,19 +21,20 @@ async function login(username, password) {
 //     await signup('bubu', '123', 'Bubu Bi')
 //     await signup('mumu', '123', 'Mumu Maha')
 // })()
-    
 
-async function signup(username, password, fullname) {
+
+async function signup(user) {
     const saltRounds = 10
 
-    logger.debug(`auth.service - signup with username: ${username}, fullname: ${fullname}`)
-    if (!username || !password || !fullname) return Promise.reject('fullname, username and password are required!')
+    logger.debug(`auth.service - signup with username: ${user.username}, fullname: ${user.fullname}`)
+    if (!user.username || !user.password || !user.fullname) return Promise.reject('fullname, username and password are required!')
 
-    const userExist = await userService.getByUsername(username)
+    const userExist = await userService.getByUsername(user.username)
     if (userExist) return Promise.reject('Username already taken')
 
-    const hash = await bcrypt.hash(password, saltRounds)
-    return userService.add({ username, password: hash, fullname })
+    const hash = await bcrypt.hash(user.password, saltRounds)
+    const userToSave = { ...user, password: hash }
+    return userService.add(userToSave)
 }
 
 module.exports = {

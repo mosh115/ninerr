@@ -74,15 +74,14 @@ async function remove(userId) {
 async function update(user) {
     try {
         // peek only updatable fields!
-        const userToSave = {
-            _id: ObjectId(user._id), // needed for the returnd obj
-            username: user.username,
-            fullname: user.fullname,
-            score: user.score,
-        }
+        // const userToSave = {
+        //     _id: ObjectId(user._id), // needed for the returnd obj
+        //     // username: user.username,
+        //     // fullname: user.fullname,
+        // }
         const collection = await dbService.getCollection('user')
-        await collection.updateOne({ _id: userToSave._id }, { $set: userToSave })
-        return userToSave;
+        await collection.updateOne({ _id: user._id }, { $set: user })
+        return user;
     } catch (err) {
         logger.error(`cannot update user ${user._id}`, err)
         throw err
@@ -92,15 +91,14 @@ async function update(user) {
 async function add(user) {
     try {
         // peek only updatable fields!
-        const userToAdd = {
-            username: user.username,
-            password: user.password,
-            fullname: user.fullname,
-            score: 100
-        }
+        // const userToAdd = {
+        //     username: user.username,
+        //     password: user.password,
+        //     fullname: user.fullname,
+        // }
         const collection = await dbService.getCollection('user')
-        await collection.insertOne(userToAdd)
-        return userToAdd
+        await collection.insertOne(user)
+        return user
     } catch (err) {
         logger.error('cannot insert user', err)
         throw err

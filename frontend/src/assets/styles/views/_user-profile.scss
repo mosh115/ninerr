@@ -1,22 +1,23 @@
 .profile-page-container {
     margin-top: 80px;
     width: 100%;
-    // min-height: 100%;
     background-color: #f7f7f7;
     padding: 50px 18px 40px;
     display: flex;
-    // flex-direction: row;
     justify-content: space-between;
     gap: 20px;
     >*{
         border: 1px solid $clr12;
-        width: 100%;
+        // width: 100%;
         background-color: white;
     }
     .user-card {
+        position: relative;
+        width: 400px;
         padding: 30px;
         justify-content: center;
         align-items: center;
+        // line-height: 130%;
         .user-avatar {
             position: relative;
             height: 150px;
@@ -34,7 +35,29 @@
                 top: 50%;
                 transform: translate(-50%,-50%);
             }
+            &:hover + .add-picture{
+                display: block;
+            }
         }
+        .add-picture{
+            display: none;
+            // visibility: hidden;
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            position: absolute;
+            top: 30px;
+            left: 50% ;
+            transform: translate(-50%);
+            background: rgba(0,0,0,.65);
+            &:hover{
+                display: block;
+            }
+            input {
+                display: none;
+            }
+        }
+
         ul{
             width: 100%;
             li {
@@ -44,6 +67,9 @@
                     width: 13px;
                     height: 13px;
                     fill: #62646A;
+                }
+                .b {
+                    font-weight: bold;
                 }
             } 
             .line {
@@ -55,6 +81,26 @@
         }
     }
     .user-gigs{
-        width: 100%;
+        min-width: 484px;
+        align-self: start;
+        
+        .craet-gig{
+            padding: 20px 24px;
+
+            button{
+                font-size: 13px;
+                padding: 0 12px;
+                line-height: 32px;
+                font-weight: 700;
+                color: #fff;
+                border: 1px solid transparent;
+                border-radius: 3px;
+                margin-left: 20px;
+
+                &:hover{
+                    background-color: #3fca89;
+                }
+            }
+        }
     }
 }
