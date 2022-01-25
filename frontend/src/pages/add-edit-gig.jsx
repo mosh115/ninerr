@@ -40,7 +40,7 @@ function _AddEditGig({ user, addGig }) {
                 imgUrl: user.imgUrl,
                 level: utilService.makeLevel(),
                 rate: utilService.makeRate(),
-                raters: utilService.getRandomIntInclusive(50, 4500),
+                raters: utilService.getRandomIntInclusive(3, 1400),
                 avatarColor: user.avatarColor
             }
         }

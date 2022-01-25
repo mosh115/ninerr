@@ -1,0 +1,34 @@
+.user-avatar-picture{
+    .user-avatar {
+        position: relative;
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        font-size: 20px;
+        font-weight: 600;
+        color: #fff;
+        p {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+    }
+
+    .user-picture {
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            object-fit: contain;
+            justify-self: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+    }
+}

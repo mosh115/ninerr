@@ -41,7 +41,13 @@ export function GigDetails() {
         return utilService.getRandomIntInclusive(1, 80)
     }
 
-
+    const numOfRaters = () => {
+        let raters = gig.owner.raters;
+        let num = raters;
+        if (raters > 1000 && raters < 1300) num = '1K+' 
+        if (raters >= 1300 && raters < 1400) num = '2K+'
+        return num
+    }
 
 
 
@@ -60,7 +66,7 @@ export function GigDetails() {
                     <p className='seller-level'>{gig.owner.level} <span className='stop'>|</span></p>
                     <ReactStars classNames="stars" count={gig.owner.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
                     <b className='rating'>{gig.owner.rate} </b>
-                    <p className='raters'>({gig.owner.raters})<span className='stop'>|</span></p>
+                    <p className='raters'>({numOfRaters})<span className='stop'>|</span></p>
                     <p className='qweue'><span>{getRandomNum()}</span> Orders in Queue</p>
                 </div>
 
