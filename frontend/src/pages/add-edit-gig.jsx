@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
 import { uploadImg } from '../services/cloudinary.service';
+import { connect } from "react-redux"
+import { addGig } from '../store/gig.actions';
+import { utilService } from '../services/util.service';
 
-export function AddEditGig() {
-
-    // const [title, setTitle] = useState()
-    // const [price, setPrice] = useState()
-    // const [daysToMake, setDaysToMake] = useState()
-    // const [title, setTitle] = useState()
-    // const [title, setTitle] = useState()
-    // const [title, setTitle] = useState()
-    // const [title, setTitle] = useState()
-
+function _AddEditGig({ user, addGig }) {
 
     const [inputValues, setInputValue] = useState({
         title: "",
@@ -39,11 +33,23 @@ export function AddEditGig() {
     const handleSubmit = (ev) => {
         ev.preventDefault();
         console.log(inputValues);
+        const newGig = {
+            ...inputValues, owner: {
+                _id: user._id,
+                fullname: user.fullname,
+                imgUrl: user.imgUrl,
+                level: utilService.makeLevel(),
+                rate: utilService.makeRate()
+            }
+        }
+        addGig(newGig)
     }
+    // window.makeLevel
+
 
     async function onUploadImg(ev) {
-        console.log(typeof ev.target.files);
-        let urls = []
+        // console.log(typeof ev.target.files);        
+        const urls = []
 
         Object.values(ev.target.files).forEach(async (file) => {
             const url = await uploadImg(file)
@@ -118,15 +124,13 @@ export function AddEditGig() {
                         </label>
                     </div>
                     <div className="form-control">
-                        <label>Img Urls
+                        <label>Images
                             <input
-                                placeholder="comma-seperated imgUrls"
                                 type="file"
                                 multiple
                                 name="imgUrls"
                                 className="input-field"
                                 onChange={(e) => onUploadImg(e)}
-                                value={inputValues.imgUrls}
                                 required />
                         </label>
                     </div>
@@ -197,3 +201,17 @@ export function AddEditGig() {
         </div>
     );
 }
+
+
+function mapStateToProps(state) {
+    return {
+        user: state.userModule.user,
+    }
+}
+const mapDispatchToProps = {
+    addGig
+    // updateUser,
+
+}
+
+export const AddEditGig = connect(mapStateToProps, mapDispatchToProps)(_AddEditGig)

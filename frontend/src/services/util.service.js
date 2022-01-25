@@ -2,7 +2,9 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
-    delay
+    delay,
+    makeLevel,
+    makeRate
 }
 
 function makeId(length = 6) {
@@ -37,4 +39,15 @@ function delay(ms = 1500) {
         setTimeout(resolve, ms)
     })
 }
+
+function makeLevel() {
+    const level = ['Top Rated Seller', 'Level 2 Seller', 'Level 1 Seller']
+    return level[getRandomIntInclusive[0, 2]]
+}
+function makeRate() {
+    const rate = ['4.0', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7', '4.8', '4.9', '5.0']
+    return rate[getRandomIntInclusive[0, 10]]
+}
+
+window.makeLevel = makeLevel
 

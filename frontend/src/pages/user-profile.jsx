@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 import { uploadImg } from "../services/cloudinary.service"
 
 
 
 function _UserProfile({ user }) {
-    console.log(user);
-    if (!user) window.location.replace('/');
+    let navigate = useNavigate();
+
+    useEffect(() => {
+        if (!user) navigate('/');
+    }, [])
+
 
     const formatDate = (value) => {
         let date = new Date(value);
@@ -19,6 +24,7 @@ function _UserProfile({ user }) {
     const addPicture = () => {
         // let 
     }
+    if (!user) return <h1>Loading..</h1>
     return (
         <section className="profile-page-container flex">
             <div className="user-card flex column">
@@ -26,7 +32,7 @@ function _UserProfile({ user }) {
                     <p>{user.username[0].toUpperCase()}</p>
                 </div>
                 <label className='add-picture'>
-                    <input  onChange={addPicture} type="file"/>
+                    <input onChange={addPicture} type="file" />
                 </label>
                 {/* <button onClick={addPicture}>add picture</button> */}
                 <ul>
@@ -38,7 +44,7 @@ function _UserProfile({ user }) {
                                 {' '}From
                             </span>
                         </span>
-                        <p className='b'>United States</p>
+                        <p className='b'>{user.from || "United States"}</p>
                     </li>
                     <li className='flex space-between'>
                         <span>
@@ -60,7 +66,7 @@ function _UserProfile({ user }) {
                     <p>
                         It seems that you don't have any active Gigs. Get selling!
                     </p>
-                    <Link to="/gig/edit"><button>Create a New Gig</button></Link>
+                    <Link to="/add"><button>Create a New Gig</button></Link>
                 </div>}
             </div>
         </section>

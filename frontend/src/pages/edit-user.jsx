@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { connect } from "react-redux"
-import { Link } from "react-router-dom"
-import { uploadImg } from '../services/cloudinary.service';
+import { useNavigate } from "react-router-dom";
 import { updateUser } from '../store/user.actions';
 
 function _EditUser({ user, updateUser }) {
+    let navigate = useNavigate();
+
+
+    useEffect(() => {
+        if (!user) navigate('/');
+    }, [])
 
 
     const [inputValues, setInputValue] = useState({
-        fullname: user.fullname,
-        username: user.username,
-        // imgUrl: user.url,
+        fullname: user.fullname || "",
+        username: user.username || "",
         shortAbout: "",
         about: "",
         from: "",
@@ -22,35 +27,15 @@ function _EditUser({ user, updateUser }) {
 
     }
 
-    // function handleChange1(ev) {
-    //     const { name, value } = ev.target;
-    //     const arr = value.split(',')
-    //     setInputValue({ ...inputValues, [name]: arr });
-    // }
 
-    async function handleSubmit(ev) {
+    function handleSubmit(ev) {
         ev.preventDefault();
         const userToUpdate = { ...user, ...inputValues }
         console.log('edit-user', userToUpdate);
         updateUser(userToUpdate)
-        // try {
-        //   const updatedUser =  await updateUser(userToUpdate)
-        //     console.log(updatedUser);
-        // }
+
 
     }
-
-    // async function onUploadImg(ev) {
-    //     console.log(typeof ev.target.files);
-    //     let urls = []
-
-    //     Object.values(ev.target.files).forEach(async (file) => {
-    //         const url = await uploadImg(file)
-    //         urls.push(url)
-    //         // console.log(urls);
-    //         setInputValue({ ...inputValues, imgUrls: urls });
-    //     })
-    // }
 
 
     if (!user) return <h1>Loading</h1>
@@ -126,78 +111,6 @@ function _EditUser({ user, updateUser }) {
                             />
                         </label>
                     </div>
-
-
-                    {/* <div className="form-control">
-                        <label>Img
-                            <input
-                                placeholder="imgUrl"
-                                type="file"
-                                name="imgUrl"
-                                className="input-field"
-                                onChange={(e) => onUploadImg(e)}
-                                value={inputValues.imgUrl}
-                                required />
-                        </label>
-                    </div> */}
-                    {/* <div className="form-control"> */}
-                    {/* <label>Tags
-
-                            <textarea
-                                placeholder="comma-seperated tags"
-                                type="text"
-                                name="tags"
-                                className="input-field"
-                                onChange={(e) => handleChange1(e)}
-                                value={inputValues.tags}
-                                required />
-                        </label> */}
-                    {/* </div> */}
-
-                    {/* <b>Order Details</b>
-
-                    <div className="form-control">
-                        <label >Order title
-                            <input
-                                placeholder="Order title"
-                                type="text"
-                                id="orderTitle"
-                                name="orderTitle"
-                                className="input-field"
-                                onChange={(e) => handleChange(e)}
-                                value={inputValues.orderTitle}
-                                required
-                            />
-                        </label>
-                    </div>
-                    <div className="form-control">
-                        <label >Order description
-                            <input
-                                placeholder="Order description"
-                                type="text"
-                                id="orderDesc"
-                                name="orderDesc"
-                                className="input-field"
-                                onChange={(e) => handleChange(e)}
-                                value={inputValues.orderDesc}
-                                required
-                            />
-                        </label>
-                    </div>
-                    <div className="form-control">
-                        <label >Order Details
-                            <textarea
-                                placeholder="Order details(comma-seperated)"
-                                type="text"
-                                id="orderdetails"
-                                name="orderdetails"
-                                className="input-field"
-                                onChange={(e) => handleChange1(e)}
-                                value={inputValues.orderdetails}
-                                required
-                            />
-                        </label>
-                    </div> */}
                     <button type="submit">
                         submit
                     </button>
