@@ -16,8 +16,16 @@ function _UserProfile({ user }) {
         return mmm_yyyy[0] + ' ' + mmm_yyyy[1];
     }
 
-    const addPicture = () => {
-        // let 
+    const  addPicture = async (ev) => {
+        try{
+            let imgUrl = await uploadImg(ev.target.files[0])
+            console.log(imgUrl);
+            user.imgUrl = imgUrl;
+            console.log(user);
+        }
+        catch{
+            console.log('failed to get imgUrl');
+        }
     }
     return (
         <section className="profile-page-container flex">

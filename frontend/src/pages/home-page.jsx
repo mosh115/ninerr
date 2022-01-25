@@ -28,13 +28,13 @@ function _HomePage(props) {
         onSetPage('home-page')
     }, [])
     
-    //cycling between hero images
-    const [heroImgIdx, setHeroImgIdx] = useState(0)
+    // //cycling between hero images
+    // const [heroImgIdx, setHeroImgIdx] = useState(0)
 
 
-    let heroImgInterval = setInterval(() => {
-        heroImgIdx < 6 ? setHeroImgIdx(heroImgIdx++) : heroImgIdx = 0
-    }, 3000);
+    // let heroImgInterval = setInterval(() => {
+    //     heroImgIdx < 6 ? setHeroImgIdx(heroImgIdx++) : heroImgIdx = 0
+    // }, 3000);
     
 
 
