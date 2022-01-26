@@ -8,7 +8,9 @@ import { userService } from '../services/user.service';
 import { utilService } from '../services/util.service';
 import ImageGallery from 'react-image-gallery';
 // import { ProgressBar } from '../cmps/progress-bar'
-import { FaStar, FaRegClock, FaCheck, FaSyncAlt } from "react-icons/fa";
+import { FaStar, FaCheck, FaSyncAlt } from "react-icons/fa";
+import { ImClock } from "react-icons/im";
+
 import { ReviewItem } from '../cmps/review-item';
 import { TableRating } from '../cmps/table-rating';
 
@@ -31,7 +33,7 @@ export function GigDetails() {
         let gig = await gigService.getById(gigId)
         console.log('gig', gig);
         const seller = await userService.getById(gig.owner._id)
-        console.log('seller', seller);
+        // console.log('seller', seller);
         setGig(gig)
         // console.log(gig);
         setUserSeller(seller)
@@ -41,7 +43,7 @@ export function GigDetails() {
         return utilService.getRandomIntInclusive(1, 80)
     }
 
-    function getNumOfRaters() {
+    const numOfRaters = () => {
         let raters = gig.owner.raters;
         let num = raters;
         if (raters > 1000 && raters < 1300) num = '1K+'
@@ -65,9 +67,9 @@ export function GigDetails() {
                     <img className='avatar' src={userSeller.imgUrl || `https://i.pravatar.cc/24?u=${userSeller._id}`} />
                     <Link to={'/#'}> {gig.owner.fullname}</Link>
                     <p className='seller-level'>{gig.owner.level} <span className='stop'>|</span></p>
-                    <ReactStars classNames="stars" count={+gig.owner.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
+                    <ReactStars classNames="stars" count={gig.owner.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
                     <b className='rating'>{gig.owner.rate} </b>
-                    <p className='raters'>({getNumOfRaters()})<span className='stop'>|</span></p>
+                    <p className='raters'>({numOfRaters})<span className='stop'>|</span></p>
                     <p className='qweue'><span>{getRandomNum()}</span> Orders in Queue</p>
                 </div>
 
@@ -91,7 +93,7 @@ export function GigDetails() {
                         <Link className='name' to={'/#'}> {gig.owner.fullname}</Link>
                         <p>{userSeller.shortAbout}</p>
                         <div className='flex'>
-                            <ReactStars count={+gig.owner.rate} size={16} color="#ffb33e" activeColor="#ffb33e" edit={false} />
+                            <ReactStars count={gig.owner.rate} size={16} color="#ffb33e" activeColor="#ffb33e" edit={false} />
                             <p className='rating'>{gig.owner.rate} </p>
                             <p className='raters'>({gig.owner.raters})</p>
 
@@ -113,7 +115,7 @@ export function GigDetails() {
                     <div className='details flex align-center'>
                         <h2 className='flex'>{gig.owner.raters} Reviews
                             <ReactStars
-                                count={+gig.owner.rate}
+                                count={gig.owner.rate}
                                 size={16}
                                 color="#ffb33e"
                                 activeColor="#ffb33e"
@@ -134,33 +136,39 @@ export function GigDetails() {
                         </section>
                     </div>
                 </div>
-                {userSeller.givenReviews.map((review) => <ReviewItem review={review} key={review._id} />)}
+                {userSeller.reviews.map((review) => <ReviewItem review={review} key={review._id} />)}
 
 
             </section>
             <aside className='aside'>
                 <div className='package-content'>
-                    <h1 className='gig-label'>label (basic + 2 dummies)</h1>
-                    <div>
-                        <h2>{gig.title}</h2>
-                        <h2>({gig.price}US$</h2>
+                    <h1 className='gig-label'>Basic</h1>
+                    <header>
+                        <h3>
+                            {gig.orderTitle}
+                            <div className='price-wrapper'>{gig.price}US$</div>
+                        </h3>
+                        
+                        <p className='order-description'>{gig.orderDesc}</p>
+                    </header>
+                    <div className='additional-info'>
+                        <h3 className='delievery-wrapper'>
+                            <span><ImClock /></span>
+                            
+                            {gig.daysToMake} Days Delievery
+                        </h3>
+                        <h3 className='revisions-wrapper'>
+                            <span><FaSyncAlt /></span>
+                            Unlimited Revisions
+                        </h3>
                     </div>
-                    <div>{gig.description}</div>
+                    <div className='gig-features'>
+                        <ul>
+                        {gig.orderdetails.map((tag,idx) => { return (<li key={idx} className='clean-list'><span><FaCheck /></span>{tag}</li>) })}
+                        </ul>
+                    </div>
 
-                    <div>
-                        <h2>
-                            <i><FaRegClock /></i>{gig.daysToMake} Days Delievery
-                        </h2>
-                        <h2>
-                            <i><FaSyncAlt /></i>Unlimited Revisions
-                        </h2>
-                    </div>
-                    <div>
-                      
-                        {gig.orderdetails.map(tag => { return (<h2><i><FaCheck /></i>{tag}</h2>) })}
-                    </div>
-
-                    <button>continue <span>({gig.price} US$)</span></button>
+                    <button>Continue <span>({gig.price} US$)</span></button>
                 </div>
             </aside>
 
