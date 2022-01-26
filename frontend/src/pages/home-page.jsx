@@ -50,8 +50,13 @@ function _HomePage(props) {
     }
     useEffect(() => {
         unFixTopFold()
-        window.addEventListener("scroll", unFixTopFold)
+        window.addEventListener("scroll", unFixTopFold, true)
+        // return () => {
+        //     console.log('hi from return');
+        //     window.removeEventListener("scroll", unFixTopFold, true);
+        // }
     })
+
 
 
     return (

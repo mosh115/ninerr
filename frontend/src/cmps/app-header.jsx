@@ -32,7 +32,6 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   let currLocation = useLocation().pathname
 
   useEffect(() => {
-
     if (isSignIn) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'unset';
   }, [isSignIn])
@@ -56,7 +55,10 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
   useEffect(() => {
     changeBackground()
     // adding the event when scroll change background
-    window.addEventListener("scroll", changeBackground)
+    window.addEventListener("scroll", changeBackground, true)
+    // return () => {
+    //   window.removeEventListener("scroll", changeBackground, true);
+    // }
   })
   // useEffect(() => {
   //   if (isSignIn) document.body.style.overflow = 'hidden';

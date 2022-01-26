@@ -11,6 +11,7 @@ import cameralogo from '../assets/img/cameralogo.png';
 
 
 function _UserProfile({ user, updateUser }) {
+    console.log(user);
     let navigate = useNavigate();
 
     useEffect(() => {

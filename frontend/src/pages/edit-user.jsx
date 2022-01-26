@@ -6,6 +6,7 @@ import { utilService } from '../services/util.service';
 import { updateUser } from '../store/user.actions';
 
 function _EditUser({ user, updateUser }) {
+    console.log('user in edit', user);
     // console.log(utilService.getReviewer());
     let navigate = useNavigate();
 
@@ -54,7 +55,6 @@ function _EditUser({ user, updateUser }) {
         const userToUpdate = { ...user, ...inputValues, reviews }
         // console.log('edit-user', userToUpdate);
         updateUser(userToUpdate)
-
 
     }
 
