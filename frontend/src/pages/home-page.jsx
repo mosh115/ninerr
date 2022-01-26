@@ -63,7 +63,13 @@ function _HomePage(props) {
         <section className='home-page'>
             <section>
                 <img className='home-page-hero' src={images[heroImg.idx]} alt='image of a person' />
-
+                <div className='hero-wrapper'>
+                    <div className='Jeff'>
+                        <img src={HeroImage1} alt="Jeff, Marketing expert" />
+                        <div className='stars'></div>
+                        <div className='seller-name'>Jeff, Marketing expert</div>
+                    </div>
+                </div>
                 <div className={topFold ? 'top-fold main-layout' : 'top-fold main-layout hidden'}>
                     <h1>Find the perfect <span className='curly-word-style'>freelance</span>  <br /> services for your business</h1>
                     <form className='home-page-search-box'>
