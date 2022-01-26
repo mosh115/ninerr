@@ -5,9 +5,9 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 export function loadGigs() {
     return async (dispatch, getState) => {
         try {
-            const filterBy = {}
-            // console.log('get gigs in action');
-            // const { filterBy } = getState().gigModule
+            // const filterBy = {}
+            const { filterBy } = getState().gigModule
+            console.log('filter', filterBy);
             const gigs = await gigService.query(filterBy)
             dispatch({ type: 'SET_GIGS', gigs })
 

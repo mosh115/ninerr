@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 import { uploadImg } from "../services/cloudinary.service"
 import { updateUser } from '../store/user.actions';
+import { OrderTable } from '../cmps/order-table';
+
 
 import cameralogo from '../assets/img/cameralogo.png';
 
@@ -84,12 +86,21 @@ function _UserProfile({ user, updateUser }) {
             </div >
 
             <div className="user-gigs">
-                {(!user.gigs || !user.gigs.length) && <div className='craet-gig flex space-between'>
-                    <p>
-                        It seems that you don't have any active Gigs. Get selling!
-                    </p>
+                <div className='craet-gig flex space-between'>
+                    {(!user.gigs || !user.gigs.length) &&
+                        <p>
+                            It seems that you don't have any active Gigs. Get selling!
+                        </p>
+                    }
+                    {user.gigs &&
+                        <p>
+                            Happy to have you here as a seller. Improve your incom by offering more Gigs!
+                        </p>
+                    }
                     <Link to="/add"><button>Create a New Gig</button></Link>
-                </div>}
+                </div>
+
+                <OrderTable />
             </div>
         </section >
     )
