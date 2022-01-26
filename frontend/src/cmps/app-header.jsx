@@ -107,7 +107,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
                 {/* <div className="dot"></div> */}
               </div>}
             {user.imgUrl &&
-              <div className="user-picture">
+              <div className="user-picture pointer" onClick={() => { togglePopoverNav(true) }}>
                 <img src={`${user.imgUrl}`} alt={<p>{user.username[0].toUpperCase()}</p>} />
               </div>
             }
