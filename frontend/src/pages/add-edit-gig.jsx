@@ -3,8 +3,10 @@ import { uploadImg } from '../services/cloudinary.service';
 import { connect } from "react-redux"
 import { addGig } from '../store/gig.actions';
 import { utilService } from '../services/util.service';
+import { useNavigate } from "react-router-dom";
 
 function _AddEditGig({ user, addGig }) {
+    let navigate = useNavigate();
 
     const [inputValues, setInputValue] = useState({
         title: "",
@@ -45,6 +47,7 @@ function _AddEditGig({ user, addGig }) {
             }
         }
         addGig(newGig)
+        navigate('/profile')
     }
     // window.makeLevel
 

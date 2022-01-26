@@ -136,7 +136,7 @@ export function GigDetails() {
                         </section>
                     </div>
                 </div>
-                {/* {userSeller.reviews.map((review) => <ReviewItem review={review} key={review._id} />)} */}
+                {userSeller.reviews.map((review) => <ReviewItem review={review} key={review._id} />)}
 
 
             </section>
@@ -164,7 +164,7 @@ export function GigDetails() {
                     </div>
                     <div className='gig-features'>
                         <ul>
-                        {gig.orderdetails.map(tag => { return (<li className='clean-list'><span><FaCheck /></span>{tag}</li>) })}
+                        {gig.orderdetails.map((tag,idx) => { return (<li key={idx} className='clean-list'><span><FaCheck /></span>{tag}</li>) })}
                         </ul>
                     </div>
 
