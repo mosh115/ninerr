@@ -28,11 +28,11 @@ export function removeUser(userId) {
 }
 
 export function updateUser(userToUpdate) {
-    console.log('action', userToUpdate);
-
+    console.log('before action', userToUpdate);
     return async (dispatch) => {
         try {
             const user = await userService.update(userToUpdate)
+            console.log('user after action', user);
             dispatch({ type: 'SET_USER', user })
 
         } catch (err) {

@@ -39,12 +39,13 @@ function remove(userId) {
 }
 
 async function update(user) {
-    console.log('service', user);
+    console.log(' in service', user);
     // await storageService.put('user', user)
-    user = await httpService.put(`user/${user._id}`, user)
+    const newUser = await httpService.put(`user/${user._id}`, user)
+    console.log('user after db', newUser);
     // Handle case in which admin updates other user's details
-    if (getLoggedinUser()._id === user._id) _saveLocalUser(user)
-    return user;
+    if (getLoggedinUser()._id === newUser._id) _saveLocalUser(newUser)
+    return newUser;
 }
 
 async function login(userCred) {
