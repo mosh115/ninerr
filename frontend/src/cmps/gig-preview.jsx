@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FaStar, FaHeart } from "react-icons/fa";
 import ImageGallery from 'react-image-gallery';
+import { AvatarPicture } from './user-avatar-picture';
 
 
 
@@ -26,7 +27,8 @@ export function GigPreview({ gig }) {
             <section className='preview-card'>
 
                 <section className='seller-info flex'>
-                    <img className='avatar' src={`https://i.pravatar.cc/24?u=${gig._id}`} />
+                    {/* <AvatarPicture user={gig.owner} size={'24px'} isGrey={false} /> */}
+                    <img className='avatar' src={gig.owner.imgUrl} />
                     <div>
                         <Link className='seller-name' to={'/#'}> {gig.owner.fullname}</Link>
                         <p className='seler-level'>{gig.owner.level}</p>
