@@ -134,7 +134,7 @@ export function GigDetails() {
                         </section>
                     </div>
                 </div>
-                {userSeller.givenReviews.map((review) => <ReviewItem review={review} key={review._id} />)}
+                {userSeller.reviews.map((review) => <ReviewItem review={review} key={review._id} />)}
 
 
             </section>
@@ -156,8 +156,8 @@ export function GigDetails() {
                         </h2>
                     </div>
                     <div>
-                      
-                        {gig.orderdetails.map(tag => { return (<h2><i><FaCheck /></i>{tag}</h2>) })}
+
+                        {gig.orderdetails.map((tag, idx) => { return (<h2 key={idx}><i><FaCheck /></i>{tag}</h2>) })}
                     </div>
 
                     <button>continue <span>({gig.price} US$)</span></button>

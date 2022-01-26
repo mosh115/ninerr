@@ -19,9 +19,9 @@ function _EditUser({ user, updateUser }) {
     const [inputValues, setInputValue] = useState({
         fullname: user.fullname || "",
         username: user.username || "",
-        shortAbout: "",
-        about: "",
-        from: "",
+        shortAbout: user.shortAbout || "",
+        about: user.about || "",
+        from: user.from || "",
         reviews: ""
     });
 
@@ -55,6 +55,8 @@ function _EditUser({ user, updateUser }) {
         const userToUpdate = { ...user, ...inputValues, reviews }
         // console.log('edit-user', userToUpdate);
         updateUser(userToUpdate)
+        navigate('/profile')
+
 
     }
 
@@ -146,7 +148,7 @@ function _EditUser({ user, updateUser }) {
                                 className="input-field"
                                 onChange={(e) => handleChange1(e)}
                                 value={inputValues.reviews}
-                                required
+                            // required
                             />
                         </label>
                     </div>
