@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { NavLink, useLocation } from "react-router-dom"
+// import { NavLink, useLocation } from "react-router-dom"
 import { FaSearch, FaRegCheckCircle } from "react-icons/fa"
 
 import HeroImage1 from '../assets/img/home-page/21.jpg';
@@ -22,7 +22,7 @@ import { onSetPage } from '../store/gig.actions'
 import { useEffect } from 'react';
 import { useState } from "react"
 
-const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5, HeroImage6, HeroImage7, HeroImage8,HeroImage9];
+const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5, HeroImage6, HeroImage7, HeroImage8, HeroImage9];
 
 
 function _HomePage(props) {
@@ -34,7 +34,7 @@ function _HomePage(props) {
     //cycling between hero images
     let [heroImg, setHeroImg] = useState({ idx: 0 })
     useEffect(() => {
-        setTimeout(() => setHeroImg(prev => (prev.idx < images.length-1 ? { idx: prev.idx + 1} : { idx: 0 })), 9000);
+        setTimeout(() => setHeroImg(prev => (prev.idx < images.length - 1 ? { idx: prev.idx + 1 } : { idx: 0 })), 9000);
     })
 
 
@@ -155,6 +155,7 @@ function _HomePage(props) {
             <section className='find-the-talent full'>
                 <div className='content'>
                     <h2>Find the <span className='curly-word-style'>talent</span>  needed to get your business <span className='curly-word-style'>growing</span>.</h2>
+
                     <button>Get Started</button>
                 </div>
                 <img src={FreeLancerImage} alt="FreeLancer woman image" />
