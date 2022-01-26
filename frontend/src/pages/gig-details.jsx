@@ -13,6 +13,7 @@ import { ImClock } from "react-icons/im";
 
 import { ReviewItem } from '../cmps/review-item';
 import { TableRating } from '../cmps/table-rating';
+import { AvatarPicture } from '../cmps/user-avatar-picture';
 
 
 
@@ -64,6 +65,7 @@ export function GigDetails() {
                     <h1 className='title'>{gig.title}</h1>
                 </div>
                 <div className='seller-overview flex'>
+                    {/* <AvatarPicture user={gig.userSeller} size={'32px'} isGrey={false} /> */}
                     <img className='avatar' src={userSeller.imgUrl || `https://i.pravatar.cc/24?u=${userSeller._id}`} />
                     <Link to={'/#'}> {gig.owner.fullname}</Link>
                     <p className='seller-level'>{gig.owner.level} <span className='stop'>|</span></p>
@@ -87,6 +89,7 @@ export function GigDetails() {
                 <h2>About The Seller</h2>
                 <div className='about-seller flex'>
                     <div className='profile-info'>
+                        {/* <AvatarPicture user={gig.userSeller} size={'110px'} isGrey={false} /> */}
                         <img className='avatar' src={userSeller.img || `https://i.pravatar.cc/110?u=${gig._id}`} />
                     </div>
                     <div className='seller-info'>
@@ -136,7 +139,7 @@ export function GigDetails() {
                         </section>
                     </div>
                 </div>
-                {userSeller.reviews.map((review) => <ReviewItem review={review} key={review._id} />)}
+                {userSeller.reviews.map((review) => <ReviewItem key={review.id} review={review} key={review._id} />)}
 
 
             </section>

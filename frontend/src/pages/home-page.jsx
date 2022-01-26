@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { useNavigate } from "react-router-dom";
+
 // import { NavLink, useLocation } from "react-router-dom"
 import { FaSearch, FaRegCheckCircle } from "react-icons/fa"
 
@@ -18,14 +20,17 @@ import FreeLancerImage from '../assets/img/home-page/14.jpg';
 import { PopularServiceList } from '../cmps/popular-service-list'
 import { GigApp } from '../pages/gig-app'
 import { ExploreMarketPlace } from '../cmps/explore-market-place'
-import { onSetPage } from '../store/gig.actions'
+import { onSetPage, setFilter } from '../store/gig.actions'
 import { useEffect } from 'react';
 import { useState } from "react"
 
 const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5, HeroImage6, HeroImage7, HeroImage8, HeroImage9];
 
 
-function _HomePage(props) {
+function _HomePage({setFilter}) {
+
+    let navigate = useNavigate();
+
 
     useEffect(() => {
         onSetPage('home-page')
@@ -37,6 +42,12 @@ function _HomePage(props) {
         setTimeout(() => setHeroImg(prev => (prev.idx < images.length - 1 ? { idx: prev.idx + 1 } : { idx: 0 })), 15000);
     })
 
+    const [searchContent, getSEachContent] = useState('')
+
+    const handleChange = (ev) => {
+        console.log('handle', ev);
+        // getSEachContent(target.value)
+    }
 
     // this is for the top-fold to become un-fixed when starting to scroll the page
     const [topFold, setTopFold] = useState(true)
@@ -57,7 +68,15 @@ function _HomePage(props) {
         // }
     })
 
-
+    const onFilterBy = (tag) => {
+        let filterBy = {
+            title: '',
+            tags: [tag],
+            userId: ''
+        }
+        setFilter(filterBy)
+        navigate('/explore')
+    }
 
     return (
         <section className='home-page'>
@@ -68,14 +87,17 @@ function _HomePage(props) {
                     <h1>Find the perfect <span className='curly-word-style'>freelance</span>  <br /> services for your business</h1>
                     <form className='home-page-search-box'>
                         <div className='search-box-icon'><i><FaSearch /></i> </div>
-                        <input type="search" name="search-box" placeholder='Try "Building a mobile app"' />
+                        <input  onChange={(e) => handleChange(e)} type="search" name="search-box" placeholder='Try "Building a mobile app"' />
                         <button>Search</button>
                     </form>
                     <div className='popular-categories'>Popular:
-                        <span>Website design</span>
-                        <span>Wordpress</span>
+                        <span onClick={() => onFilterBy('Blog')}>Website design</span>
+                        <span onClick={() => onFilterBy('Wordpress')}>Wordpress</span>
+                        <span onClick={() => onFilterBy('Logo design')}>Logo design</span>
+                        <span onClick={() => onFilterBy('Website design')}>Music</span>
+                        {/* <span>Wordpress</span>
                         <span>Logo design</span>
-                        <span>Music</span>
+                        <span>Music</span> */}
                     </div>
                 </div>
             </section>
@@ -179,6 +201,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     onSetPage,
+    setFilter,
     // onLogin,
     // onSignup,
     // onLogout,

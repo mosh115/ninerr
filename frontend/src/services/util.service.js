@@ -42,11 +42,12 @@ function delay(ms = 1500) {
 }
 
 function makeLevel() {
-    const level = ['Top Rated Seller', 'Level 2 Seller', 'Level 1 Seller']
-    return level[getRandomIntInclusive(0, 2)]
+    const level = ['Top Rated Seller', 'Level 2 Seller', 'Level 1 Seller', 'Top Rated Seller']
+    return level[getRandomIntInclusive(0, 3)]
 }
+
 function makeRate() {
-    const rate = ['4.0', '4.1', '4.2', '4.3', '4.4', '4.5', '4.6', '4.7', '4.8', '4.9', '5.0']
+    const rate = ['5.0', '4.1', '5.0', '4.4', '5.0', '4.6', '4.7', '5.0', '4.8', '4.9', '5.0']
     return rate[getRandomIntInclusive(0, 10)]
 }
 

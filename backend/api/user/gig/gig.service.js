@@ -6,7 +6,7 @@ const ObjectId = require('mongodb').ObjectId
 async function query(filterBy) {
     try {
         let criteria = {}
-        if (filterBy) criteria = _buildCriteria(filterBy);
+        // if (filterBy) criteria = _buildCriteria(filterBy);
         const collection = await dbService.getCollection('gig');
         const gigs = await collection.find(criteria).toArray() || [];
         return gigs;
@@ -83,20 +83,19 @@ async function getLabels() {
 
 
 function _buildCriteria(filterBy) {
-    const { title, tags, userId } = filterBy;
+    const { inStock, labels, txt } = filterBy;
     let criteria = {};
-    if (title) {
+    if (txt) {
         console.log('im here!');
-        criteria.title = { $regex: title, $options: 'i' };
+        criteria.name = { $regex: txt, $options: 'i' };
     }
-    //  else if (inStock === 'outofstock') {
-    //     criteria.inStock = false;
-    // }
-    if (tags) {
-        criteria.tags = { $all: tags }
+    if (inStock === 'instock') {
+        criteria.inStock = true;
+    } else if (inStock === 'outofstock') {
+        criteria.inStock = false;
     }
-    if (userId) {
-        criteria = { 'owner._id': userId };
+    if (labels.length) {
+        criteria.labels = { $all: labels }
     }
     console.log('criteria:', criteria);
     return criteria
