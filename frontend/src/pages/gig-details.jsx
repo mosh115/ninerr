@@ -8,7 +8,7 @@ import { userService } from '../services/user.service';
 import { utilService } from '../services/util.service';
 import ImageGallery from 'react-image-gallery';
 // import { ProgressBar } from '../cmps/progress-bar'
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaRegClock, FaCheck, FaSyncAlt } from "react-icons/fa";
 import { ReviewItem } from '../cmps/review-item';
 import { TableRating } from '../cmps/table-rating';
 
@@ -44,7 +44,7 @@ export function GigDetails() {
     const numOfRaters = () => {
         let raters = gig.owner.raters;
         let num = raters;
-        if (raters > 1000 && raters < 1300) num = '1K+' 
+        if (raters > 1000 && raters < 1300) num = '1K+'
         if (raters >= 1300 && raters < 1400) num = '2K+'
         return num
     }
@@ -53,6 +53,7 @@ export function GigDetails() {
 
     if (!gig || !userSeller) return <h1>Loading..</h1>
     const images = gig.imgUrls.map(img => { return { original: img, thumbnail: img } })
+
     return (
         <section className='gig-details flex '>
 
@@ -138,7 +139,29 @@ export function GigDetails() {
 
             </section>
             <aside className='aside'>
+                <div className='package-content'>
+                    <h1 className='gig-label'>label (basic + 2 dummies)</h1>
+                    <div>
+                        <h2>{gig.title}</h2>
+                        <h2>({gig.price}US$</h2>
+                    </div>
+                    <div>{gig.description}</div>
 
+                    <div>
+                        <h2>
+                            <i><FaRegClock /></i>{gig.daysToMake} Days Delievery
+                        </h2>
+                        <h2>
+                            <i><FaSyncAlt /></i>Unlimited Revisions
+                        </h2>
+                    </div>
+                    <div>
+                      
+                        {gig.orderdetails.map(tag => { return (<h2><i><FaCheck /></i>{tag}</h2>) })}
+                    </div>
+
+                    <button>continue <span>({gig.price} US$)</span></button>
+                </div>
             </aside>
 
 

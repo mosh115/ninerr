@@ -182,6 +182,21 @@
             }
         }
     }
+    .aside{ 
+        .package-content{
+        // background-color: blue;
+        width: 70%;
+        // margin: 150px 150px;
+        margin-top: 150px;
+        border: 1px solid $clr4;
+        }
+        .contact-seller{
+            border: 1px solid $clr4;
+        }
+        .gig-label{
+            border-bottom: 1px solid $clr4;
+        }
+    }
 }
 .gallery-image-gallery {
     z-index: 1;
