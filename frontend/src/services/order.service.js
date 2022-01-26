@@ -4,12 +4,12 @@
 import { userService } from './user.service.js'
 import { httpService } from './http.service.js'
 
-// const STORAGE_KEY = 'gig'
-// const END_POINT = 'gig'
+// const STORAGE_KEY = 'order'
+// const END_POINT = 'order'
 const listeners = []
 
 
-export const gigService = {
+export const orderService = {
     query,
     getById,
     save,
@@ -17,35 +17,25 @@ export const gigService = {
     subscribe
 
 }
-window.cs = gigService;
+window.cs = orderService;
 
 
 function query(filterBy) {
-    // console.log('query in gig service');
-    // return storageService.query(STORAGE_KEY)
-    return httpService.get('gig', filterBy)
+    // console.log('query in order service');    
+    return httpService.get('order', filterBy)
 }
-function getById(gigId) {
-    // console.log(gigId);
-    // return storageService.get(STORAGE_KEY, gigId)
-    return httpService.get(`gig/${gigId}`)
+function getById(orderId) {
+    // console.log(orderId);    
+    return httpService.get(`order/${orderId}`)
 }
-function remove(gigId) {
-    // return new Promise((resolve, reject) => {
-    //     setTimeout(reject, 2000)
-    // })
-    // return Promise.reject('Not now!');
-    // return storageService.remove(STORAGE_KEY, gigId)
-    return httpService.remove('gig', gigId)
+function remove(orderId) {
+    return httpService.remove('order', orderId)
 }
-function save(gig) {
-    if (gig._id) {
-        // return storageService.put(STORAGE_KEY, gig)
-        return httpService.put('gig', gig)
+function save(order) {
+    if (order._id) {
+        return httpService.put('order', order)
     } else {
-        // gig.owner = userService.getLoggedinUser()
-        // return storageService.post(STORAGE_KEY, gig)
-        return httpService.post('gig', gig)
+        return httpService.post('order', order)
     }
 }
 
@@ -55,16 +45,16 @@ function subscribe(listener) {
     listeners.push(listener)
 }
 
-function _notifySubscribersGigsChanged(gigs) {
+function _notifySubscribersOrdersChanged(orders) {
     console.log('Notifying Listeners');
-    listeners.forEach(listener => listener(gigs))
+    listeners.forEach(listener => listener(orders))
 }
 
 window.addEventListener('storage', () => {
     console.log('Storage Changed from another Browser!');
     query()
-        .then(gigs => {
-            _notifySubscribersGigsChanged(gigs)
+        .then(orders => {
+            _notifySubscribersOrdersChanged(orders)
         })
 })
 

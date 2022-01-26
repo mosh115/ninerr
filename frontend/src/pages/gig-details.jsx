@@ -1,23 +1,23 @@
 import React from 'react';
+import { connect } from "react-redux"
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import ReactStars from "react-rating-stars-component";
 import { gigService } from '../services/gig.service';
 import { userService } from '../services/user.service';
 import { utilService } from '../services/util.service';
 import ImageGallery from 'react-image-gallery';
-// import { ProgressBar } from '../cmps/progress-bar'
 import { FaStar, FaCheck, FaSyncAlt } from "react-icons/fa";
 import { ImClock } from "react-icons/im";
-
 import { ReviewItem } from '../cmps/review-item';
 import { TableRating } from '../cmps/table-rating';
 import { AvatarPicture } from '../cmps/user-avatar-picture';
+import { addOrder } from '../store/order.actions'
 
 
 
-export function GigDetails() {
+function _GigDetails({ user, addOrder }) {
+    // console.log(user);
 
     const [gig, setGig] = useState()
     const [userSeller, setUserSeller] = useState()
@@ -30,9 +30,8 @@ export function GigDetails() {
     const { gigId } = useParams();
 
     async function loadGigAndSeller() {
-        // console.log(gigId);
         let gig = await gigService.getById(gigId)
-        console.log('gig', gig);
+        // console.log('gig', gig);
         const seller = await userService.getById(gig.owner._id)
         // console.log('seller', seller);
         setGig(gig)
@@ -40,11 +39,35 @@ export function GigDetails() {
         setUserSeller(seller)
     }
 
+    function onMakeOrder() {
+        // console.log('place order');
+        const newOrder = {
+            buyer: {
+                '_id': user._id,
+                name: user.fullname
+            },
+            seller: {
+                '_id': userSeller._id,
+                name: userSeller.fullname
+            },
+            gig: {
+                '_id': gig._id,
+                name: gig.orderTitle,
+                price: gig.price
+            },
+            status: "pending"
+        }
+
+        console.log(newOrder);
+        addOrder(newOrder)
+    }
+
+
     function getRandomNum() {
         return utilService.getRandomIntInclusive(1, 80)
     }
 
-    const numOfRaters = () => {
+    function getNumOfRaters() {
         let raters = gig.owner.raters;
         let num = raters;
         if (raters > 1000 && raters < 1300) num = '1K+'
@@ -69,9 +92,9 @@ export function GigDetails() {
                     <img className='avatar' src={userSeller.imgUrl || `https://i.pravatar.cc/24?u=${userSeller._id}`} />
                     <Link to={'/#'}> {gig.owner.fullname}</Link>
                     <p className='seller-level'>{gig.owner.level} <span className='stop'>|</span></p>
-                    <ReactStars classNames="stars" count={gig.owner.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
+                    <ReactStars classNames="stars" count={+gig.owner.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
                     <b className='rating'>{gig.owner.rate} </b>
-                    <p className='raters'>({numOfRaters})<span className='stop'>|</span></p>
+                    <p className='raters'>({getNumOfRaters()})<span className='stop'>|</span></p>
                     <p className='qweue'><span>{getRandomNum()}</span> Orders in Queue</p>
                 </div>
 
@@ -96,9 +119,9 @@ export function GigDetails() {
                         <Link className='name' to={'/#'}> {gig.owner.fullname}</Link>
                         <p>{userSeller.shortAbout}</p>
                         <div className='flex'>
-                            <ReactStars count={gig.owner.rate} size={16} color="#ffb33e" activeColor="#ffb33e" edit={false} />
-                            <p className='rating'>{gig.owner.rate} </p>
-                            <p className='raters'>({gig.owner.raters})</p>
+                            <ReactStars count={+gig.owner.rate} size={16} color="#ffb33e" activeColor="#ffb33e" edit={false} />
+                            <p className='rating'>{+gig.owner.rate} </p>
+                            <p className='raters'>({+gig.owner.raters})</p>
 
                         </div>
                         <button className='btn-contact-me'>Contact Me</button>
@@ -118,7 +141,7 @@ export function GigDetails() {
                     <div className='details flex align-center'>
                         <h2 className='flex'>{gig.owner.raters} Reviews
                             <ReactStars
-                                count={gig.owner.rate}
+                                count={+gig.owner.rate}
                                 size={16}
                                 color="#ffb33e"
                                 activeColor="#ffb33e"
@@ -139,7 +162,7 @@ export function GigDetails() {
                         </section>
                     </div>
                 </div>
-                {userSeller.reviews.map((review) => <ReviewItem key={review.id} review={review} key={review._id} />)}
+                {userSeller.reviews && userSeller.reviews.map((review, idx) => <ReviewItem review={review} key={review.id} />)}
 
 
             </section>
@@ -149,15 +172,15 @@ export function GigDetails() {
                     <header>
                         <h3>
                             {gig.orderTitle}
-                            <div className='price-wrapper'>{gig.price}US$</div>
+                            <div className='price-wrapper'>${gig.price}</div>
                         </h3>
-                        
+
                         <p className='order-description'>{gig.orderDesc}</p>
                     </header>
                     <div className='additional-info'>
                         <h3 className='delievery-wrapper'>
                             <span><ImClock /></span>
-                            
+
                             {gig.daysToMake} Days Delievery
                         </h3>
                         <h3 className='revisions-wrapper'>
@@ -167,14 +190,27 @@ export function GigDetails() {
                     </div>
                     <div className='gig-features'>
                         <ul>
-                        {gig.orderdetails.map((tag,idx) => { return (<li key={idx} className='clean-list'><span><FaCheck /></span>{tag}</li>) })}
+                            {gig.orderdetails.map((tag, idx) => { return (<li key={idx} className='clean-list'><span><FaCheck /></span>{tag}</li>) })}
                         </ul>
                     </div>
 
-                    <button>Continue <span>({gig.price} US$)</span></button>
+                    <button onClick={onMakeOrder}>Continue <span>(${gig.price})</span></button>
                 </div>
             </aside>
 
 
-        </section>)
+        </section>
+    )
 }
+
+function mapStateToProps(state) {
+    return {
+        user: state.userModule.user,
+    }
+}
+const mapDispatchToProps = {
+    addOrder,
+
+}
+
+export const GigDetails = connect(mapStateToProps, mapDispatchToProps)(_GigDetails)

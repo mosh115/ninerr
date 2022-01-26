@@ -34,7 +34,6 @@ async function getOrderById(req, res) {
 async function addOrder(req, res) {
   try {
     const order = req.body;
-
     const addedOrder = await orderService.add(order)
     res.json(addedOrder)
   } catch (err) {
