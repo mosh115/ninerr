@@ -135,34 +135,57 @@
       visibility: hidden;
     }
   }
-  .user-avatar {
-    margin-inline-start: 20px ;
+  .avatar-container{
     position: relative;
-    height: 32px;
-    width: 32px;
-    border-radius: 50%;
-    font-size: 20px;
-    text-align: center;
-    font-weight: 600;
-    color: #fff;
-    &:hover {
-    color: $clr6 !important; 
+    width: 54px;
+
+    .user-avatar {
+      // margin-inline-start: 20px ;
+      position: relative;
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      font-size: 20px;
+      text-align: center;
+      font-weight: 600;
+      color: #fff;
+      &:hover {
+      color: $clr6 !important; 
+      }
+      p{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+      }
     }
-    p{
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
+    .user-picture{
+      // margin-inline-start: 20px ;
+      position: relative;
+      height: 32px;
+      width: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      
+      img {
+        width: 100%;
+        object-fit: contain;
+        justify-self: center;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+      }
     }
     .dot{
-       position: absolute;
-       width: 12px;
-       height: 12px;
-       bottom: 0;
-       right: 0;
-       border: white solid 2px;
-       border-radius: 50%;
-       background-color: $clr1;
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      bottom: 0;
+      right: 0;
+      border: white solid 2px;
+      border-radius: 50%;
+      background-color: $clr1;
     }
   }
 }

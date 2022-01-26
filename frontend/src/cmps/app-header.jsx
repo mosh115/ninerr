@@ -17,6 +17,7 @@ import {
 } from "../store/user.actions.js"
 import { LoginSignup } from "./login-signup.jsx"
 import { PopoverNav } from "./popover-nav.jsx"
+import { AvatarPicture } from "./user-avatar-picture.jsx"
 
 
 function _AppHeader({ onLogin, onSignup, onLogout, user }) {
@@ -96,12 +97,20 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
               Join
             </div>
           </React.Fragment>}
-          {user && <React.Fragment>
-            <div className="user-avatar pointer" onClick={() => { togglePopoverNav(true) }} style={{ backgroundColor: user.avatarColor }}>
-              <p>{user.username[0].toUpperCase()}</p>
-              <div className="dot"></div>
-            </div>
-          </React.Fragment>}
+          {/* {user && <AvatarPicture user={user} size="32px" isGrey={false} onClick={() => { togglePopoverNav(true) }} className="pointer"/>} */}
+          {user && <div className="avatar-container">
+            {!user.imgUrl &&
+              <div className="user-avatar pointer" onClick={() => { togglePopoverNav(true) }} style={{ backgroundColor: user.avatarColor }}>
+                <p>{user.username[0].toUpperCase()}</p>
+                {/* <div className="dot"></div> */}
+              </div>}
+            {user.imgUrl &&
+              <div className="user-picture">
+                <img src={`${user.imgUrl}`} alt={<p>{user.username[0].toUpperCase()}</p>} />
+              </div>
+            }
+            <div className="dot"></div>
+          </div>}
         </nav>
 
       </div>

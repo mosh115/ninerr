@@ -43,7 +43,7 @@ function save(gig) {
         // return storageService.put(STORAGE_KEY, gig)
         return httpService.put('gig', gig)
     } else {
-        gig.owner = userService.getLoggedinUser()
+        // gig.owner = userService.getLoggedinUser()
         // return storageService.post(STORAGE_KEY, gig)
         return httpService.post('gig', gig)
     }

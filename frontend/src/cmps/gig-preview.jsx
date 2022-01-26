@@ -10,7 +10,7 @@ export function GigPreview({ gig }) {
     console.log(gig);
 
     const images = gig.imgUrls.map(img => { return { original: img } })
-    // console.log(images);
+
 
     return (
         <article className="gig-preview" key={gig._id}>

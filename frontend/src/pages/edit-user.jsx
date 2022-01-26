@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { connect } from "react-redux"
 import { useNavigate } from "react-router-dom";
+import { utilService } from '../services/util.service';
 import { updateUser } from '../store/user.actions';
 
 function _EditUser({ user, updateUser }) {
+    // console.log(utilService.getReviewer());
     let navigate = useNavigate();
 
 
@@ -19,6 +21,7 @@ function _EditUser({ user, updateUser }) {
         shortAbout: "",
         about: "",
         from: "",
+        reviews: ""
     });
 
     function handleChange(ev) {
@@ -26,12 +29,30 @@ function _EditUser({ user, updateUser }) {
         setInputValue({ ...inputValues, [name]: value });
 
     }
+    function handleChange1(ev) {
+        const { name, value } = ev.target;
+        const arr = value.split(',')
+        setInputValue({ ...inputValues, [name]: arr });
+    }
 
 
     function handleSubmit(ev) {
         ev.preventDefault();
-        const userToUpdate = { ...user, ...inputValues }
-        console.log('edit-user', userToUpdate);
+        const reviews = inputValues.reviews.map(review => {
+            const reviewer = utilService.getReviewer()
+            return {
+                id: utilService.makeId(10),
+                txt: review,
+                rate: utilService.getRandomIntInclusive(4, 5),
+                by: {
+                    _id: utilService.makeId(10),
+                    fullname: reviewer.uname,
+                    country: reviewer.country,
+                }
+            }
+        })
+        const userToUpdate = { ...user, ...inputValues, reviews }
+        // console.log('edit-user', userToUpdate);
         updateUser(userToUpdate)
 
 
@@ -107,6 +128,24 @@ function _EditUser({ user, updateUser }) {
                                 className="input-field"
                                 onChange={(e) => handleChange(e)}
                                 value={inputValues.from}
+                                required
+                            />
+                        </label>
+                    </div>
+
+
+                    <h1>Reviews</h1>
+
+                    <div className="form-control">
+                        <label>reviews
+                            <textarea
+                                placeholder="reviews (comma-seperated)"
+                                type="text"
+                                id="reviews"
+                                name="reviews"
+                                className="input-field"
+                                onChange={(e) => handleChange1(e)}
+                                value={inputValues.reviews}
                                 required
                             />
                         </label>
