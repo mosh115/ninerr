@@ -2,7 +2,8 @@ const initialState = {
     gigs: [],
     filterBy: {
         title: '',
-        labels: [],
+        tags: [],
+        userId: ''
     },
     // lastRemovedGig: null,
     page: null
