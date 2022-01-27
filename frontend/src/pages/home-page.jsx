@@ -43,12 +43,18 @@ function _HomePage({setFilter}) {
     })
 
     const [searchContent, getSEachContent] = useState('')
-
-    const handleChange = (ev) => {
-        console.log('handle', ev);
-        // getSEachContent(target.value)
+    useEffect(() => {
+        let filterBy = {
+            title: '',
+            tags: [],
+            userId: ''
+        }
+        setFilter(filterBy)
+    });
+    const handleChange = ({target}) => {
+        getSEachContent(target.value)
     }
-
+    
     // this is for the top-fold to become un-fixed when starting to scroll the page
     const [topFold, setTopFold] = useState(true)
 
@@ -77,6 +83,16 @@ function _HomePage({setFilter}) {
         setFilter(filterBy)
         navigate('/explore')
     }
+    const onSearch = () => {
+        let filterBy = {
+            title: searchContent,
+            tags: [],
+            userId: ''
+        }
+        setFilter(filterBy)
+        navigate('/explore')
+    }
+
 
     return (
         <section className='home-page'>
@@ -87,8 +103,8 @@ function _HomePage({setFilter}) {
                     <h1>Find the perfect <span className='curly-word-style'>freelance</span>  <br /> services for your business</h1>
                     <form className='home-page-search-box'>
                         <div className='search-box-icon'><i><FaSearch /></i> </div>
-                        <input  onChange={(e) => handleChange(e)} type="search" name="search-box" placeholder='Try "Building a mobile app"' />
-                        <button>Search</button>
+                        <input  onChange={handleChange} value={searchContent} type="search" name="search-box" placeholder='Try "Building a mobile app"' />
+                        <button onClick={onSearch}>Search</button>
                     </form>
                     <div className='popular-categories'>Popular:
                         <span onClick={() => onFilterBy('Blog')}>Website design</span>
