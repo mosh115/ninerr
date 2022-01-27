@@ -1,10 +1,10 @@
 import React, { useEffect } from "react"
 import { connect } from "react-redux"
 import { GigList } from "../cmps/gig-list.jsx"
-import { loadGigs, addGig } from "../store/gig.actions.js"
+import { loadGigs, addGig, setFilter } from "../store/gig.actions.js"
 import { showSuccessMsg } from "../services/event-bus.service.js"
 
-function _GigApp({ loadGigs, gigs, AddGig }) {
+function _GigApp({ loadGigs, gigs, AddGig, setFilter }) {
 
     useEffect(() => {
         // console.log('useEffect in explosre');
@@ -19,7 +19,10 @@ function _GigApp({ loadGigs, gigs, AddGig }) {
 
             {/* Todo: */}
             {/* <Filter/> */}
+            
+
             <GigList gigs={gigs} className="gig-list" />
+
         </div>
     )
 }

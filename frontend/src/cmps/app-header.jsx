@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink, useLocation, useNavigate } from "react-router-dom"
 import { utilService } from '../services/util.service'
 
 // import routes from "../routes"
@@ -17,16 +17,20 @@ import {
 } from "../store/user.actions.js"
 import { LoginSignup } from "./login-signup.jsx"
 import { PopoverNav } from "./popover-nav.jsx"
-import { AvatarPicture } from "./user-avatar-picture.jsx"
+import { setFilter } from '../store/gig.actions'
 
 
-function _AppHeader({ onLogin, onSignup, onLogout, user }) {
+function _AppHeader({setFilter, onLogin, onSignup, onLogout, user }) {
+
+  let navigate = useNavigate();
 
   const [navbar, setNavbar] = useState(false)
   const [subNavbar, setSubNavbar] = useState(false)
   const [isSignIn, toggleSignIn] = useState(false)
   const [isSignUp, toggleSignUp] = useState(false)
   const [isPopoverNav, togglePopoverNav] = useState(false)
+  const [searchContent, getSEachContent] = useState('')
+
 
   //gets the current page's path
   let currLocation = useLocation().pathname
@@ -52,6 +56,20 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
       setSubNavbar(false)
     }
   }
+  const handleChange = ({ target }) => {
+    getSEachContent(target.value)
+  }
+  const onSearch = (ev) => {
+    ev.preventDefault()
+    let filterBy = {
+      title: searchContent,
+      tags: [],
+      userId: ''
+    }
+    setFilter(filterBy)
+    getSEachContent('')
+    navigate('/explore')
+  }
   useEffect(() => {
     changeBackground()
     // adding the event when scroll change background
@@ -76,8 +94,8 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
           </NavLink>
           <form className={subNavbar ? 'navbar-search-box ' : 'navbar-search-box hidden'}>
             <div className='search-box-icon'><i><FaSearch /></i> </div>
-            <input type="search" name="search-box" placeholder="Find Services" />
-            <button>Search</button>
+            <input onChange={handleChange} value={searchContent} type="search" name="search-box" placeholder="Find Services" />
+            <button onClick={onSearch}>Search</button>
           </form>
         </div>
 
@@ -163,7 +181,7 @@ const mapDispatchToProps = {
   onLogin,
   onSignup,
   onLogout,
-  // loadUsers,
+  setFilter,
   removeUser,
 }
 
