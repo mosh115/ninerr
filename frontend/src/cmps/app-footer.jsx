@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink } from "react-router-dom"
+import { UserMsg } from './user-msg.jsx'
 import {
   FaPinterest,
   FaFacebook,
@@ -33,9 +34,9 @@ function _AppFooter() {
 
       <div className="copyrights-and-social-nav">
         <div>
-        <NavLink className="clean-link" to="/">
-          <span className="logo-font"> Ninerr. </span>
-        </NavLink>
+          <NavLink className="clean-link" to="/">
+            <span className="logo-font"> Ninerr. </span>
+          </NavLink>
           <span>© Ninerr International Ltd. 2022</span>
         </div>
         <ul className="clean-list social-nav">
@@ -83,7 +84,7 @@ function _AppFooter() {
         </ul>
       </div>
 
-      {/* <UserMsg /> */}
+      <UserMsg />
     </footer>
   )
 }

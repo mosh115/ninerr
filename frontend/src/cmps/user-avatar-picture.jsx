@@ -7,8 +7,7 @@ export function AvatarPicture({ user, size, isGrey }) {
     let bgColor = user.avatarColor
     if (size === '24px') {
         fontSize = '0.75em'
-    }
-    if (size === '110px') {
+    } else if (size === '110px') {
         fontSize = '2.2em'
     }
     if (isGrey) {

@@ -5,7 +5,6 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 export function loadGigs() {
     return async (dispatch, getState) => {
         try {
-            // const filterBy = {}
             const { filterBy } = getState().gigModule
             console.log('filter', filterBy);
             const gigs = await gigService.query(filterBy)
@@ -16,15 +15,6 @@ export function loadGigs() {
         }
     }
 }
-
-
-// gigService.subscribe((gigs) => {
-//     console.log('Got notified');
-//     dispatch({
-//         type: 'SET_GIGS',
-//         gigs
-//     })
-// })
 
 
 export function removeGig(gigId) {
@@ -88,64 +78,58 @@ export function onSetPage(page) {
     }
 }
 
-// export function addToGigt(gig) {
-//     return (dispatch) => {
-//         dispatch({
-//             type: 'ADD_TO_GIGT',
-//             gig
-//         })
+
+// gigService.subscribe((gigs) => {
+//     console.log('Got notified');
+//     dispatch({
+//         type: 'SET_GIGS',
+//         gigs
+//     })
+// })
+
+
+
+// export function checkout() {
+//     return async (dispatch, getState) => {
+//         try {
+//             const state = getState()
+//             const total = state.gigModule.gigt.reduce((acc, gig) => acc + gig.price, 0)
+//             const score = await userService.changeScore(-total)
+//             dispatch({ type: 'SET_SCORE', score })
+//             dispatch({ type: 'CLEAR_GIGT' })
+//             showSuccessMsg('Charged you: $' + total.toLocaleString())
+
+
+//         } catch (err) {
+//             showErrorMsg('Cannot checkout, login first')
+//             console.log('GigActions: err in checkout', err)
+//         }
 //     }
 // }
-// export function removeFromGigt(gigId) {
-//     return (dispatch) => {
-//         dispatch({
-//             type: 'REMOVE_FROM_GIGT',
-//             gigId
-//         })
-//     }
-// }
-
-export function checkout() {
-    return async (dispatch, getState) => {
-        try {
-            const state = getState()
-            const total = state.gigModule.gigt.reduce((acc, gig) => acc + gig.price, 0)
-            const score = await userService.changeScore(-total)
-            dispatch({ type: 'SET_SCORE', score })
-            dispatch({ type: 'CLEAR_GIGT' })
-            showSuccessMsg('Charged you: $' + total.toLocaleString())
-
-
-        } catch (err) {
-            showErrorMsg('Cannot checkout, login first')
-            console.log('GigActions: err in checkout', err)
-        }
-    }
-}
 
 
 
 // Demo for Optimistic Mutation (IOW - Assuming the server call will work, so updating the UI first)
-export function onRemoveGigOptimistic(gigId) {
+// export function onRemoveGigOptimistic(gigId) {
 
-    return (dispatch, getState) => {
+//     return (dispatch, getState) => {
 
-        dispatch({
-            type: 'REMOVE_GIG',
-            gigId
-        })
-        showSuccessMsg('Gig removed')
+//         dispatch({
+//             type: 'REMOVE_GIG',
+//             gigId
+//         })
+//         showSuccessMsg('Gig removed')
 
-        gigService.remove(gigId)
-            .then(() => {
-                console.log('Server Reported - Deleted Succesfully');
-            })
-            .catch(err => {
-                showErrorMsg('Cannot remove gig')
-                console.log('Cannot load gigs', err)
-                dispatch({
-                    type: 'UNDO_REMOVE_GIG',
-                })
-            })
-    }
-}
+//         gigService.remove(gigId)
+//             .then(() => {
+//                 console.log('Server Reported - Deleted Succesfully');
+//             })
+//             .catch(err => {
+//                 showErrorMsg('Cannot remove gig')
+//                 console.log('Cannot load gigs', err)
+//                 dispatch({
+//                     type: 'UNDO_REMOVE_GIG',
+//                 })
+//             })
+//     }
+// }

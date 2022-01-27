@@ -1,32 +1,30 @@
 import React from "react"
 import { connect } from "react-redux"
-import { NavLink, useLocation } from "react-router-dom"
-import { utilService } from '../services/util.service'
+import { NavLink, useLocation, useNavigate } from "react-router-dom"
+// import { utilService } from '../services/util.service'
 
 // import routes from "../routes"
 import { FaSearch } from "react-icons/fa"
 // this is for the nav bar to change bcg color when scrolling
 import { useState, useEffect } from "react"
 
-import {
-  onLogin,
-  onLogout,
-  onSignup,
-  // loadUsers,
-  removeUser,
-} from "../store/user.actions.js"
+import { onLogin, onLogout, onSignup, removeUser } from "../store/user.actions.js"
 import { LoginSignup } from "./login-signup.jsx"
 import { PopoverNav } from "./popover-nav.jsx"
-import { AvatarPicture } from "./user-avatar-picture.jsx"
+import { setFilter } from '../store/gig.actions'
 
 
-function _AppHeader({ onLogin, onSignup, onLogout, user }) {
+function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
+
+  let navigate = useNavigate();
 
   const [navbar, setNavbar] = useState(false)
   const [subNavbar, setSubNavbar] = useState(false)
   const [isSignIn, toggleSignIn] = useState(false)
   const [isSignUp, toggleSignUp] = useState(false)
   const [isPopoverNav, togglePopoverNav] = useState(false)
+  const [searchContent, getSEachContent] = useState('')
+
 
   //gets the current page's path
   let currLocation = useLocation().pathname
@@ -52,6 +50,20 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
       setSubNavbar(false)
     }
   }
+  const handleChange = ({ target }) => {
+    getSEachContent(target.value)
+  }
+  const onSearch = (ev) => {
+    ev.preventDefault()
+    let filterBy = {
+      title: searchContent,
+      tags: [],
+      userId: ''
+    }
+    setFilter(filterBy)
+    getSEachContent('')
+    navigate('/explore')
+  }
   useEffect(() => {
     changeBackground()
     // adding the event when scroll change background
@@ -76,8 +88,8 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
           </NavLink>
           <form className={subNavbar ? 'navbar-search-box ' : 'navbar-search-box hidden'}>
             <div className='search-box-icon'><i><FaSearch /></i> </div>
-            <input type="search" name="search-box" placeholder="Find Services" />
-            <button>Search</button>
+            <input onChange={handleChange} value={searchContent} type="search" name="search-box" placeholder="Find Services" />
+            <button onClick={onSearch}>Search</button>
           </form>
         </div>
 
@@ -127,23 +139,7 @@ function _AppHeader({ onLogin, onSignup, onLogout, user }) {
       </div>
       {isSignIn && !user && <LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
       {isPopoverNav && <PopoverNav togglePopoverNav={togglePopoverNav} onLogout={onLogout} />}
-      {/* <nav> */}
-      {/* {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
-                {user &&
-                    <span className="user-info">
-                        <Link to={`user/${user._id}`}>
-                            {user.fullname}
-                            <span className="score">{user.score?.toLocaleString()}</span>
-                        </Link>
-                        <button onClick={onLogout}>Logout</button>
-                    </span>
-                }
-                {!user &&
-                    <section className="user-info">
-                        <LoginSignup onLogin={onLogin} onSignup={onSignup} />
-                    </section>
-                } */}
-      {/* </nav> */}
+
 
     </header>
 
@@ -163,7 +159,7 @@ const mapDispatchToProps = {
   onLogin,
   onSignup,
   onLogout,
-  // loadUsers,
+  setFilter,
   removeUser,
 }
 

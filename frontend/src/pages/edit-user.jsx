@@ -39,19 +39,20 @@ function _EditUser({ user, updateUser }) {
 
     function handleSubmit(ev) {
         ev.preventDefault();
-        const reviews = inputValues.reviews.map(review => {
-            const reviewer = utilService.getReviewer()
-            return {
-                id: utilService.makeId(10),
-                txt: review,
-                rate: utilService.getRandomIntInclusive(4, 5),
-                by: {
-                    _id: utilService.makeId(10),
-                    fullname: reviewer.uname,
-                    country: reviewer.country,
-                }
-            }
-        })
+        const reviews = []
+        // const reviews = inputValues.reviews.map(review => {
+        //     const reviewer = utilService.getReviewer()
+        //     return {
+        //         id: utilService.makeId(10),
+        //         txt: review,
+        //         rate: utilService.getRandomIntInclusive(4, 5),
+        //         by: {
+        //             _id: utilService.makeId(10),
+        //             fullname: reviewer.uname,
+        //             country: reviewer.country,
+        //         }
+        //     }
+        // })
         const userToUpdate = { ...user, ...inputValues, reviews }
         // console.log('edit-user', userToUpdate);
         updateUser(userToUpdate)
@@ -136,7 +137,7 @@ function _EditUser({ user, updateUser }) {
                     </div>
 
 
-                    <h1>Reviews</h1>
+                    {/* <h1>Reviews</h1>
 
                     <div className="form-control">
                         <label>reviews
@@ -151,7 +152,7 @@ function _EditUser({ user, updateUser }) {
                             // required
                             />
                         </label>
-                    </div>
+                    </div> */}
                     <button type="submit">
                         submit
                     </button>

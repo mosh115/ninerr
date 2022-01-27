@@ -1,8 +1,8 @@
 const initialState = {
     orders: [],
     filterBy: {
-        title: '',
-        labels: [],
+        // title: '',
+        // labels: [],
     },
     // lastRemovedOrder: null,
     page: null
@@ -44,7 +44,7 @@ export function orderReducer(state = initialState, action) {
         // default:
     }
     // For debug:
-    window.orderState = newState
+    // window.orderState = newState
     // console.log('Prev State:', state)
     // console.log('Action:', action)
     // console.log('New State:', newState)

@@ -5,7 +5,6 @@ const initialState = {
         tags: [],
         userId: ''
     },
-    // lastRemovedGig: null,
     page: null
 }
 export function gigReducer(state = initialState, action) {
@@ -37,15 +36,10 @@ export function gigReducer(state = initialState, action) {
         default:
             newState = state
 
-        // case 'UNDO_REMOVE_GIG':
-        //     if (state.lastRemovedGig) {
-        //         newState = { ...state, gigs: [...state.gigs, state.lastRemovedGig], lastRemovedGig: null }
-        //     }
-        //     break
-        // default:
+
     }
     // For debug:
-    window.gigState = newState
+    // window.gigState = newState
     // console.log('Prev State:', state)
     // console.log('Action:', action)
     // console.log('New State:', newState)

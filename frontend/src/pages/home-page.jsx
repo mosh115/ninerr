@@ -27,14 +27,14 @@ import { useState } from "react"
 const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5, HeroImage6, HeroImage7, HeroImage8, HeroImage9];
 
 
-function _HomePage({setFilter}) {
+function _HomePage({ setFilter }) {
 
     let navigate = useNavigate();
 
 
-    useEffect(() => {
-        onSetPage('home-page')
-    }, [])
+    // useEffect(() => {
+    //     onSetPage('home-page')
+    // }, [])
 
     //cycling between hero images
     let [heroImg, setHeroImg] = useState({ idx: 0 })
@@ -82,17 +82,24 @@ function _HomePage({setFilter}) {
 
 
 
-    const [searchContent, getSEachContent] = useState('')
-
-    const handleChange = (ev) => {
-        console.log('handle', ev);
-        // getSEachContent(target.value)
+    const [searchContent, setSeachContent] = useState('')
+    useEffect(() => {
+        let filterBy = {
+            title: '',
+            tags: [],
+            userId: ''
+        }
+        setFilter(filterBy)
+    });
+    const handleChange = ({ target }) => {
+        setSeachContent(target.value)
     }
 
     // this is for the top-fold to become un-fixed when starting to scroll the page
     const [topFold, setTopFold] = useState(true)
 
     const unFixTopFold = () => {
+        // setTopFold(window.scrollY < 350)
         if (window.scrollY >= 350) {
             setTopFold(false)
         } else {
@@ -102,11 +109,11 @@ function _HomePage({setFilter}) {
     useEffect(() => {
         unFixTopFold()
         window.addEventListener("scroll", unFixTopFold, true)
-        // return () => {
-        //     console.log('hi from return');
-        //     window.removeEventListener("scroll", unFixTopFold, true);
-        // }
-    })
+        return () => {
+            // console.log('hi from return');
+            window.removeEventListener("scroll", unFixTopFold, true);
+        }
+    }, [])
 
     const onFilterBy = (tag) => {
         let filterBy = {
@@ -117,6 +124,16 @@ function _HomePage({setFilter}) {
         setFilter(filterBy)
         navigate('/explore')
     }
+    const onSearch = () => {
+        let filterBy = {
+            title: searchContent,
+            tags: [],
+            userId: ''
+        }
+        setFilter(filterBy)
+        navigate('/explore')
+    }
+
 
     return (
         <section className='home-page'>
@@ -127,8 +144,8 @@ function _HomePage({setFilter}) {
                     <h1>Find the perfect <span className='curly-word-style'>freelance</span>  <br /> services for your business</h1>
                     <form className='home-page-search-box'>
                         <div className='search-box-icon'><i><FaSearch /></i> </div>
-                        <input  onChange={(e) => handleChange(e)} type="search" name="search-box" placeholder='Try "Building a mobile app"' />
-                        <button>Search</button>
+                        <input onChange={handleChange} value={searchContent} type="search" name="search-box" placeholder='Try "Building a mobile app"' />
+                        <button onClick={onSearch}>Search</button>
                     </form>
                     <div className='popular-categories'>Popular:
                         <span onClick={() => onFilterBy('Blog')}>Website design</span>

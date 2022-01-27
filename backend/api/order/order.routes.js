@@ -8,11 +8,11 @@ const router = express.Router()
 // router.use(requireAuth)
 
 // router.get('/labels', getLabels)
-// console.log(router.get);
+
 router.get('/', getOrders)
 router.get('/:id', getOrderById)
-router.post('/', addOrder)
-router.put('/:id', updateOrder)
+router.post('/', requireAuth, addOrder)
+router.put('/:id', requireAuth, updateOrder)
 // router.post('/', requireAuth, requireAdmin, addOrder)
 // router.put('/:id', requireAuth, requireAdmin, updateOrder)
 router.delete('/:id', requireAuth, requireAdmin, removeOrder)
