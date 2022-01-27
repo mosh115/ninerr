@@ -38,13 +38,10 @@ function _HomePage({ setFilter }) {
 
     //cycling between hero images
     let [heroImg, setHeroImg] = useState({ idx: 0 })
-    // useEffect(() => {
-    //     setTimeout(() => setHeroImg(prev => (prev.idx < images.length - 1 ? { idx: prev.idx + 1 } : { idx: 0 })), 15000);
-    // })
 
     useEffect(() => {
         const interval = setInterval(() => {
-          if (heroImg.idx === 7) {
+          if (heroImg.idx === 8) {
             setHeroImg((prev) => ({
               ...prev,
               idx: 0
@@ -54,29 +51,12 @@ function _HomePage({ setFilter }) {
             setHeroImg((prev) => ({
               ...prev,
               idx: prev.idx + 1
-            }));
+            }))
           }
-        }, 9000)
+        }, 6000)
         return () => clearInterval(interval);
-      }, []);
+      }, [heroImg])
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //       if (state.img === 4) {
-    //         setState((prev) => ({
-    //           ...prev,
-    //           img: 0
-    //         }));
-            
-    //       } else {
-    //         setState((prev) => ({
-    //           ...prev,
-    //           img: state.img + 1
-    //         }));
-    //       }
-    //     }, 5000)
-    //     return () => clearInterval(interval);
-    //   }, [state.img]);
 
 
 
@@ -110,7 +90,6 @@ function _HomePage({ setFilter }) {
         unFixTopFold()
         window.addEventListener("scroll", unFixTopFold, true)
         return () => {
-            // console.log('hi from return');
             window.removeEventListener("scroll", unFixTopFold, true);
         }
     }, [])
