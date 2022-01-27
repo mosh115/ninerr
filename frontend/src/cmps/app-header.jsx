@@ -1,26 +1,20 @@
 import React from "react"
 import { connect } from "react-redux"
 import { NavLink, useLocation, useNavigate } from "react-router-dom"
-import { utilService } from '../services/util.service'
+// import { utilService } from '../services/util.service'
 
 // import routes from "../routes"
 import { FaSearch } from "react-icons/fa"
 // this is for the nav bar to change bcg color when scrolling
 import { useState, useEffect } from "react"
 
-import {
-  onLogin,
-  onLogout,
-  onSignup,
-  // loadUsers,
-  removeUser,
-} from "../store/user.actions.js"
+import { onLogin, onLogout, onSignup, removeUser } from "../store/user.actions.js"
 import { LoginSignup } from "./login-signup.jsx"
 import { PopoverNav } from "./popover-nav.jsx"
 import { setFilter } from '../store/gig.actions'
 
 
-function _AppHeader({setFilter, onLogin, onSignup, onLogout, user }) {
+function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
 
   let navigate = useNavigate();
 
@@ -145,23 +139,7 @@ function _AppHeader({setFilter, onLogin, onSignup, onLogout, user }) {
       </div>
       {isSignIn && !user && <LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
       {isPopoverNav && <PopoverNav togglePopoverNav={togglePopoverNav} onLogout={onLogout} />}
-      {/* <nav> */}
-      {/* {routes.map(route => <NavLink key={route.path} to={route.path}>{route.label}</NavLink>)}
-                {user &&
-                    <span className="user-info">
-                        <Link to={`user/${user._id}`}>
-                            {user.fullname}
-                            <span className="score">{user.score?.toLocaleString()}</span>
-                        </Link>
-                        <button onClick={onLogout}>Logout</button>
-                    </span>
-                }
-                {!user &&
-                    <section className="user-info">
-                        <LoginSignup onLogin={onLogin} onSignup={onSignup} />
-                    </section>
-                } */}
-      {/* </nav> */}
+
 
     </header>
 

@@ -33,6 +33,7 @@ export function removeOrder(orderId) {
         try {
             await orderService.remove(orderId)
             dispatch({ type: 'REMOVE_ORDER', orderId })
+
             // dispatch({ type: 'SET_MSG', msg: { txt: 'removed order', type: 'success' } })
 
         } catch (err) {
@@ -47,6 +48,8 @@ export function addOrder(orderToAdd) {
         try {
             const order = await orderService.save(orderToAdd)
             dispatch({ type: 'ADD_ORDER', order })
+            showSuccessMsg('Order created')
+            // dispatch({ type: 'SET_MSG', msg: { txt: 'Order created', type: 'success' } })
 
         } catch (err) {
             console.log('Cannot add order');

@@ -8,7 +8,6 @@ import { Loader } from "../cmps/Loader.jsx"
 function _GigApp({ loadGigs, gigs, AddGig, setFilter }) {
 
     useEffect(() => {
-        // console.log('useEffect in explosre');
         loadGigs()
     }, [])
 
@@ -22,7 +21,7 @@ function _GigApp({ loadGigs, gigs, AddGig, setFilter }) {
 
             {/* Todo: */}
             {/* <Filter/> */}
-            
+
 
             <GigList gigs={gigs} className="gig-list" />
 
