@@ -149,7 +149,7 @@ export function GigDetails() {
                     <header>
                         <h3>
                             {gig.orderTitle}
-                            <div className='price-wrapper'>{gig.price}US$</div>
+                            <div className='price-wrapper'>US${gig.price}</div>
                         </h3>
                         
                         <p className='order-description'>{gig.orderDesc}</p>
@@ -171,7 +171,7 @@ export function GigDetails() {
                         </ul>
                     </div>
 
-                    <button>Continue <span>({gig.price} US$)</span></button>
+                    <button>Continue <span>(US${gig.price} )</span></button>
                 </div>
             </aside>
 
