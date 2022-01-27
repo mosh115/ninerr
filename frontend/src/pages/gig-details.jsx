@@ -13,6 +13,7 @@ import { ReviewItem } from '../cmps/review-item';
 import { TableRating } from '../cmps/table-rating';
 import { AvatarPicture } from '../cmps/user-avatar-picture';
 import { addOrder } from '../store/order.actions'
+import { Loader } from '../cmps/Loader';
 
 
 
@@ -77,7 +78,7 @@ function _GigDetails({ user, addOrder }) {
 
 
 
-    if (!gig || !userSeller) return <h1>Loading..</h1>
+    if (!gig || !userSeller) return <Loader />
     const images = gig.imgUrls.map(img => { return { original: img, thumbnail: img } })
 
     return (
