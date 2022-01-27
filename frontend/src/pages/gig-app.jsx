@@ -14,8 +14,8 @@ function _GigApp({ loadGigs, gigs, AddGig }) {
 
 
     // console.log('gigApp', gigs)
-    if (gigs.length === 0) return <h1 className="gig-list">There is nothing to show here...</h1>
     if (!gigs) return <Loader />
+    if (gigs.length === 0) return <h1 className="gig-list nothing">There is nothing to show here...</h1>
     return (
         <div className="main-container">
 
