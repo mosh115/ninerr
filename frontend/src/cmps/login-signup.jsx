@@ -15,6 +15,14 @@ export function LoginSignup(props) {
         setUsers(users)
     }, [])
 
+    useEffect(() => {
+        const { username, password } = credentials
+        if (username === 'guest' && password === 'guest') {
+            props.onLogin(credentials);
+            clearState()
+        }
+    }, [credentials]);
+
     const clearState = () => {
         setCredentials({ username: '', password: '', fullname: '' })
         setIsSignup(false)
@@ -26,6 +34,9 @@ export function LoginSignup(props) {
         setCredentials({ ...credentials, [field]: value });
     }
 
+    function onGuestMode() {
+        setCredentials({ username: 'guest', password: 'guest', fullname: '' })
+    }
     const onLogin = (ev = null) => {
         if (ev) ev.preventDefault();
         if (!credentials.username) return;
@@ -72,6 +83,7 @@ export function LoginSignup(props) {
                             placeholder="Email / Username"
                             onChange={handleChange}
                             required
+                            autoComplete="true"
                             autoFocus
                         />
                         <input
@@ -81,6 +93,7 @@ export function LoginSignup(props) {
                             placeholder="Password"
                             onChange={handleChange}
                             required
+                            autoComplete="false"
                         />
                         <button>Continue</button>
                     </form>
@@ -100,6 +113,7 @@ export function LoginSignup(props) {
                             onChange={handleChange}
                             required
                             autoFocus
+                            autoComplete="true"
                         />
                         <input
                             type="text"
@@ -108,6 +122,7 @@ export function LoginSignup(props) {
                             placeholder="Username"
                             onChange={handleChange}
                             required
+                            autoComplete="true"
                         />
                         <input
                             type="password"
@@ -116,14 +131,22 @@ export function LoginSignup(props) {
                             placeholder="Password"
                             onChange={handleChange}
                             required
+                            autoComplete="false"
                         />
                         <button>Continue</button>
                     </form>
                     <div className="form-footer flex justify-center align-center">
                         <p>Already a member? <span onClick={toggleSignup} className="green pointer">Sign In</span>
                         </p>
+
                     </div>
+
+                    {/* <hr></hr> */}
+
                 </section>}
+                <div className="form-footer flex justify-center align-center">
+                    <h1><span onClick={onGuestMode} className="green pointer">Guest mode</span></h1>
+                </div>
                 {/* <p>
                     <button className="btn-link" onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button>
                 </p> */}
