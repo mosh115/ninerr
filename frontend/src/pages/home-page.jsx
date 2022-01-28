@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-// import { NavLink, useLocation } from "react-router-dom"
 import { FaSearch, FaRegCheckCircle } from "react-icons/fa"
 
 import HeroImage1 from '../assets/img/home-page/21.jpg';
@@ -32,57 +31,17 @@ function _HomePage({ setFilter }) {
     let navigate = useNavigate();
 
 
-    // useEffect(() => {
-    //     onSetPage('home-page')
-    // }, [])
+    useEffect(() => {
+        onSetPage('home-page')
+    }, [])
 
     //cycling between hero images
     let [heroImg, setHeroImg] = useState({ idx: 0 })
-    // useEffect(() => {
-    //     setTimeout(() => setHeroImg(prev => (prev.idx < images.length - 1 ? { idx: prev.idx + 1 } : { idx: 0 })), 15000);
-    // })
-
     useEffect(() => {
-        const interval = setInterval(() => {
-          if (heroImg.idx === 7) {
-            setHeroImg((prev) => ({
-              ...prev,
-              idx: 0
-            }));
-            
-          } else {
-            setHeroImg((prev) => ({
-              ...prev,
-              idx: prev.idx + 1
-            }));
-          }
-        }, 9000)
-        return () => clearInterval(interval);
-      }, []);
+        setTimeout(() => setHeroImg(prev => (prev.idx < images.length - 1 ? { idx: prev.idx + 1 } : { idx: 0 })), 15000);
+    })
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //       if (state.img === 4) {
-    //         setState((prev) => ({
-    //           ...prev,
-    //           img: 0
-    //         }));
-            
-    //       } else {
-    //         setState((prev) => ({
-    //           ...prev,
-    //           img: state.img + 1
-    //         }));
-    //       }
-    //     }, 5000)
-    //     return () => clearInterval(interval);
-    //   }, [state.img]);
-
-
-
-
-
-    const [searchContent, setSeachContent] = useState('')
+    const [searchContent, getSEachContent] = useState('')
     useEffect(() => {
         let filterBy = {
             title: '',
@@ -90,16 +49,15 @@ function _HomePage({ setFilter }) {
             userId: ''
         }
         setFilter(filterBy)
-    });
+    }, []);
     const handleChange = ({ target }) => {
-        setSeachContent(target.value)
+        getSEachContent(target.value)
     }
 
     // this is for the top-fold to become un-fixed when starting to scroll the page
     const [topFold, setTopFold] = useState(true)
 
     const unFixTopFold = () => {
-        // setTopFold(window.scrollY < 350)
         if (window.scrollY >= 350) {
             setTopFold(false)
         } else {
@@ -109,29 +67,14 @@ function _HomePage({ setFilter }) {
     useEffect(() => {
         unFixTopFold()
         window.addEventListener("scroll", unFixTopFold, true)
-        return () => {
-            // console.log('hi from return');
-            window.removeEventListener("scroll", unFixTopFold, true);
-        }
-    }, [])
+        // return () => {
+        //     console.log('hi from return');
+        //     window.removeEventListener("scroll", unFixTopFold, true);
+        // }
+    })
 
-    const onFilterBy = (tag) => {
-        let filterBy = {
-            title: '',
-            tags: [tag],
-            userId: ''
-        }
-        setFilter(filterBy)
-        navigate('/explore')
-    }
     const onSearch = () => {
-        let filterBy = {
-            title: searchContent,
-            tags: [],
-            userId: ''
-        }
-        setFilter(filterBy)
-        navigate('/explore')
+        navigate(`/explore?filter=title:${searchContent}`)
     }
 
 
@@ -148,10 +91,13 @@ function _HomePage({ setFilter }) {
                         <button onClick={onSearch}>Search</button>
                     </form>
                     <div className='popular-categories'>Popular:
-                        <span onClick={() => onFilterBy('Blog')}>Website design</span>
+                        {['Website design', 'Wordpress', 'Logo design', 'Music'].map((tag, idx) =>
+                            <span key={idx}><Link to={`/explore?filter=tags:${tag}`}>{tag}</Link></span>
+                        )}
+                        {/* <span data-tag='Blog' onClick={() => onFilterBy}>Website design</span>
                         <span onClick={() => onFilterBy('Wordpress')}>Wordpress</span>
                         <span onClick={() => onFilterBy('Logo design')}>Logo design</span>
-                        <span onClick={() => onFilterBy('Website design')}>Music</span>
+                        <span onClick={() => onFilterBy('Music')}>Music</span> */}
                         {/* <span>Wordpress</span>
                         <span>Logo design</span>
                         <span>Music</span> */}

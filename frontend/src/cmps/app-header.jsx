@@ -55,14 +55,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
   }
   const onSearch = (ev) => {
     ev.preventDefault()
-    let filterBy = {
-      title: searchContent,
-      tags: [],
-      userId: ''
-    }
-    setFilter(filterBy)
-    getSEachContent('')
-    navigate('/explore')
+    navigate(`/explore?filter=title:${searchContent}`)
   }
   useEffect(() => {
     changeBackground()

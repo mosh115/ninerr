@@ -1,10 +1,24 @@
 .gig-app {
     color: $clr3;
-    // margin-top: 100px;
-    // background-color: $clr7;
-    // color: whitesmoke;
-    // border-radius: .2em;
-    // margin: 5px;
-    // text-align: center;
-    // padding: 5px;
+    margin-top: 80px;
+    padding-top: 34px;
+
+    .headr-nav  {
+        padding-bottom: 40px;
+        &>*{
+        padding-inline-end: 10px;
+        color: #62646a;
+        fill: #62646a;
+        }
+        span {
+            display: flex;
+            align-items: center;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+    .box{
+        max-width: 150px;
+    }
 }
