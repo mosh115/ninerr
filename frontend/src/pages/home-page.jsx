@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // import { NavLink, useLocation } from "react-router-dom"
 import { FaSearch, FaRegCheckCircle, FaStar } from "react-icons/fa"
@@ -32,9 +32,9 @@ function _HomePage({ setFilter }) {
     let navigate = useNavigate();
 
 
-    // useEffect(() => {
-    //     onSetPage('home-page')
-    // }, [])
+    useEffect(() => {
+        onSetPage('home-page')
+    }, [])
 
     //cycling between hero images
     let [heroImg, setHeroImg] = useState({ idx: 0 })
@@ -66,28 +66,15 @@ function _HomePage({ setFilter }) {
             userId: ''
         }
         setFilter(filterBy)
-    });
+    }, []);
     const handleChange = ({ target }) => {
         setSearchContent(target.value)
+        // getSEachContent(target.value)
+
     }
 
-    const onFilterBy = (tag) => {
-        let filterBy = {
-            title: '',
-            tags: [tag],
-            userId: ''
-        }
-        setFilter(filterBy)
-        navigate('/explore')
-    }
     const onSearch = () => {
-        let filterBy = {
-            title: searchContent,
-            tags: [],
-            userId: ''
-        }
-        setFilter(filterBy)
-        navigate('/explore')
+        navigate(`/explore?filter=title:${searchContent}`)
     }
 
 
@@ -95,63 +82,61 @@ function _HomePage({ setFilter }) {
         <section className='home-page'>
             {/* <section> */}
 
-                <div className='hero-wrapper full'>
-                    <div className={heroImg.idx === 0 ? 'hero-background hero-jeff' : 'hero-background hero-jeff transparent'}>
-                        <img src={HeroImage1} alt="Jeff, Marketing expert" />
-                        <div className='seller-name'>
-                            <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
-                            </div>
-                            Jeff, Marketing expert
+            <div className='hero-wrapper full'>
+                <div className={heroImg.idx === 0 ? 'hero-background hero-jeff' : 'hero-background hero-jeff transparent'}>
+                    <img src={HeroImage1} alt="Jeff, Marketing expert" />
+                    <div className='seller-name'>
+                        <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                         </div>
-                    </div>
-                    <div className={heroImg.idx === 1 ? 'hero-background hero-suzanne' : 'hero-background hero-suzanne transparent'}>
-                        <img src={HeroImage3} alt="Jeff, Marketing expert" />
-                        <div className='seller-name'>
-                            <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
-                            </div>
-                            Suzanne, Experienced translator
-                        </div>
-                    </div>
-                    <div className={heroImg.idx === 2 ? 'hero-background hero-julio' : 'hero-background hero-julio transparent'}>
-                        <img src={HeroImage2} alt="Jeff, Marketing expert" />
-                        <div className='seller-name'>
-                            <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
-                            </div>
-                            Julio, Hacker for hire
-                        </div>
-                    </div>
-                    <div className={heroImg.idx === 3 ? 'hero-background hero-morrielle' : 'hero-background hero-morrielle transparent'}>
-                        <img src={HeroImage4} alt="Jeff, Marketing expert" />
-                        <div className='seller-name'>
-                            <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
-                            </div>
-                            Morrielle, Fashion designer
-                        </div>
-                    </div>
-                    <div className={heroImg.idx === 4 ? 'hero-background hero-Moe' : 'hero-background hero-Moe transparent'}>
-                        <img src={HeroImage7} alt="Jeff, Marketing expert" />
-                        <div className='seller-name'>
-                            <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
-                            </div>
-                            Moe, Secrets keeper
-                        </div>
-                    </div>
-                    <div className='hero-content main-container'>
-                        <h1>Find the perfect <span className='curly-word-style'>freelance</span>  <br /> services for your business</h1>
-                        <form className='home-page-search-box'>
-                            <div className='search-box-icon'><i><FaSearch /></i> </div>
-                            <input type="search" name="search-box" placeholder='Try "Building a mobile app"' />
-                            <button>Search</button>
-                        </form>
-
-                        <div className='popular-categories'>Popular:
-                            <span onClick={() => onFilterBy('Blog')}>Website design</span>
-                            <span onClick={() => onFilterBy('Wordpress')}>Wordpress</span>
-                            <span onClick={() => onFilterBy('Logo design')}>Logo design</span>
-                            <span onClick={() => onFilterBy('Website design')}>Music</span>
-                        </div>
+                        Jeff, Marketing expert
                     </div>
                 </div>
+                <div className={heroImg.idx === 1 ? 'hero-background hero-suzanne' : 'hero-background hero-suzanne transparent'}>
+                    <img src={HeroImage3} alt="Jeff, Marketing expert" />
+                    <div className='seller-name'>
+                        <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                        </div>
+                        Suzanne, Experienced translator
+                    </div>
+                </div>
+                <div className={heroImg.idx === 2 ? 'hero-background hero-julio' : 'hero-background hero-julio transparent'}>
+                    <img src={HeroImage2} alt="Jeff, Marketing expert" />
+                    <div className='seller-name'>
+                        <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                        </div>
+                        Julio, Hacker for hire
+                    </div>
+                </div>
+                <div className={heroImg.idx === 3 ? 'hero-background hero-morrielle' : 'hero-background hero-morrielle transparent'}>
+                    <img src={HeroImage4} alt="Jeff, Marketing expert" />
+                    <div className='seller-name'>
+                        <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                        </div>
+                        Morrielle, Fashion designer
+                    </div>
+                </div>
+                <div className={heroImg.idx === 4 ? 'hero-background hero-Moe' : 'hero-background hero-Moe transparent'}>
+                    <img src={HeroImage7} alt="Jeff, Marketing expert" />
+                    <div className='seller-name'>
+                        <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                        </div>
+                        Moe, Secrets keeper
+                    </div>
+                </div>
+                <div className='hero-content main-container'>
+                    <h1>Find the perfect <span className='curly-word-style'>freelance</span>  <br /> services for your business</h1>
+                    <form className='home-page-search-box'>
+                        <div className='search-box-icon'><i><FaSearch /></i> </div>
+                        <input onChange={handleChange} value={searchContent} type="search" name="search-box" placeholder='Try "Building a mobile app"' />
+                        <button onClick={onSearch}>Search</button>
+                    </form>
+                    <div className='popular-categories'>Popular:
+                        {['Website design', 'Wordpress', 'Logo design', 'Music'].map((tag, idx) =>
+                            <span key={idx}><Link to={`/explore?filter=tags:${tag}`}>{tag}</Link></span>
+                        )}
+                    </div>
+                </div>
+            </div>
             {/* </section> */}
 
             <section className='social-proof-line'>Trusted by:

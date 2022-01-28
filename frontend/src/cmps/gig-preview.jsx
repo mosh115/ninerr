@@ -8,7 +8,7 @@ import { AvatarPicture } from './user-avatar-picture';
 
 
 export function GigPreview({ gig }) {
-    console.log(gig);
+    // console.log(gig);
 
     const images = gig.imgUrls.map(img => { return { original: img } })
 
