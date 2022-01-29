@@ -156,7 +156,7 @@ function _GigDetails({ user, addOrder }) {
                         <section className='ranking'>
                             <h6>Rating Breakdown</h6>
                             <ul className='clean-list'>
-                                <li className='flex space-between'>Seller comunication level <span> 5 <FaStar className='star' /></span></li>
+                                <li className='flex space-between'>Seller communication level <span> 5 <FaStar className='star' /></span></li>
                                 <li className='flex space-between'>Recommend to a friend <span> 4.9 <FaStar className='star' /></span></li>
                                 <li className='flex space-between'>Service as described <span> 4.9 <FaStar className='star' /></span></li>
                             </ul>

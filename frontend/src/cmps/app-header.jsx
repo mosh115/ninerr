@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { NavLink, useLocation, useNavigate } from "react-router-dom"
+import { NavLink, useLocation, useNavigate, Link } from "react-router-dom"
 // import { utilService } from '../services/util.service'
 
 // import routes from "../routes"
@@ -20,6 +20,8 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
 
   const [navbar, setNavbar] = useState(false)
   const [subNavbar, setSubNavbar] = useState(false)
+  const [navsDisappear, setNavsDisappear] = useState(false)
+
   const [isSignIn, toggleSignIn] = useState(false)
   const [isSignUp, toggleSignUp] = useState(false)
   const [isPopoverNav, togglePopoverNav] = useState(false)
@@ -49,6 +51,16 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
     } else {
       setSubNavbar(false)
     }
+    if (window.scrollY >= 400 && currLocation !== '/') {
+      setNavsDisappear(true)
+      console.log('navsDisappear: ', navsDisappear)
+      console.log('currLocation: ', currLocation)
+    } else {
+      setNavsDisappear(false)
+      console.log('navsDisappear: ', navsDisappear)
+      console.log('currLocation: ', currLocation)
+    }
+
   }
   const handleChange = ({ target }) => {
     getSEachContent(target.value)
@@ -61,10 +73,13 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
     changeBackground()
     // adding the event when scroll change background
     window.addEventListener("scroll", changeBackground, true)
-    // return () => {
-    //   window.removeEventListener("scroll", changeBackground, true);
-    // }
-  })
+
+    return () => {
+      window.removeEventListener("scroll", changeBackground, true);
+    }
+
+  }, [currLocation])
+
   // useEffect(() => {
   //   if (isSignIn) document.body.style.overflow = 'hidden';
   //   else document.body.style.overflow = 'unset';
@@ -73,13 +88,20 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
   return (
     <header className="app-header">
       <div className=
-        {(currLocation === '/' && !navbar) ? "navbar nav-container flex align-center space-between" :
-          "navbar white nav-container flex align-center space-between"} >
+        {(currLocation === '/' && !navbar) ?
+          "navbar nav-container flex align-center space-between" :
+
+          (!navsDisappear ?
+            "navbar white nav-container flex align-center space-between" :
+            "navbar white nav-container flex align-center space-between no-sticky")
+        } >
         <div className="logo-and-search-box">
           <NavLink className="logo-font clean-link" to="/">
             Ninerr<span className="logo-point">.</span>
           </NavLink>
-          <form className={subNavbar ? 'navbar-search-box ' : 'navbar-search-box hidden'}>
+          <form className={subNavbar || currLocation !== '/' ? 
+            'navbar-search-box ' : 
+            'navbar-search-box hidden'}>
             <div className='search-box-icon'><i><FaSearch /></i> </div>
             <input onChange={handleChange} value={searchContent} type="search" name="search-box" placeholder="Find Services" />
             <button onClick={onSearch}>Search</button>
@@ -121,14 +143,22 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
         </nav>
 
       </div>
-      <div className={subNavbar ? "sub-nav" : "sub-nav hidden"}>
-        <span>Graphics & Design</span>
+      <div className={!subNavbar && currLocation === '/' ?
+        "sub-nav hidden" :
+        (navsDisappear ? "sub-nav no-sticky" : "sub-nav")
+      }>
+     
+    
+        {/* <span>Graphics & Design</span>
         <span>Digital Marketing</span>
         <span>Writing & Translation</span>
         <span>Video & Animation</span>
         <span>Music & Audio</span>
         <span>Programming & Tech</span>
-        <span>Business</span>
+        <span>Business</span> */}
+        {['Website design', 'Wordpress', 'Logo design', 'Music'].map((tag, idx) =>
+          <span key={idx}><Link to={`/explore?filter=tags:${tag}`}>{tag}</Link></span>
+        )}
       </div>
       {isSignIn && !user && <LoginSignup toggleSignIn={toggleSignIn} toggleSignUp={toggleSignUp} isSignUp={isSignUp} onLogin={onLogin} onSignup={onSignup} />}
       {isPopoverNav && <PopoverNav togglePopoverNav={togglePopoverNav} onLogout={onLogout} />}
