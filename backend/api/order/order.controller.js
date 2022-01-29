@@ -5,8 +5,8 @@ const logger = require('../../services/logger.service')
 async function getOrders(req, res) {
   // console.log('in server', req);
   try {
-    let { filterBy } = req.query;
-    if (filterBy) filterBy = JSON.parse(filterBy)
+    let filterBy = req.query;
+    // if (filterBy) filterBy = JSON.parse(filterBy)
     // console.log('filterBy in getOrders', filterBy);
     const orders = await orderService.query(filterBy)
     res.json(orders);

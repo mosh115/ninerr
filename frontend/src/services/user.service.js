@@ -54,7 +54,8 @@ async function login(userCred) {
     // return _saveLocalUser(user)
 
     const user = await httpService.post('auth/login', userCred)
-    // socketService.emit(SOCKET_EMIT_LOGIN, user._id);
+    // socketService.on('NEW_ORDER', addNewNotification)
+    socketService.emit(SOCKET_EMIT_LOGIN, user._id);
     if (user) return _saveLocalUser(user)
 }
 async function signup(userCred) {
@@ -63,7 +64,8 @@ async function signup(userCred) {
     console.log(userCred);
     // const user = await storageService.post('user', userCred)
     const user = await httpService.post('auth/signup', userCred)
-    // socketService.emit(SOCKET_EMIT_LOGIN, user._id);
+    socketService.emit(SOCKET_EMIT_LOGIN, user._id);
+    // socketService.on('NEW_ORDER', addNewNotification)
     return _saveLocalUser(user)
 }
 async function logout() {

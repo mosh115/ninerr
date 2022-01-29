@@ -4,9 +4,12 @@ const ObjectId = require('mongodb').ObjectId
 
 
 async function query(filterBy) {
+    console.log('filterBy order', filterBy);
+
     try {
         let criteria = {}
-        // if (filterBy) criteria = _buildCriteria(filterBy);
+        if (filterBy) criteria = _buildCriteria(filterBy);
+        console.log('order criteria', criteria);
         const collection = await dbService.getCollection('order');
         const orders = await collection.find(criteria).toArray() || [];
         return orders;
@@ -83,20 +86,23 @@ async function update(order) {
 
 
 function _buildCriteria(filterBy) {
-    const { inStock, labels, txt } = filterBy;
+    const { sellerId } = filterBy;
     let criteria = {};
-    if (txt) {
-        console.log('im here!');
-        criteria.name = { $regex: txt, $options: 'i' };
+    if (sellerId) {
+        criteria = { 'seller._id': sellerId };
     }
-    if (inStock === 'instock') {
-        criteria.inStock = true;
-    } else if (inStock === 'outofstock') {
-        criteria.inStock = false;
-    }
-    if (labels.length) {
-        criteria.labels = { $all: labels }
-    }
+    // if (txt) {
+    //     console.log('im here!');
+    //     criteria.name = { $regex: txt, $options: 'i' };
+    // }
+    // if (inStock === 'instock') {
+    //     criteria.inStock = true;
+    // } else if (inStock === 'outofstock') {
+    //     criteria.inStock = false;
+    // }
+    // if (labels.length) {
+    //     criteria.labels = { $all: labels }
+    // }
     console.log('criteria:', criteria);
     return criteria
 

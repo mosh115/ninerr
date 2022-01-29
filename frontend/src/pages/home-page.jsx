@@ -23,6 +23,7 @@ import { ExploreMarketPlace } from '../cmps/explore-market-place'
 import { onSetPage, setFilter } from '../store/gig.actions'
 import { useEffect } from 'react';
 import { useState } from "react"
+import { socketService } from '../services/socket.service';
 
 const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5, HeroImage6, HeroImage7, HeroImage8, HeroImage9];
 
@@ -44,21 +45,21 @@ function _HomePage({ setFilter }) {
 
     useEffect(() => {
         const interval = setInterval(() => {
-          if (heroImg.idx === 7) {
-            setHeroImg((prev) => ({
-              ...prev,
-              idx: 0
-            }));
-            
-          } else {
-            setHeroImg((prev) => ({
-              ...prev,
-              idx: prev.idx + 1
-            }));
-          }
+            if (heroImg.idx === 7) {
+                setHeroImg((prev) => ({
+                    ...prev,
+                    idx: 0
+                }));
+
+            } else {
+                setHeroImg((prev) => ({
+                    ...prev,
+                    idx: prev.idx + 1
+                }));
+            }
         }, 9000)
         return () => clearInterval(interval);
-      }, []);
+    }, []);
 
     // useEffect(() => {
     //     const interval = setInterval(() => {
@@ -67,7 +68,7 @@ function _HomePage({ setFilter }) {
     //           ...prev,
     //           img: 0
     //         }));
-            
+
     //       } else {
     //         setState((prev) => ({
     //           ...prev,
@@ -109,6 +110,7 @@ function _HomePage({ setFilter }) {
     useEffect(() => {
         unFixTopFold()
         window.addEventListener("scroll", unFixTopFold, true)
+        socketService.on('chat addMsg', msg => console.log(msg))
         return () => {
             // console.log('hi from return');
             window.removeEventListener("scroll", unFixTopFold, true);
@@ -137,6 +139,7 @@ function _HomePage({ setFilter }) {
 
     return (
         <section className='home-page'>
+
             <section>
                 <img className='home-page-hero' src={images[heroImg.idx]} alt='image of a person' />
 
@@ -166,6 +169,7 @@ function _HomePage({ setFilter }) {
                 <span>B&B</span>
                 <span>PayUs</span>
             </section>
+
             {/* This section should appear (if we  have extra time) only for logged and experienced user */}
             {/* <section className='recently-viewed-section main-layout'>
                 <h2>Recently Viewed & More</h2>
