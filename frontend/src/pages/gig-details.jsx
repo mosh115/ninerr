@@ -174,7 +174,7 @@ function _GigDetails({ user, addOrder }) {
             </section>
             <aside className='aside'>
                 <div className='package-content'>
-                    <h1 className='gig-label'>Basic</h1>
+                    <h1 className='gig-label'>Package details</h1>
                     <header>
                         <h3>
                             {gig.orderTitle}

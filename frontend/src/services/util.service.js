@@ -42,7 +42,7 @@ function delay(ms = 1500) {
 }
 
 function makeLevel() {
-    const level = ['Top Rated Seller', 'Level 2 Seller', 'Level 1 Seller', 'Top Rated Seller']
+    const level = ['Top Rated Seller', 'Level 2 Seller', 'Level 1 Seller', 'New Seller']
     return level[getRandomIntInclusive(0, 3)]
 }
 

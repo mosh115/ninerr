@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // import { NavLink, useLocation } from "react-router-dom"
-import { FaSearch, FaRegCheckCircle } from "react-icons/fa"
+import { FaSearch, FaRegCheckCircle, FaStar } from "react-icons/fa"
 
 import HeroImage1 from '../assets/img/home-page/21.jpg';
 import HeroImage2 from '../assets/img/home-page/20.jpg';
@@ -33,19 +33,16 @@ function _HomePage({ setFilter }) {
     let navigate = useNavigate();
 
 
-    // useEffect(() => {
-    //     onSetPage('home-page')
-    // }, [])
+    useEffect(() => {
+        onSetPage('home-page')
+    }, [])
 
     //cycling between hero images
     let [heroImg, setHeroImg] = useState({ idx: 0 })
-    // useEffect(() => {
-    //     setTimeout(() => setHeroImg(prev => (prev.idx < images.length - 1 ? { idx: prev.idx + 1 } : { idx: 0 })), 15000);
-    // })
 
     useEffect(() => {
         const interval = setInterval(() => {
-            if (heroImg.idx === 7) {
+            if (heroImg.idx === 4) {
                 setHeroImg((prev) => ({
                     ...prev,
                     idx: 0
@@ -55,95 +52,79 @@ function _HomePage({ setFilter }) {
                 setHeroImg((prev) => ({
                     ...prev,
                     idx: prev.idx + 1
-                }));
+                }))
             }
-        }, 9000)
+        }, 8000)
         return () => clearInterval(interval);
+    }, [heroImg])
+
+
+    const [searchContent, setSearchContent] = useState('')
+    useEffect(() => {
+        let filterBy = {
+            title: '',
+            tags: [],
+            userId: ''
+        }
+        setFilter(filterBy)
     }, []);
-
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //       if (state.img === 4) {
-    //         setState((prev) => ({
-    //           ...prev,
-    //           img: 0
-    //         }));
-
-    //       } else {
-    //         setState((prev) => ({
-    //           ...prev,
-    //           img: state.img + 1
-    //         }));
-    //       }
-    //     }, 5000)
-    //     return () => clearInterval(interval);
-    //   }, [state.img]);
-
-
-
-
-
-    const [searchContent, setSeachContent] = useState('')
-    useEffect(() => {
-        let filterBy = {
-            title: '',
-            tags: [],
-            userId: ''
-        }
-        setFilter(filterBy)
-    });
     const handleChange = ({ target }) => {
-        setSeachContent(target.value)
+        setSearchContent(target.value)
+        // getSEachContent(target.value)
+
     }
 
-    // this is for the top-fold to become un-fixed when starting to scroll the page
-    const [topFold, setTopFold] = useState(true)
-
-    const unFixTopFold = () => {
-        // setTopFold(window.scrollY < 350)
-        if (window.scrollY >= 350) {
-            setTopFold(false)
-        } else {
-            setTopFold(true)
-        }
-    }
-    useEffect(() => {
-        unFixTopFold()
-        window.addEventListener("scroll", unFixTopFold, true)
-        socketService.on('chat addMsg', msg => console.log(msg))
-        return () => {
-            // console.log('hi from return');
-            window.removeEventListener("scroll", unFixTopFold, true);
-        }
-    }, [])
-
-    const onFilterBy = (tag) => {
-        let filterBy = {
-            title: '',
-            tags: [tag],
-            userId: ''
-        }
-        setFilter(filterBy)
-        navigate('/explore')
-    }
     const onSearch = () => {
-        let filterBy = {
-            title: searchContent,
-            tags: [],
-            userId: ''
-        }
-        setFilter(filterBy)
-        navigate('/explore')
+        navigate(`/explore?filter=title:${searchContent}`)
     }
 
 
     return (
         <section className='home-page'>
+            {/* <section> */}
 
-            <section>
-                <img className='home-page-hero' src={images[heroImg.idx]} alt='image of a person' />
-
-                <div className={topFold ? 'top-fold main-layout' : 'top-fold main-layout hidden'}>
+            <div className='hero-wrapper full'>
+                <div className={heroImg.idx === 0 ? 'hero-background hero-jeff' : 'hero-background hero-jeff transparent'}>
+                    <img src={HeroImage1} alt="Jeff, Marketing expert" />
+                    <div className='seller-name'>
+                        <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                        </div>
+                        Jeff, Marketing expert
+                    </div>
+                </div>
+                <div className={heroImg.idx === 1 ? 'hero-background hero-suzanne' : 'hero-background hero-suzanne transparent'}>
+                    <img src={HeroImage3} alt="Jeff, Marketing expert" />
+                    <div className='seller-name'>
+                        <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                        </div>
+                        Suzanne, Experienced translator
+                    </div>
+                </div>
+                <div className={heroImg.idx === 2 ? 'hero-background hero-julio' : 'hero-background hero-julio transparent'}>
+                    <img src={HeroImage2} alt="Jeff, Marketing expert" />
+                    <div className='seller-name'>
+                        <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                        </div>
+                        Julio, Hacker for hire
+                    </div>
+                </div>
+                <div className={heroImg.idx === 3 ? 'hero-background hero-morrielle' : 'hero-background hero-morrielle transparent'}>
+                    <img src={HeroImage4} alt="Jeff, Marketing expert" />
+                    <div className='seller-name'>
+                        <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                        </div>
+                        Morrielle, Fashion designer
+                    </div>
+                </div>
+                <div className={heroImg.idx === 4 ? 'hero-background hero-Moe' : 'hero-background hero-Moe transparent'}>
+                    <img src={HeroImage7} alt="Jeff, Marketing expert" />
+                    <div className='seller-name'>
+                        <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+                        </div>
+                        Moe, Secrets keeper
+                    </div>
+                </div>
+                <div className='hero-content main-container'>
                     <h1>Find the perfect <span className='curly-word-style'>freelance</span>  <br /> services for your business</h1>
                     <form className='home-page-search-box'>
                         <div className='search-box-icon'><i><FaSearch /></i> </div>
@@ -151,16 +132,13 @@ function _HomePage({ setFilter }) {
                         <button onClick={onSearch}>Search</button>
                     </form>
                     <div className='popular-categories'>Popular:
-                        <span onClick={() => onFilterBy('Blog')}>Website design</span>
-                        <span onClick={() => onFilterBy('Wordpress')}>Wordpress</span>
-                        <span onClick={() => onFilterBy('Logo design')}>Logo design</span>
-                        <span onClick={() => onFilterBy('Website design')}>Music</span>
-                        {/* <span>Wordpress</span>
-                        <span>Logo design</span>
-                        <span>Music</span> */}
+                        {['Website design', 'Wordpress', 'Logo design', 'Music'].map((tag, idx) =>
+                            <span key={idx}><Link to={`/explore?filter=tags:${tag}`}>{tag}</Link></span>
+                        )}
                     </div>
                 </div>
-            </section>
+            </div>
+            {/* </section> */}
 
             <section className='social-proof-line'>Trusted by:
                 <span>Fakelook</span>
@@ -170,17 +148,13 @@ function _HomePage({ setFilter }) {
                 <span>PayUs</span>
             </section>
 
-            {/* This section should appear (if we  have extra time) only for logged and experienced user */}
-            {/* <section className='recently-viewed-section main-layout'>
-                <h2>Recently Viewed & More</h2>
-                <GigApp />
-            </section> */}
             <section className='popular-services main-layout'>
                 <h2>Popular professional services</h2>
                 <PopularServiceList />
             </section>
-            <section>
-                <div className='more-details-about-us'>
+
+            <section className='full'>
+                <div className='more-details-about-us '>
                     <div className='content'>
                         <h2>A whole world of freelance talent at your fingertips</h2>
                         <div>
@@ -214,36 +188,10 @@ function _HomePage({ setFilter }) {
                 </div>
             </section>
 
-            {/* These 2 sections will appear only if we have extra time. now we don't have it LOL */}
-            {/* <section className='get-inspired-with-projects'>
-                <h2>Get inspired with projects made by our freelancers</h2>
-                <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-                <h3>image&link1    image&link2    inage&link3    image&link4</h3>
-            </section>
-            <section className='ninerr-guides main-layout'>
-                <h2>Ninerr guides</h2>
 
-                <div className='guides-items'>
-                    <div>
-                        <h3>Start an online business and work from home</h3>
-                        <h4>A complete guide to starting a small business online</h4>
-                    </div>
-                    <div>
-                        <h3>Digital marketing made easy</h3>
-                        <h4>A practical guide to understand what is digital marketing</h4>
-                    </div>
-                    <div>
-                        <h3>Create a logo for your business</h3>
-                        <h4>A step by step for creating a memorable business logo</h4>
-                    </div>
-                </div>
-            </section> */}
-            <section className='find-the-talent full'>
+            <section className='find-the-talent'>
                 <div className='content'>
                     <h2>Find the <span className='curly-word-style'>talent</span>  needed to get your business <span className='curly-word-style'>growing</span>.</h2>
-
                     <button>Get Started</button>
                 </div>
                 <img src={FreeLancerImage} alt="FreeLancer woman image" />
