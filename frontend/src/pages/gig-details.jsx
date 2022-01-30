@@ -14,6 +14,7 @@ import { TableRating } from '../cmps/table-rating';
 import { AvatarPicture } from '../cmps/user-avatar-picture';
 import { addOrder } from '../store/order.actions'
 import { Loader } from '../cmps/Loader';
+import { showErrorMsg } from '../services/event-bus.service';
 
 
 
@@ -42,6 +43,10 @@ function _GigDetails({ user, addOrder }) {
 
     function onMakeOrder() {
         // console.log('place order');
+        if (!user) {
+            showErrorMsg('Plese login')
+            return
+        }
         const newOrder = {
             buyer: {
                 '_id': user._id,
@@ -156,7 +161,7 @@ function _GigDetails({ user, addOrder }) {
                         <section className='ranking'>
                             <h6>Rating Breakdown</h6>
                             <ul className='clean-list'>
-                                <li className='flex space-between'>Seller comunication level <span> 5 <FaStar className='star' /></span></li>
+                                <li className='flex space-between'>Seller communication level <span> 5 <FaStar className='star' /></span></li>
                                 <li className='flex space-between'>Recommend to a friend <span> 4.9 <FaStar className='star' /></span></li>
                                 <li className='flex space-between'>Service as described <span> 4.9 <FaStar className='star' /></span></li>
                             </ul>

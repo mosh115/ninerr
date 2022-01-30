@@ -8,8 +8,11 @@ import { AvatarPicture } from './user-avatar-picture';
 
 
 export function GigPreview({ gig }) {
+    // let images
     // console.log(gig);
-
+    if (!gig.imgUrls) {
+        gig.imgUrls = []
+    }
     const images = gig.imgUrls.map(img => { return { original: img } })
 
 

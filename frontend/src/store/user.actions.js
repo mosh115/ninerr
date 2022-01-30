@@ -50,6 +50,10 @@ export function onLogin(credentials) {
                 type: 'SET_USER',
                 user
             })
+            // dispatch({
+            //     type: 'SET_ORDER_FILTER',
+            //     sellerId: userService.getLoggedinUser()._id
+            // })
         } catch (err) {
             showErrorMsg('Cannot login')
             console.log('Cannot login', err)
@@ -81,6 +85,14 @@ export function onLogout() {
             dispatch({
                 type: 'SET_USER',
                 user: null
+            })
+            dispatch({
+                type: 'SET_ORDERS',
+                orders: []
+            })
+            dispatch({
+                type: 'SET_ORDER_FILTER',
+                orderFilter: ''
             })
         } catch (err) {
             showErrorMsg('Cannot logout')

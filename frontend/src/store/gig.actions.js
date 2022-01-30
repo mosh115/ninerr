@@ -6,7 +6,7 @@ export function loadGigs() {
     return async (dispatch, getState) => {
         try {
             const { filterBy } = getState().gigModule
-            console.log('filter', filterBy);
+            // console.log('filter', filterBy);
             const gigs = await gigService.query(filterBy)
             dispatch({ type: 'SET_GIGS', gigs })
             return gigs;

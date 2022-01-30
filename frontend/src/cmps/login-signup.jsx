@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { userService } from '../services/user.service'
 import { useHistory, useLocation } from "react-router-dom";
+import { socketService } from '../services/socket.service';
 
 export function LoginSignup(props) {
     // let history = useHistory();
@@ -41,6 +42,8 @@ export function LoginSignup(props) {
         if (ev) ev.preventDefault();
         if (!credentials.username) return;
         props.onLogin(credentials);
+
+
         clearState()
         // history.push(location.pathname);
     }
@@ -145,7 +148,7 @@ export function LoginSignup(props) {
 
                 </section>}
                 <div className="form-footer flex justify-center align-center">
-                    <h1><span onClick={onGuestMode} className="green pointer">Guest mode</span></h1>
+                    <p><span onClick={onGuestMode} className="green pointer">Try as a guest</span></p>
                 </div>
                 {/* <p>
                     <button className="btn-link" onClick={toggleSignup}>{!isSignup ? 'Signup' : 'Login'}</button>

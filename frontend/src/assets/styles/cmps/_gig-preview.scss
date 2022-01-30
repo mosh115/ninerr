@@ -34,6 +34,8 @@
         }
         .gig-title {
             color: $clr2;
+            font-size: 16px;
+            font-weight: 400;
             // font-family: Roboto-bold;
             &:hover {
                 color: $clr1;
@@ -109,41 +111,64 @@
         //         }
         //     }
         // }
-        .image-gallery-left-nav,
-        .image-gallery-right-nav {
+        &.image-gallery-left-nav,
+        &.image-gallery-right-nav {
+            
+            transition: 650ms;
             background-color: #fff;
             position: absolute;
             z-index: 4;
             top: 50%;
-            width: 30px;
-            height: 100px;
-            margin-top: -24px;
-            text-align: center;
-            border-radius: 2em;
+            height: 30px;
+            width: 25px;
+        }
 
-            // box-shadow: 0 2px 5px 0 rgb(0 0 0 / 15%);
-            // padding: 50px 10px;
-            // top: 50%;
-            // transform: translateY(-50%);
-            // opacity: 0;
-            // &:hover {
-            //     opacity: 1;
-            // }
-
+        &.image-gallery-left-nav {
+            left: -60px;
+            border-bottom-right-radius: 50%;
+            border-top-right-radius: 50%;
+            border-bottom-left-radius: 0%;
+            border-top-left-radius: 0%;
+            box-shadow: none;
+            align-items: center;
+            justify-content: center;
+            padding: 0%;
             .image-gallery-svg {
-                height: 40px;
-                width: 20px;
-            }
+               height: 25px;
+               width: 25px;
+            }        
         }
 
-        .image-gallery-left-nav {
-            left: -24px;
-        }
-
-        .image-gallery-right-nav {
-            right: -24px;
+        &.image-gallery-right-nav {
+            right: -60px;
+            border-bottom-right-radius: 0%;
+            border-top-right-radius: 0%;
+            border-bottom-left-radius: 50%;
+            border-top-left-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0%;
+            .image-gallery-svg {
+                height: 25px;
+                width: 25px;
+             }
         }
     }
+    &:hover{       
+        .image-gallery-left-nav {
+            left: -10px;
+      
+        }
+        .image-gallery-right-nav {
+            right: -10px;
+        }
+        .gig-title{
+            color: $clr1;
+        }
+        
+    }
+ 
 }
 
 .gig-list {

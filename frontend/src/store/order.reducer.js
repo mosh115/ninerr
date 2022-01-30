@@ -1,16 +1,17 @@
+import { userService } from "../services/user.service"
+
 const initialState = {
     orders: [],
-    filterBy: {
-        // title: '',
-        // labels: [],
+    orderFilter: {
+        sellerId: '',
     },
-    // lastRemovedOrder: null,
-    page: null
+
 }
 export function orderReducer(state = initialState, action) {
-    var newState = state
-    var orders
-    // var page
+    let newState = state
+    let orders
+
+
 
     switch (action.type) {
         case 'SET_PAGE':
@@ -31,8 +32,8 @@ export function orderReducer(state = initialState, action) {
             orders = state.orders.map(order => (order._id === action.order._id) ? action.order : order)
             newState = { ...state, orders }
             break
-        case 'SET_FILTER':
-            return { ...state, filterBy: action.filterBy }
+        case 'SET_ORDER_FILTER':
+            return { ...state, orderFilter: action.orderFilter }
         default:
             newState = state
 

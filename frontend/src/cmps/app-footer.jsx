@@ -9,11 +9,18 @@ import {
   FaTwitter,
   FaInstagram,
 } from "react-icons/fa"
+import { socketService } from "../services/socket.service.js"
 // import { UserMsg } from "./user-msg.jsx"
 
 function _AppFooter() {
+  // socketService.emit('chat newMsg', 'test test test')
+  socketService.emit('test', 'hi from socket front')
+
   return (
     <footer className="app-footer  main-layout">
+      {/* <button onClick={() => {
+        
+      }}>socket</button> */}
       <div className="footer-links ">
         <NavLink className="clean-link footer-link" to="/explore">
           <div>Categories</div></NavLink>

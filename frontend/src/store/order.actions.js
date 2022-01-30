@@ -5,10 +5,10 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 export function loadOrders() {
     return async (dispatch, getState) => {
         try {
-            const filterBy = {}
-            // console.log('get orders in action');
-            // const { filterBy } = getState().orderModule
-            const orders = await orderService.query(filterBy)
+            const { orderFilter } = getState().orderModule
+            console.log('orderAction filter', orderFilter);
+            if (!orderFilter) return
+            const orders = await orderService.query(orderFilter)
             dispatch({ type: 'SET_ORDERS', orders })
 
         } catch (err) {
@@ -72,9 +72,9 @@ export function updateOrder(orderToUpdate) {
     }
 }
 
-export function setFilter(filterBy) {
+export function setOrderFilter(orderFilter) {
     return (dispatch) => {
-        dispatch({ type: 'SET_FILTER', filterBy })
+        dispatch({ type: 'SET_ORDER_FILTER', orderFilter })
 
     }
 }
