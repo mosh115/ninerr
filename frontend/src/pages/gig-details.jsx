@@ -48,17 +48,13 @@ function _GigDetails({ user, addOrder }) {
         }
         const newOrder = {
             buyer: {
-                '_id': user._id,
-                name: user.fullname
+                ...user
             },
             seller: {
-                '_id': userSeller._id,
-                name: userSeller.fullname
+                ...userSeller
             },
             gig: {
-                '_id': gig._id,
-                name: gig.orderTitle,
-                price: gig.price
+                ...gig
             },
             status: "pending"
         }

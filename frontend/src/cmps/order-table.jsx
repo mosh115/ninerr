@@ -17,9 +17,11 @@ export function OrderTable({ orders, updateOrder }) {
   }, [orders])
 
   function sortOrders() {
-    let sorted = orders.sort((a, b) => {
+    console.log(orders);
+    const sorted = orders.sort((a, b) => {
       return b.createdAt - a.createdAt;
     });
+    console.log(sorted);
     return sorted
   }
 
