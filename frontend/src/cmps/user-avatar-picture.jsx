@@ -3,27 +3,25 @@ import React from "react"
 
 export function AvatarPicture({ user, size, isGrey }) {
     // console.log(props);
-    let fontSize = '1em';
+    let classSize = '';
+    if (size === '24px') classSize = 'small'
+    else if (size === '110px') classSize = 'large'
     let bgColor = user.avatarColor
-    if (size === '24px') {
-        fontSize = '0.75em'
-    } else if (size === '110px') {
-        fontSize = '2.2em'
-    }
-    if (isGrey) {
-        bgColor = '#e4e5e7'
-    }
+    if (isGrey) bgColor = '#e4e5e7'
+    const name = user.username || user.fullname;
+    console.log(name);
+
 
     return (
         <div className="user-avatar-picture">
             {!user.imgUrl &&
-                <div className="user-avatar" style={{ backgroundColor: bgColor, width: size, height: size, fontSize }}>
-                    <p>{user.username[0].toUpperCase()}</p>
+                <div className={`user-avatar ${classSize}`} style={{ backgroundColor: bgColor, width: size, height: size }}>
+                    <p>{name[0].toUpperCase()}</p>
                 </div>
             }
             {user.imgUrl &&
                 <div className="user-picture" style={{ width: size, height: size }}>
-                    <img src={`${user.imgUrl}`} alt={<p>{user.username[0].toUpperCase()}</p>} />
+                    <img src={`${user.imgUrl}`}  alt={<p>{name[0].toUpperCase()}</p>} />
                 </div>
             }
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { FaStar } from "react-icons/fa";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import Flags from 'country-flag-icons/react/3x2'
+import { AvatarPicture } from '../cmps/user-avatar-picture';
 import { utilService } from '../services/util.service';
 import { FlagIcon } from "react-flag-kit";
 
@@ -12,7 +13,8 @@ export function ReviewItem({ review }) {
     let regionNames = new Intl.DisplayNames(['en'], { type: 'region', localeMatcher: 'lookup' });
     return (
         <div className='review-item flex'>
-            <section>
+            <section className='avatar'>
+                {/* <AvatarPicture user={review.by} size={'32px'} isGrey={true}/> */}
                 <img className='avatar' src={`https://i.pravatar.cc/32?u=${review.id}`} />
             </section>
             <section>
