@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,16 +9,26 @@ import Paper from '@mui/material/Paper';
 
 
 
-
-
-
 export function OrderTable({ orders, updateOrder }) {
+
+  const [sortedOrders, setSortedOrders] = useState(orders)
+  useEffect(() => {
+    setSortedOrders(sortOrders())
+  }, [orders])
+
+  function sortOrders() {
+    let sorted = orders.sort((a, b) => {
+      return b.createdAt - a.createdAt;
+    });
+    return sorted
+  }
+
 
 
   function onUpdateOrder(ev, action) {
     const order = orders.find(order => order._id === ev.target.dataset.id)
     order.status = action
-    console.log(order);
+    // console.log(order);
     console.log(action);
     updateOrder(order)
   }
@@ -29,6 +39,7 @@ export function OrderTable({ orders, updateOrder }) {
         <TableHead>
           <TableRow className='table-row' >
             <TableCell> Num Order</TableCell>
+            <TableCell align="left">Date</TableCell>
             <TableCell align="left">Gig name</TableCell>
             <TableCell align="left">Gig price</TableCell>
             <TableCell align="left">Buyer name</TableCell>
@@ -37,7 +48,7 @@ export function OrderTable({ orders, updateOrder }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders.map((order, idx) => (
+          {sortedOrders.map((order, idx) => (
             <TableRow
               key={order._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -47,6 +58,7 @@ export function OrderTable({ orders, updateOrder }) {
               <TableCell component="th" scope="row">
                 {idx + 1}
               </TableCell>
+              <TableCell align="left">{new Date(order.createdAt).toLocaleString('en-EN', { timeZone: 'UTC' })}</TableCell>
               <TableCell align="left">{order.gig.name}</TableCell>
               <TableCell align="left">${order.gig.price}</TableCell>
               <TableCell align="left">{order.buyer.name}</TableCell>

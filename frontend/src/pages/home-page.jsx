@@ -5,15 +5,15 @@ import { useNavigate, Link, NavLink } from "react-router-dom";
 // import { NavLink, useLocation } from "react-router-dom"
 import { FaSearch, FaRegCheckCircle, FaStar } from "react-icons/fa"
 
-import HeroImage1 from '../assets/img/home-page/21.jpg';
-import HeroImage2 from '../assets/img/home-page/20.jpg';
-import HeroImage3 from '../assets/img/home-page/18.jpg';
-import HeroImage4 from '../assets/img/home-page/19.jpg';
-import HeroImage5 from '../assets/img/home-page/28.jpg';
-import HeroImage6 from '../assets/img/home-page/27.jpg';
-import HeroImage7 from '../assets/img/home-page/6.jpg';
-import HeroImage8 from '../assets/img/home-page/98.png';
-import HeroImage9 from '../assets/img/home-page/99.png';
+import HeroImage1 from '../assets/img/home-page/19-9-4.jpg';
+import HeroImage2 from '../assets/img/home-page/20-9-4.jpg';
+import HeroImage3 from '../assets/img/home-page/4-9-4.jpg';
+import HeroImage4 from '../assets/img/home-page/21-9-4.jpg';
+import HeroImage5 from '../assets/img/home-page/28-9-4.jpg';
+// import HeroImage6 from '../assets/img/home-page/27.jpg';
+// import HeroImage7 from '../assets/img/home-page/6.jpg';
+// import HeroImage8 from '../assets/img/home-page/98.png';
+// import HeroImage9 from '../assets/img/home-page/99.png';
 import workingWomen from '../assets/img/home-page/16.jpg';
 import FreeLancerImage from '../assets/img/home-page/14.jpg';
 
@@ -25,7 +25,8 @@ import { useEffect } from 'react';
 import { useState } from "react"
 import { socketService } from '../services/socket.service';
 
-const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5, HeroImage6, HeroImage7, HeroImage8, HeroImage9];
+// const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5, HeroImage6, HeroImage7, HeroImage8, HeroImage9];
+const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5];
 
 
 function _HomePage({ setFilter }) {
@@ -88,7 +89,7 @@ function _HomePage({ setFilter }) {
                     <div className='seller-name'>
                         <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                         </div>
-                        Jeff, Marketing expert
+                        Joan, Web developer 
                     </div>
                 </div>
                 <div className={heroImg.idx === 1 ? 'hero-background hero-suzanne' : 'hero-background hero-suzanne transparent'}>
@@ -96,7 +97,7 @@ function _HomePage({ setFilter }) {
                     <div className='seller-name'>
                         <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                         </div>
-                        Suzanne, Experienced translator
+                        Jull, Gifted musician
                     </div>
                 </div>
                 <div className={heroImg.idx === 2 ? 'hero-background hero-julio' : 'hero-background hero-julio transparent'}>
@@ -112,15 +113,15 @@ function _HomePage({ setFilter }) {
                     <div className='seller-name'>
                         <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                         </div>
-                        Morrielle, Fashion designer
+                        Jeff, Marketing expert
                     </div>
                 </div>
                 <div className={heroImg.idx === 4 ? 'hero-background hero-Moe' : 'hero-background hero-Moe transparent'}>
-                    <img src={HeroImage7} alt="Jeff, Marketing expert" />
+                    <img src={HeroImage5} alt="Jeff, Marketing expert" />
                     <div className='seller-name'>
                         <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                         </div>
-                        Moe, Secrets keeper
+                        Karma, Positiveness coacher
                     </div>
                 </div>
                 <div className='hero-content main-container'>

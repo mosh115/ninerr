@@ -22,7 +22,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
   const [isSignIn, toggleSignIn] = useState(false)
   const [isSignUp, toggleSignUp] = useState(false)
   const [isPopoverNav, togglePopoverNav] = useState(false)
-  const [searchContent, getSEachContent] = useState('')
+  const [searchContent, setSearchContent] = useState('')
   
   useEffect(() => {
     if (isSignIn) document.body.style.overflow = 'hidden';
@@ -74,11 +74,14 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
 
 
   const handleChange = ({ target }) => {
-    getSEachContent(target.value)
+    setSearchContent(target.value)
+
   }
   const onSearch = (ev) => {
     ev.preventDefault()
     navigate(`/explore?filter=title:${searchContent}`)
+    setSearchContent('')
+    
   }
 
   // useEffect(() => {
@@ -157,7 +160,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
         <span>Music & Audio</span>
         <span>Programming & Tech</span>
         <span>Business</span> */}
-        {['Website design', 'Wordpress', 'Logo design', 'Music'].map((tag, idx) =>
+        {['Website design', 'Wordpress', 'Logo design', 'Music', 'Voice Over', 'Translating'].map((tag, idx) =>
           <span key={idx}><Link to={`/explore?filter=tags:${tag}`}>{tag}</Link></span>
         )}
       </div>
