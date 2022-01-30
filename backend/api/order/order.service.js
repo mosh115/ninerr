@@ -57,6 +57,7 @@ async function add(order) {
 }
 
 async function update(order) {
+    console.log(order);
     try {
         const orderToSave = {
             _id: ObjectId(order._id),
