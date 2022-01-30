@@ -13,13 +13,12 @@ export function OrderTable({ orders, updateOrder }) {
 
   const [sortedOrders, setSortedOrders] = useState(orders)
   useEffect(() => {
-
     setSortedOrders(sortOrders())
   }, [orders])
 
   function sortOrders() {
-    let sorted = orders.sort(function (a, b) {
-      return a.createdAt - b.createdAt;
+    let sorted = orders.sort((a, b) => {
+      return b.createdAt - a.createdAt;
     });
     return sorted
   }
@@ -29,7 +28,7 @@ export function OrderTable({ orders, updateOrder }) {
   function onUpdateOrder(ev, action) {
     const order = orders.find(order => order._id === ev.target.dataset.id)
     order.status = action
-    console.log(order);
+    // console.log(order);
     console.log(action);
     updateOrder(order)
   }
