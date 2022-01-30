@@ -89,8 +89,8 @@ function _GigDetails({ user, addOrder }) {
                     <h1 className='title'>{gig.title}</h1>
                 </div>
                 <div className='seller-overview flex'>
-                    {/* <AvatarPicture user={gig.userSeller} size={'32px'} isGrey={false} /> */}
-                    <img className='avatar' src={userSeller.imgUrl || `https://i.pravatar.cc/24?u=${userSeller._id}`} />
+                    <AvatarPicture user={gig.owner} size={'32px'} isGrey={false} />
+                    {/* <img className='avatar' src={userSeller.imgUrl || `https://i.pravatar.cc/24?u=${userSeller._id}`} /> */}
                     <Link to={'/#'}> {gig.owner.fullname}</Link>
                     <p className='seller-level'>{gig.owner.level} <span className='stop'>|</span></p>
                     <ReactStars classNames="stars" count={+gig.owner.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
@@ -113,8 +113,8 @@ function _GigDetails({ user, addOrder }) {
                 <h2>About The Seller</h2>
                 <div className='about-seller flex'>
                     <div className='profile-info'>
-                        {/* <AvatarPicture user={gig.userSeller} size={'110px'} isGrey={false} /> */}
-                        <img className='avatar' src={userSeller.img || `https://i.pravatar.cc/110?u=${gig._id}`} />
+                        <AvatarPicture user={gig.owner} size={'110px'} isGrey={false} />
+                        {/* <img className='avatar' src={userSeller.img || `https://i.pravatar.cc/110?u=${gig._id}`} /> */}
                     </div>
                     <div className='seller-info'>
                         <Link className='name' to={'/#'}> {gig.owner.fullname}</Link>

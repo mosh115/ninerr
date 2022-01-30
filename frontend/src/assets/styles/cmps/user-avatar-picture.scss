@@ -7,6 +7,13 @@
         font-size: 20px;
         font-weight: 600;
         color: #fff;
+        font-size: 1em;
+        &.small{
+            font-size: 0.75em;
+        }
+        &.large{
+            font-size: 2.2em;
+        }
         p {
             position: absolute;
             left: 50%;
@@ -16,6 +23,7 @@
     }
 
     .user-picture {
+        position: relative;
         height: 150px;
         width: 150px;
         border-radius: 50%;
