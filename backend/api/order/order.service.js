@@ -60,8 +60,8 @@ async function update(order) {
     console.log(order);
     try {
         const orderToSave = {
-            _id: ObjectId(order._id),
-            ...order
+            ...order,
+            _id: ObjectId(order._id)
         }
         // delete savedOrder._id
         const collection = await dbService.getCollection('order')
@@ -73,17 +73,7 @@ async function update(order) {
     }
 }
 
-// async function getLabels() {
-//     try {
-//         const collection = await dbService.getCollection('order')
-//         const orders = await collection.find({}).toArray()
-//         const labels = await _getLabelsByOrders(orders)
-//         console.log('labels:', labels);
-//         return labels;
-//     } catch (err) {
-//         console.log(err)
-//     }
-// }
+
 
 
 function _buildCriteria(filterBy) {
