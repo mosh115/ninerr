@@ -14,6 +14,7 @@ import { TableRating } from '../cmps/table-rating';
 import { AvatarPicture } from '../cmps/user-avatar-picture';
 import { addOrder } from '../store/order.actions'
 import { Loader } from '../cmps/Loader';
+import { showErrorMsg } from '../services/event-bus.service';
 
 
 
@@ -42,6 +43,10 @@ function _GigDetails({ user, addOrder }) {
 
     function onMakeOrder() {
         // console.log('place order');
+        if (!user) {
+            showErrorMsg('Plese login')
+            return
+        }
         const newOrder = {
             buyer: {
                 '_id': user._id,

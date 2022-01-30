@@ -8,7 +8,7 @@ async function getGigs(req, res) {
     let filterBy = req.query;
     // console.log('filter', filterBy);
     // if (filterBy) filterBy = JSON.parse(filterBy)
-    console.log('filterBy in getGigs', filterBy);
+    // console.log('filterBy in getGigs', filterBy);
     const gigs = await gigService.query(filterBy)
     res.json(gigs);
   } catch (err) {

@@ -2,23 +2,45 @@ import React, { useEffect } from 'react';
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import { useNavigate } from "react-router-dom";
+import { socketService } from '../services/socket.service';
 
 import { uploadImg } from "../services/cloudinary.service"
 import { updateUser } from '../store/user.actions';
 import { OrderTable } from '../cmps/order-table';
+import { loadOrders, updateOrder, setOrderFilter } from '../store/order.actions';
 
 
 import cameralogo from '../assets/img/cameralogo.png';
+import { showUserMsg } from '../services/event-bus.service';
 
 
 
-function _UserProfile({ user, updateUser }) {
-    console.log(user);
+function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updateOrder, setOrderFilter, }) {
+    // console.log(user);
     let navigate = useNavigate();
 
     useEffect(() => {
-        if (!user) navigate('/');
+        // socketService.on('testing', msg => console.log(msg))
+        if (!user) {
+            showUserMsg('Please Login')
+            navigate('/');
+        }
+        const orderFilter = {
+            sellerId: user._id
+        }
+        setOrderFilter(orderFilter)
+        // loadOrders()
     }, [])
+
+    useEffect(() => {
+        loadOrders()
+    }, [orderFilter])
+
+    console.log('orders', orders);
+    // useEffect(() => {
+    //     // loadOrders()
+    // }, [orders])
+
 
 
     const formatDate = (value) => {
@@ -39,7 +61,8 @@ function _UserProfile({ user, updateUser }) {
         }
         updateUser(user);
     }
-    if (!user) return <h1>Loading..</h1>
+    // if (!orders.length) 
+    // if (orders[0].seller._id !== user._id) return <h1>Loading..</h1>
     return (
         <section className="profile-page-container flex">
             <div className="user-card flex column">
@@ -100,7 +123,14 @@ function _UserProfile({ user, updateUser }) {
                     <Link to="/add"><button>Create a New Gig</button></Link>
                 </div>
 
-                <OrderTable />
+                {/* {!orders.length && <h1>No orders to show.</h1>} */}
+
+                {orders.length && <>
+                    <h1>Order list</h1>
+                    <OrderTable updateOrder={updateOrder} orders={orders} />
+                </>
+                }
+
             </div>
         </section >
     )
@@ -109,10 +139,15 @@ function _UserProfile({ user, updateUser }) {
 function mapStateToProps(state) {
     return {
         user: state.userModule.user,
+        orders: state.orderModule.orders,
+        order: state.orderModule.orderFilter
     }
 }
 const mapDispatchToProps = {
     updateUser,
+    loadOrders,
+    updateOrder,
+    setOrderFilter
 }
 
 export const UserProfile = connect(

@@ -1,0 +1,24 @@
+.order-table {
+    .table-row:nth-child(odd) {
+        background: $clr4;
+    }
+    // .table-row {
+    //     .transperent {
+    //         background-color: transparent;
+    //     }
+    // }
+    // background-color: grey;
+
+    button {
+        font-size: 13px;
+        padding: 0 12px;
+        line-height: 32px;
+        font-weight: 700;
+        color: #fff;
+        border: 1px solid transparent;
+        border-radius: 3px;
+    }
+    .btn-decline {
+        background-color: red;
+    }
+}

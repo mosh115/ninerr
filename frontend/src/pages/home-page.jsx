@@ -23,6 +23,7 @@ import { ExploreMarketPlace } from '../cmps/explore-market-place'
 import { onSetPage, setFilter } from '../store/gig.actions'
 import { useEffect } from 'react';
 import { useState } from "react"
+import { socketService } from '../services/socket.service';
 
 const images = [HeroImage1, HeroImage2, HeroImage3, HeroImage4, HeroImage5, HeroImage6, HeroImage7, HeroImage8, HeroImage9];
 

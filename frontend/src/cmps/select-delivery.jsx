@@ -5,12 +5,16 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-export function SelectDelivery(props) {
-    const [age, setAge] = React.useState(Infinity);
+export function SelectDelivery({ daysToDelivery, setDaysToDelivery }) {
+    const [age, setAge] = React.useState(daysToDelivery) || Infinity;
 
     useEffect(() => {
-        props.setDaysToDelivery(age);
+        setDaysToDelivery(age);
     }, [age])
+
+    useEffect(() => {
+        setAge(daysToDelivery);
+    }, [daysToDelivery])
 
     const handleChange = (event) => {
         setAge(event.target.value);
