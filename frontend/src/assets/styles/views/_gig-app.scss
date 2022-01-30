@@ -24,5 +24,22 @@
     //added space between filter box and gigs
     .filters{
         margin-bottom: 1em;
+        align-items: center;
+
+        .claer-btn {
+            height: 56px;
+            padding: 8px;
+            border: 1px solid #c4c4c4;
+            border-radius: 4px;
+            align-items: center;
+            justify-content: center;
+            &:hover{
+                background-color: $clr1;
+                color: white;
+            }
+            p {
+                text-align: center;
+            }
+        }
     }
 }

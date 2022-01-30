@@ -2,12 +2,15 @@ import React from 'react';
 import { FaStar } from "react-icons/fa";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import Flags from 'country-flag-icons/react/3x2'
+import { AvatarPicture } from '../cmps/user-avatar-picture';
+
 
 export function ReviewItem({ review }) {
     return (
         <div className='review-item flex'>
-            <section>
-                <img className='avatar' src={`https://i.pravatar.cc/32?u=${review._id}`} />
+            <section className='avatar'>
+                <AvatarPicture user={review.by} size={'32px'} isGrey={true}/>
+                {/* <img className='avatar' src={`https://i.pravatar.cc/32?u=${review._id}`} /> */}
             </section>
             <section>
                 <header>
