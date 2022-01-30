@@ -212,6 +212,9 @@
                 font-weight: 700;
                 border-radius: 5px;
                 background-color: $clr1;
+                &:hover{
+                    filter: brightness(0.85);
+                }
             }
         }
         margin-bottom: 2em;

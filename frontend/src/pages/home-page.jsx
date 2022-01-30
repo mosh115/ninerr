@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, NavLink } from "react-router-dom";
 
 // import { NavLink, useLocation } from "react-router-dom"
 import { FaSearch, FaRegCheckCircle, FaStar } from "react-icons/fa"
@@ -81,7 +81,6 @@ function _HomePage({ setFilter }) {
     return (
         <section className='home-page'>
             {/* <section> */}
-
             <div className='hero-wrapper full'>
                 <div className={heroImg.idx === 0 ? 'hero-background hero-jeff' : 'hero-background hero-jeff transparent'}>
                     <img src={HeroImage1} alt="Jeff, Marketing expert" />
@@ -191,7 +190,10 @@ function _HomePage({ setFilter }) {
             <section className='find-the-talent'>
                 <div className='content'>
                     <h2>Find the <span className='curly-word-style'>talent</span>  needed to get your business <span className='curly-word-style'>growing</span>.</h2>
-                    <button>Get Started</button>
+                    <NavLink className="clean-link" to="/explore">
+                        <button>Get Started</button>
+                    </NavLink>
+
                 </div>
                 <img src={FreeLancerImage} alt="FreeLancer woman image" />
             </section>

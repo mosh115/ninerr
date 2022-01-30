@@ -116,9 +116,9 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
           <NavLink className="clean-link" to="/explore">
             Explore
           </NavLink>
-          <NavLink className="clean-link" to="/sign-up-seller">
+          {/* <NavLink className="clean-link" to="/sign-up-seller">
             Become A Seller
-          </NavLink>
+          </NavLink> */}
           {!user && <React.Fragment><div className="pointer" onClick={() => { toggleSignIn(true) }}>
             Sign in
           </div>
