@@ -129,7 +129,7 @@
             border-top-right-radius: 50%;
             border-bottom-left-radius: 0%;
             border-top-left-radius: 0%;
-            display: flex;
+            box-shadow: none;
             align-items: center;
             justify-content: center;
             padding: 0%;
@@ -158,11 +158,17 @@
     &:hover{       
         .image-gallery-left-nav {
             left: -10px;
+      
         }
         .image-gallery-right-nav {
             right: -10px;
         }
+        .gig-title{
+            color: $clr1;
+        }
+        
     }
+ 
 }
 
 .gig-list {

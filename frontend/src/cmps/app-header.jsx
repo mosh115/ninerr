@@ -18,50 +18,61 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
 
   let navigate = useNavigate();
 
-  const [navbar, setNavbar] = useState(false)
-  const [subNavbar, setSubNavbar] = useState(false)
-  const [navsDisappear, setNavsDisappear] = useState(false)
-
+  
   const [isSignIn, toggleSignIn] = useState(false)
   const [isSignUp, toggleSignUp] = useState(false)
   const [isPopoverNav, togglePopoverNav] = useState(false)
   const [searchContent, getSEachContent] = useState('')
-
-
-  //gets the current page's path
-  let currLocation = useLocation().pathname
-
+  
   useEffect(() => {
     if (isSignIn) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'unset';
   }, [isSignIn])
 
+  //* controls header beaviour - background color, sticky or scrolling, depends on the current page
+  const [navbar, setNavbar] = useState(false)
+  const [subNavbar, setSubNavbar] = useState(false)
+  const [navsDisappear, setNavsDisappear] = useState(false)
 
-  //navbar scroll changeBackground function
-  const changeBackground = () => {
+  //* gets the current page's path
+  let currLocation = useLocation().pathname
 
-    // console.log(window.scrollY)
+  //* navbar scroll/route behaviour change 
+
+  const changeHeaderBehaviour = () => {
+
+    //* in homepage, when starting to scroll - will change background to white
     if (window.scrollY >= 20) {
       setNavbar(true)
     } else {
       setNavbar(false)
     }
+    //* and when scrolling some more - the categories navbar will appear
     if (window.scrollY >= 250) {
       setSubNavbar(true)
     } else {
       setSubNavbar(false)
     }
+    //* in pages except HomePage, both navbars appear with white background, 
+    //* and the search bar shows.
+    //* and both scroll with page after scrolling some distance
     if (window.scrollY >= 400 && currLocation !== '/') {
       setNavsDisappear(true)
-      console.log('navsDisappear: ', navsDisappear)
-      console.log('currLocation: ', currLocation)
     } else {
       setNavsDisappear(false)
-      console.log('navsDisappear: ', navsDisappear)
-      console.log('currLocation: ', currLocation)
     }
-
   }
+
+  useEffect(() => {
+    changeHeaderBehaviour()
+    // adding the event when scroll change background
+    window.addEventListener("scroll", changeHeaderBehaviour, true)
+    return () => {
+      window.removeEventListener("scroll", changeHeaderBehaviour, true);
+    }
+  }, [currLocation])
+
+
   const handleChange = ({ target }) => {
     getSEachContent(target.value)
   }
@@ -69,16 +80,6 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
     ev.preventDefault()
     navigate(`/explore?filter=title:${searchContent}`)
   }
-  useEffect(() => {
-    changeBackground()
-    // adding the event when scroll change background
-    window.addEventListener("scroll", changeBackground, true)
-
-    return () => {
-      window.removeEventListener("scroll", changeBackground, true);
-    }
-
-  }, [currLocation])
 
   // useEffect(() => {
   //   if (isSignIn) document.body.style.overflow = 'hidden';
