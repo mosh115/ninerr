@@ -8,6 +8,8 @@ import { uploadImg } from "../services/cloudinary.service"
 import { updateUser } from '../store/user.actions';
 import { OrderTable } from '../cmps/order-table';
 import { loadOrders, updateOrder, setOrderFilter } from '../store/order.actions';
+import { loadGigs, setFilter } from "../store/gig.actions.js"
+
 
 
 import cameralogo from '../assets/img/cameralogo.png';
@@ -15,7 +17,7 @@ import { showUserMsg } from '../services/event-bus.service';
 
 
 
-function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updateOrder, setOrderFilter, }) {
+function _UserProfile({ user, updateUser,loadGigs, setFilter, gigs, orders, orderFilter, loadOrders, updateOrder, setOrderFilter, }) {
     // console.log(user);
     let navigate = useNavigate();
 
@@ -29,12 +31,18 @@ function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updat
             sellerId: user._id
         }
         setOrderFilter(orderFilter)
+        setFilter({ title: '', tags: [], userId: user._id })
+        loadGigs()
         // loadOrders()
     }, [])
 
     useEffect(() => {
         loadOrders()
     }, [orderFilter])
+    
+    useEffect(() => {
+        setFilter({ title: '', tags: [], userId: '' })
+    }, [])
 
     console.log('orders', orders);
     // useEffect(() => {
@@ -61,6 +69,8 @@ function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updat
         }
         updateUser(user);
     }
+    let areOrders = orders.length ? true : false;
+    console.log(gigs);
     // if (!orders.length) 
     // if (orders[0].seller._id !== user._id) return <h1>Loading..</h1>
     return (
@@ -110,14 +120,14 @@ function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updat
 
             <div className="user-gigs">
                 <div className='craet-gig flex space-between'>
-                    {(!user.gigs || !user.gigs.length) &&
+                    {(!gigs || !gigs.length) &&
                         <p>
                             It seems that you don't have any active Gigs. Get selling!
                         </p>
                     }
-                    {user.gigs &&
+                    {gigs &&
                         <p>
-                            Happy to have you here as a seller. Improve your incom by offering more Gigs!
+                            Happy to have you here as a seller. Improve your income by offering more Gigs!
                         </p>
                     }
                     <Link to="/add"><button>Create a New Gig</button></Link>
@@ -125,7 +135,7 @@ function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updat
 
                 {/* {!orders.length && <h1>No orders to show.</h1>} */}
 
-                {orders.length && <>
+                {areOrders && <>
                     <h1>Order list</h1>
                     <OrderTable updateOrder={updateOrder} orders={orders} />
                 </>
@@ -138,6 +148,7 @@ function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updat
 
 function mapStateToProps(state) {
     return {
+        gigs: state.gigModule.gigs,
         user: state.userModule.user,
         orders: state.orderModule.orders,
         order: state.orderModule.orderFilter
@@ -147,7 +158,9 @@ const mapDispatchToProps = {
     updateUser,
     loadOrders,
     updateOrder,
-    setOrderFilter
+    setOrderFilter,
+    setFilter,
+    loadGigs,
 }
 
 export const UserProfile = connect(

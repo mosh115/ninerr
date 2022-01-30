@@ -38,7 +38,6 @@ export function OrderTable({ orders, updateOrder }) {
       <Table sx={{ minWidth: 650 }} aria-label="Orders table" stickyHeader={true}>
         <TableHead>
           <TableRow className='table-row' >
-            <TableCell> Num Order</TableCell>
             <TableCell align="left">Date</TableCell>
             <TableCell align="left">Gig name</TableCell>
             <TableCell align="left">Gig price</TableCell>
@@ -55,9 +54,6 @@ export function OrderTable({ orders, updateOrder }) {
 
               className={order.status !== 'pending' ? 'table-row transperent' : 'table-row'}
             >
-              <TableCell component="th" scope="row">
-                {idx + 1}
-              </TableCell>
               <TableCell align="left">{new Date(order.createdAt).toLocaleString('en-EN', { timeZone: 'UTC' })}</TableCell>
               <TableCell align="left">{order.gig.name}</TableCell>
               <TableCell align="left">${order.gig.price}</TableCell>
