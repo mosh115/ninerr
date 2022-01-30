@@ -8,11 +8,8 @@ import { AvatarPicture } from './user-avatar-picture';
 
 
 export function GigPreview({ gig }) {
-    // let images
     // console.log(gig);
-    if (!gig.imgUrls) {
-        gig.imgUrls = []
-    }
+
     const images = gig.imgUrls.map(img => { return { original: img } })
 
 
@@ -49,7 +46,7 @@ export function GigPreview({ gig }) {
                     <FaHeart className='heart' />
                     {/* <div>{heart}</div> */}
                     <Link to={`/gig/${gig._id}`} className='clean-link'>
-                        <div>
+                        <div className='price-wrapper'>
                             <small className='small'>STARTING AT  </small>
                             <span className='price'>${gig.price} </span>
                         </div>
