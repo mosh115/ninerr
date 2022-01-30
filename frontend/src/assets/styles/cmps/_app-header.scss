@@ -4,6 +4,7 @@
   flex-direction: column;
   color: $clr6;
   font-weight: 600;
+  transition: 1000ms;
 
   .logo-font {
     font-family: "Lobster-Regular", sans-serif;
@@ -19,6 +20,7 @@
  
 
   .navbar-search-box{
+   
     border: 0.5px solid $clr4;
     height: 2em;
     display:  flex;
@@ -42,7 +44,6 @@
         margin: 0%;
         border-bottom-right-radius: 5%;
         border-top-right-radius: 5%;
-        paddinge: 0 px1em;
         width: fit-content;
         height: 100%;
     }
@@ -111,6 +112,10 @@
         color: $clr6;
       }
     }
+    &.no-sticky{
+      position: absolute;
+      margin-top: 400px;
+    }
   }
   .sub-nav {
     height: 40px;
@@ -123,8 +128,6 @@
     border-bottom: 0.5px solid $clr4;
     width: 100%;
     padding-inline-start: 32px;   
-    // list-style: none; 
-    // height: 300px;
     padding-inline-end: 32px;
     position: fixed;
     margin-top: 4.5em;
@@ -133,6 +136,11 @@
     background-color: $clr6;
     &.hidden {
       visibility: hidden;
+    }
+    &.no-sticky{
+      position: absolute;
+      margin-top: 480px;
+      border-top: none;
     }
     span{
       cursor: pointer;
@@ -143,7 +151,6 @@
     width: 54px;
 
     .user-avatar {
-      // margin-inline-start: 20px ;
       position: relative;
       height: 32px;
       width: 32px;

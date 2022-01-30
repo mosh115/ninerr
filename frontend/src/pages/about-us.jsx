@@ -1,10 +1,11 @@
 import React from 'react'
 import { NavLink} from "react-router-dom"
-
+import { ScrollToTop } from '../cmps/scroll-to-top'
 export function AboutUs() {
 
     return (
         <section className='about-us main-layout center'>
+            <ScrollToTop/>
             <h2>About Us</h2>
             <div className='content'>
                 <p>We are Ninerr.</p>
