@@ -76,14 +76,9 @@ async function update(user) {
         console.log('user from BE service', user);
         // peek only updatable fields!
         const userToSave = { ...user, _id: ObjectId(user._id) }
-        // const userToSave = {
-        //     _id: ObjectId(user._id), // needed for the returnd obj
-        //     // username: user.username,
-        //     // fullname: user.fullname,
-        // }
+
         const collection = await dbService.getCollection('user')
         await collection.updateOne({ _id: userToSave._id }, { $set: userToSave })
-        console.log('user after db', userToSave);
         return userToSave;
     } catch (err) {
         logger.error(`cannot update user ${userToSave._id}`, err)

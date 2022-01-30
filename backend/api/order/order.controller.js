@@ -44,6 +44,8 @@ async function addOrder(req, res) {
 
 // PUT (Update order)
 async function updateOrder(req, res) {
+  // console.log('order', req.body);
+
   try {
     const order = req.body;
     const updatedOrder = await orderService.update(order)

@@ -7,45 +7,53 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
 
-export function OrderTable({ orders }) {
+
+
+
+export function OrderTable({ orders, updateOrder }) {
+
+
+  function onUpdateOrder(ev, action) {
+    const order = orders.find(order => order._id === ev.target.dataset.id)
+    order.status = action
+    console.log(order);
+    console.log(action);
+    updateOrder(order)
+  }
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer className='order-table' component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="Orders table" stickyHeader={true}>
         <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+          <TableRow className='table-row' >
+            <TableCell> Num Order</TableCell>
+            <TableCell align="left">Gig name</TableCell>
+            <TableCell align="left">Gig price</TableCell>
+            <TableCell align="left">Buyer name</TableCell>
+            <TableCell align="left">Order status</TableCell>
+            <TableCell align="left">Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {orders.map((order, idx) => (
             <TableRow
-              key={row.name}
+              key={order._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+
+              className={order.status !== 'pending' ? 'table-row transperent' : 'table-row'}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {idx + 1}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="left">{order.gig.name}</TableCell>
+              <TableCell align="left">${order.gig.price}</TableCell>
+              <TableCell align="left">{order.buyer.name}</TableCell>
+              <TableCell align="left">{order.status}</TableCell>
+              <TableCell align="left">
+                <button data-id={order._id} onClick={(e) => onUpdateOrder(e, 'In Progress')}>Accept</button>
+                <button data-id={order._id} className='btn-decline' onClick={(e) => onUpdateOrder(e, 'Declined')}>Decline</button></TableCell>
             </TableRow>
           ))}
         </TableBody>

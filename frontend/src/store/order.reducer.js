@@ -3,7 +3,7 @@ import { userService } from "../services/user.service"
 const initialState = {
     orders: [],
     orderFilter: {
-        sellerId: userService.getLoggedinUser()?._id || '',
+        sellerId: '',
     },
 
 }
@@ -32,7 +32,7 @@ export function orderReducer(state = initialState, action) {
             orders = state.orders.map(order => (order._id === action.order._id) ? action.order : order)
             newState = { ...state, orders }
             break
-        case 'SET_FILTER':
+        case 'SET_ORDER_FILTER':
             return { ...state, orderFilter: action.orderFilter }
         default:
             newState = state

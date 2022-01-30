@@ -32,8 +32,9 @@ function remove(orderId) {
     return httpService.remove('order', orderId)
 }
 function save(order) {
+    // console.log(order._id);
     if (order._id) {
-        return httpService.put('order', order)
+        return httpService.put(`order/${order._id}`, order)
     } else {
         return httpService.post('order', order)
     }

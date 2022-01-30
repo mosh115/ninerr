@@ -59,7 +59,7 @@ async function update(gig) {
             _id: ObjectId(gig._id),
             ...gig
         }
-        delete savedGig._id
+        // delete savedGig._id
         const collection = await dbService.getCollection('gig')
         await collection.updateOne({ "_id": id }, { $set: { ...gig } })
         return gig
