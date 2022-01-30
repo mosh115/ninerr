@@ -72,8 +72,8 @@
     position: fixed;
     width: 100%;
     height: 80px;
-    padding-inline-start: 20px;
-    padding-inline-end: 20px;
+    padding-inline-start: 32px;
+    padding-inline-end: 32px;
     justify-content: space-between;
   }
   nav > * {
@@ -121,10 +121,10 @@
     border-top: 0.5px solid $clr4;
     border-bottom: 0.5px solid $clr4;
     width: 100%;
-    padding-inline-start: 20px;   
+    padding-inline-start: 32px;   
     // list-style: none; 
     // height: 300px;
-    padding-inline-end: 20px;
+    padding-inline-end: 32px;
     position: fixed;
     margin-top: 4.5em;
     color: $clr8;
@@ -132,6 +132,9 @@
     background-color: $clr6;
     &.hidden {
       visibility: hidden;
+    }
+    span{
+      cursor: pointer;
     }
   }
   .avatar-container{

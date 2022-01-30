@@ -9,6 +9,7 @@ export function loadGigs() {
             console.log('filter', filterBy);
             const gigs = await gigService.query(filterBy)
             dispatch({ type: 'SET_GIGS', gigs })
+            return gigs;
 
         } catch (err) {
             console.log('Cannot load gigs', err);
