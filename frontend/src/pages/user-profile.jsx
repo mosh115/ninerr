@@ -6,7 +6,8 @@ import { socketService } from '../services/socket.service';
 
 import { uploadImg } from "../services/cloudinary.service"
 import { updateUser } from '../store/user.actions';
-import { OrderTable } from '../cmps/order-table';
+// import { OrderTable } from '../cmps/order-table';
+import { OrderCard } from '../cmps/order-card';
 import { loadOrders, updateOrder, setOrderFilter } from '../store/order.actions';
 import { loadGigs, setFilter } from "../store/gig.actions.js"
 
@@ -17,7 +18,7 @@ import { showUserMsg } from '../services/event-bus.service';
 
 
 
-function _UserProfile({ user, updateUser,loadGigs, setFilter, gigs, orders, orderFilter, loadOrders, updateOrder, setOrderFilter, }) {
+function _UserProfile({ user, updateUser, loadGigs, setFilter, gigs, orders, orderFilter, loadOrders, updateOrder, setOrderFilter, }) {
     // console.log(user);
     let navigate = useNavigate();
 
@@ -39,7 +40,7 @@ function _UserProfile({ user, updateUser,loadGigs, setFilter, gigs, orders, orde
     useEffect(() => {
         loadOrders()
     }, [orderFilter])
-    
+
     useEffect(() => {
         setFilter({ title: '', tags: [], userId: '' })
     }, [])
@@ -69,8 +70,13 @@ function _UserProfile({ user, updateUser,loadGigs, setFilter, gigs, orders, orde
         }
         updateUser(user);
     }
-    let areOrders = orders.length ? true : false;
-    console.log(gigs);
+    const areOrders = orders.length ? true : false;
+    const areGigs = gigs.length ? true : false;
+    const numOfOrders = orders.length;
+    let totalPrice = 0
+    orders.forEach(order => {
+        totalPrice += +order.gig.price;
+    });
     // if (!orders.length) 
     // if (orders[0].seller._id !== user._id) return <h1>Loading..</h1>
     return (
@@ -121,12 +127,12 @@ function _UserProfile({ user, updateUser,loadGigs, setFilter, gigs, orders, orde
 
             <div className="user-gigs flex column">
                 <div className='craet-gig flex space-between'>
-                    {(!gigs || !gigs.length) &&
+                    {!areGigs &&
                         <p>
                             It seems that you don't have any active Gigs. Get selling!
                         </p>
                     }
-                    {gigs &&
+                    {areGigs &&
                         <p>
                             Happy to have you here as a seller. Improve your income by offering more Gigs!
                         </p>
@@ -136,10 +142,16 @@ function _UserProfile({ user, updateUser,loadGigs, setFilter, gigs, orders, orde
 
                 {/* {!orders.length && <h1>No orders to show.</h1>} */}
 
-                {areOrders && <div className='order-list'>
-                    <h1 className='table-header'>Order list</h1>
-                    <OrderTable updateOrder={updateOrder} orders={orders} />
-                </div>
+                {areOrders &&
+                    <React.Fragment>
+                        <div className='orders-header'>Active Orders -
+                            <span className='oreders-total'> {numOfOrders} (${totalPrice})</span>
+                        </div> 
+                        <div className='order-list'>
+                            {orders.map((order, idx) => <OrderCard key={idx} updateOrder={updateOrder} order={order} />)}
+                            {/* <OrderTable updateOrder={updateOrder} orders={orders} /> */}
+                        </div>
+                    </React.Fragment>
                 }
 
             </div>

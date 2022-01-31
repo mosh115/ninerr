@@ -122,12 +122,10 @@
     .user-gigs{
         min-width: 484px;
         align-self: start;
-        &>* {
-            background-color: white;
-            border: 1px solid $clr12;
-        }
         
         .craet-gig{
+            background-color: white;
+            border: 1px solid $clr12;
             padding: 20px 24px;
             align-items: center; // maybe better start?
 
@@ -146,15 +144,16 @@
                 }
             }
         }
-        .order-list {
+        .orders-header {
             margin-top: 30px;
-            .table-header{
-                text-align: center;
-            }
-
-            .buyer-picture-name {
-                align-items: center;
-                gap: 5px;
+            padding: 30px;
+            background-color: white;
+            border: 1px solid $clr12;
+            font-weight: 700;
+            color: #222325;
+            span {
+                color: #62646a;
+                font-weight: 500;
             }
         }
     }
