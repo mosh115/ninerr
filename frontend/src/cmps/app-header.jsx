@@ -60,8 +60,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
   const [subNavbar, setSubNavbar] = useState(false)
   const [navsDisappear, setNavsDisappear] = useState(false)
  
-  //* gets the current page's path
-  let currLocation = useLocation().pathname
+
 
   //* navbar scroll/route behaviour change 
 
