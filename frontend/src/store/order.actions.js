@@ -1,6 +1,7 @@
 import { orderService } from "../services/order.service.js";
 import { userService } from "../services/user.service.js";
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
+import { socketService } from "../services/socket.service.js";
 
 export function loadOrders() {
     return async (dispatch, getState) => {
@@ -49,6 +50,7 @@ export function addOrder(orderToAdd) {
             const order = await orderService.save(orderToAdd)
             dispatch({ type: 'ADD_ORDER', order })
             showSuccessMsg('Order created')
+            socketService.emit('add order', orderToAdd)
             // dispatch({ type: 'SET_MSG', msg: { txt: 'Order created', type: 'success' } })
 
         } catch (err) {

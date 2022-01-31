@@ -6,8 +6,11 @@ import { socketService } from '../services/socket.service';
 
 import { uploadImg } from "../services/cloudinary.service"
 import { updateUser } from '../store/user.actions';
-import { OrderTable } from '../cmps/order-table';
+// import { OrderTable } from '../cmps/order-table';
+import { OrderCard } from '../cmps/order-card';
 import { loadOrders, updateOrder, setOrderFilter } from '../store/order.actions';
+import { loadGigs, setFilter } from "../store/gig.actions.js"
+
 
 
 import cameralogo from '../assets/img/cameralogo.png';
@@ -15,7 +18,7 @@ import { showUserMsg } from '../services/event-bus.service';
 
 
 
-function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updateOrder, setOrderFilter, }) {
+function _UserProfile({ user, updateUser, loadGigs, setFilter, gigs, orders, orderFilter, loadOrders, updateOrder, setOrderFilter, }) {
     // console.log(user);
     let navigate = useNavigate();
 
@@ -29,12 +32,18 @@ function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updat
             sellerId: user._id
         }
         setOrderFilter(orderFilter)
+        setFilter({ title: '', tags: [], userId: user._id })
+        loadGigs()
         // loadOrders()
     }, [])
 
     useEffect(() => {
         loadOrders()
     }, [orderFilter])
+
+    useEffect(() => {
+        setFilter({ title: '', tags: [], userId: '' })
+    }, [])
 
     console.log('orders', orders);
     // useEffect(() => {
@@ -61,6 +70,13 @@ function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updat
         }
         updateUser(user);
     }
+    const areOrders = orders.length ? true : false;
+    const areGigs = gigs.length ? true : false;
+    const numOfOrders = orders.length;
+    let totalPrice = 0
+    orders.forEach(order => {
+        totalPrice += +order.gig.price;
+    });
     // if (!orders.length) 
     // if (orders[0].seller._id !== user._id) return <h1>Loading..</h1>
     return (
@@ -79,6 +95,7 @@ function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updat
                     <img src={cameralogo} alt="Camera icon" />
                     <input onChange={addPicture} type="file" />
                 </label>
+                <h3 className="user-name">{user.username}</h3>
                 <Link to="/profile/edit">
                     <svg className="edit-link" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M15.3628 2.30102L13.6796 0.618553C12.8553 -0.205791 11.521 -0.205916 10.6965 0.618522L0.778434 10.4718L0.0102775 15.1279C-0.0733163 15.6346 0.365528 16.0736 0.872371 15.99L5.52846 15.2218L15.3824 5.30374C16.2052 4.4809 16.2131 3.15127 15.3628 2.30102ZM6.26384 9.7364C6.39809 9.87065 6.57406 9.93774 6.75 9.93774C6.92593 9.93774 7.1019 9.87065 7.23615 9.7364L10.9558 6.01671L11.8486 6.90949L6.5625 12.2301V10.9377H5.0625V9.43774H3.77012L9.09072 4.15165L9.9835 5.04443L6.26381 8.76408C5.9954 9.03258 5.9954 9.4679 6.26384 9.7364ZM2.56662 14.3169L1.6834 13.4336L2.06278 11.1341L2.63778 10.5627H3.9375V12.0627H5.4375V13.3624L4.86618 13.9375L2.56662 14.3169ZM14.4099 4.33146L14.4083 4.33305L14.4067 4.33465L12.9058 5.8454L10.1548 3.09446L11.6656 1.59352L11.6672 1.59196L11.6687 1.5904C11.9546 1.30458 12.418 1.30105 12.7073 1.59037L14.3903 3.2733C14.699 3.58196 14.7009 4.04046 14.4099 4.33146Z"></path></svg>
                 </Link>
@@ -108,16 +125,16 @@ function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updat
                 </ul>
             </div >
 
-            <div className="user-gigs">
+            <div className="user-gigs flex column">
                 <div className='craet-gig flex space-between'>
-                    {(!user.gigs || !user.gigs.length) &&
+                    {!areGigs &&
                         <p>
                             It seems that you don't have any active Gigs. Get selling!
                         </p>
                     }
-                    {user.gigs &&
+                    {areGigs &&
                         <p>
-                            Happy to have you here as a seller. Improve your incom by offering more Gigs!
+                            Happy to have you here as a seller. Improve your income by offering more Gigs!
                         </p>
                     }
                     <Link to="/add"><button>Create a New Gig</button></Link>
@@ -125,10 +142,16 @@ function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updat
 
                 {/* {!orders.length && <h1>No orders to show.</h1>} */}
 
-                {orders.length && <>
-                    <h1>Order list</h1>
-                    <OrderTable updateOrder={updateOrder} orders={orders} />
-                </>
+                {areOrders &&
+                    <React.Fragment>
+                        <div className='orders-header'>Active Orders -
+                            <span className='oreders-total'> {numOfOrders} (${totalPrice})</span>
+                        </div> 
+                        <div className='order-list'>
+                            {orders.map((order, idx) => <OrderCard key={idx} updateOrder={updateOrder} order={order} />)}
+                            {/* <OrderTable updateOrder={updateOrder} orders={orders} /> */}
+                        </div>
+                    </React.Fragment>
                 }
 
             </div>
@@ -138,6 +161,7 @@ function _UserProfile({ user, updateUser, orders, orderFilter, loadOrders, updat
 
 function mapStateToProps(state) {
     return {
+        gigs: state.gigModule.gigs,
         user: state.userModule.user,
         orders: state.orderModule.orders,
         order: state.orderModule.orderFilter
@@ -147,7 +171,9 @@ const mapDispatchToProps = {
     updateUser,
     loadOrders,
     updateOrder,
-    setOrderFilter
+    setOrderFilter,
+    setFilter,
+    loadGigs,
 }
 
 export const UserProfile = connect(

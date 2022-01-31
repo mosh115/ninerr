@@ -1,5 +1,5 @@
 import { userService } from "../services/user.service.js";
-import { showErrorMsg } from '../services/event-bus.service.js'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service.js'
 import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from "../services/socket.service.js";
 
 // export function loadUsers() {
@@ -50,10 +50,7 @@ export function onLogin(credentials) {
                 type: 'SET_USER',
                 user
             })
-            // dispatch({
-            //     type: 'SET_ORDER_FILTER',
-            //     sellerId: userService.getLoggedinUser()._id
-            // })
+            showSuccessMsg(`Welcome back ${user.fullname}`)
         } catch (err) {
             showErrorMsg('Cannot login')
             console.log('Cannot login', err)

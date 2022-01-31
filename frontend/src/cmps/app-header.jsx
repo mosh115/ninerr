@@ -1,6 +1,8 @@
 import React from "react"
 import { connect } from "react-redux"
 import { NavLink, useLocation, useNavigate, Link } from "react-router-dom"
+import { showSuccessMsg } from "../services/event-bus.service.js"
+import { socketService } from "../services/socket.service.js"
 // import { utilService } from '../services/util.service'
 
 // import routes from "../routes"
@@ -16,14 +18,37 @@ import { setFilter } from '../store/gig.actions'
 
 
 function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
-
+  // let interval
   let navigate = useNavigate();
 
 
+  const [isNotifaction, setIsNotifaction] = useState(false)
   const [isSignIn, toggleSignIn] = useState(false)
   const [isSignUp, toggleSignUp] = useState(false)
   const [isPopoverNav, togglePopoverNav] = useState(false)
   const [searchContent, setSearchContent] = useState('')
+
+  useEffect(() => {
+    socketService.on('order-added', (order) => {
+      setIsNotifaction(!isNotifaction)
+      // interval = setInterval(() => {
+
+      // }, 1000)
+
+      // setTimeout(() => setIsNotifaction(false), 5000)
+      // showSuccessMsg('Order was added, check it out')
+      // showSuccessMsg(`Order was added, check it out ${order._id}`)
+    }, [])
+  })
+
+  //* gets the current page's path
+  let currLocation = useLocation().pathname
+
+  useEffect(() => {
+    if (currLocation === '/profile' && isNotifaction) setIsNotifaction(false)
+
+    // clearInterval(interval)
+  }, [currLocation])
 
   useEffect(() => {
     if (isSignIn) document.body.style.overflow = 'hidden';
@@ -71,6 +96,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
     return () => {
       window.removeEventListener("scroll", changeHeaderBehaviour, true);
     }
+
   }, [currLocation])
 
 
@@ -144,7 +170,8 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
                 <img src={`${user.imgUrl}`} alt={<p>{user.username[0].toUpperCase()}</p>} />
               </div>
             }
-            <div className="dot"></div>
+            <div className={isNotifaction ? "red-dot" : "dot"}></div>
+            {/* {isNotifaction && <div className="red-dot"></div>} */}
           </div>}
         </nav>
 

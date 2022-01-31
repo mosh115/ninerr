@@ -212,6 +212,16 @@
       border-radius: 50%;
       background-color: $clr1;
     }
+    .red-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      bottom: 0;
+      right: 0;
+      border: white solid 2px;
+      border-radius: 50%;
+      background-color: red;
+    }
   }
   @media (max-width: 900px) {
     width: 100vw;

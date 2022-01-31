@@ -1,16 +1,16 @@
 import React from "react"
 
 
-export function AvatarPicture({ user, size, isGrey }) {
+export function AvatarPicture({ user, size }) {
     // console.log(props);
     let classSize = '';
     if (size === '24px') classSize = 'small'
     else if (size === '110px') classSize = 'large'
-    let bgColor = user.avatarColor
-    if (isGrey) bgColor = '#e4e5e7'
-    const name = user.username || user.fullname;
-    // console.log(name);
-
+    const bgColor = user.avatarColor ? user.avatarColor : '#e4e5e7';
+    // if (isGrey) bgColor = '#e4e5e7'
+    const name = user.username || user.fullname || user.name;
+    // console.log(user);
+    // console.log(user.username);
 
     return (
         <div className="user-avatar-picture">
