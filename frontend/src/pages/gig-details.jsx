@@ -33,9 +33,9 @@ function _GigDetails({ user, addOrder }) {
 
     async function loadGigAndSeller() {
         let gig = await gigService.getById(gigId)
-        console.log('gig', gig);
+        // console.log('gig', gig);
         const seller = await userService.getById(gig.owner._id)
-        console.log('seller', seller);
+        // console.log('seller', seller);
         setGig(gig)
         setUserSeller(seller)
     }
@@ -48,17 +48,13 @@ function _GigDetails({ user, addOrder }) {
         }
         const newOrder = {
             buyer: {
-                '_id': user._id,
-                name: user.fullname
+                ...user
             },
             seller: {
-                '_id': userSeller._id,
-                name: userSeller.fullname
+                ...userSeller
             },
             gig: {
-                '_id': gig._id,
-                name: gig.orderTitle,
-                price: gig.price
+                ...gig
             },
             status: "pending"
         }

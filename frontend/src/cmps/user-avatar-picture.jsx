@@ -9,7 +9,7 @@ export function AvatarPicture({ user, size, isGrey }) {
     let bgColor = user.avatarColor
     if (isGrey) bgColor = '#e4e5e7'
     const name = user.username || user.fullname;
-    console.log(name);
+    // console.log(name);
 
 
     return (
@@ -21,7 +21,7 @@ export function AvatarPicture({ user, size, isGrey }) {
             }
             {user.imgUrl &&
                 <div className="user-picture" style={{ width: size, height: size }}>
-                    <img src={`${user.imgUrl}`}  alt={<p>{name[0].toUpperCase()}</p>} />
+                    <img src={`${user.imgUrl}`} alt={<p>{name[0].toUpperCase()}</p>} />
                 </div>
             }
         </div>

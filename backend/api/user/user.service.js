@@ -73,9 +73,12 @@ async function remove(userId) {
 
 async function update(user) {
     try {
-        console.log('user from BE service', user);
+        // console.log('user from BE service', user);
         // peek only updatable fields!
-        const userToSave = { ...user, _id: ObjectId(user._id) }
+        const userToSave = {
+            ...user,
+            _id: ObjectId(user._id)
+        }
 
         const collection = await dbService.getCollection('user')
         await collection.updateOne({ _id: userToSave._id }, { $set: userToSave })

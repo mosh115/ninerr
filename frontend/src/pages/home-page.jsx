@@ -89,7 +89,7 @@ function _HomePage({ setFilter }) {
                     <div className='seller-name'>
                         <div className='stars'><FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
                         </div>
-                        Joan, Web developer 
+                        Joan, Web developer
                     </div>
                 </div>
                 <div className={heroImg.idx === 1 ? 'hero-background hero-suzanne' : 'hero-background hero-suzanne transparent'}>
@@ -158,20 +158,20 @@ function _HomePage({ setFilter }) {
                     <div className='content'>
                         <h2>A whole world of freelance talent at your fingertips</h2>
                         <div>
-                            <h3> <span><FaRegCheckCircle /></span>The best for every budget</h3>
-                            <h4>Find high-quality services at every price point. No hourly rates, just project-based pricing.</h4>
+                            <h6> <span><FaRegCheckCircle /></span>The best for every budget</h6>
+                            <p>Find high-quality services at every price point. No hourly rates, just project-based pricing.</p>
                         </div>
                         <div>
-                            <h3><span><FaRegCheckCircle /></span>Quality work done quickly</h3>
-                            <h4>Find the right freelancer to begin working on your project within minutes.</h4>
+                            <h6><span><FaRegCheckCircle /></span>Quality work done quickly</h6>
+                            <p>Find the right freelancer to begin working on your project within minutes.</p>
                         </div>
                         <div>
-                            <h3><span><FaRegCheckCircle /></span>Protected payments, every time</h3>
-                            <h4>Always know what you'll pay upfront. Your payment isn't released until you approve the work.</h4>
+                            <h6><span><FaRegCheckCircle /></span>Protected payments, every time</h6>
+                            <p>Always know what you'll pay upfront. Your payment isn't released until you approve the work.</p>
                         </div>
                         <div>
-                            <h3><span><FaRegCheckCircle /></span>24/7 support</h3>
-                            <h4>Questions? Our round-the-clock support team is available to help anytime, anywhere.</h4>
+                            <h6><span><FaRegCheckCircle /></span>24/7 support</h6>
+                            <p>Questions? Our round-the-clock support team is available to help anytime, anywhere.</p>
                         </div>
                     </div>
                     <div>

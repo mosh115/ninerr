@@ -18,12 +18,12 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
 
   let navigate = useNavigate();
 
-  
+
   const [isSignIn, toggleSignIn] = useState(false)
   const [isSignUp, toggleSignUp] = useState(false)
   const [isPopoverNav, togglePopoverNav] = useState(false)
   const [searchContent, setSearchContent] = useState('')
-  
+
   useEffect(() => {
     if (isSignIn) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'unset';
@@ -81,7 +81,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
     ev.preventDefault()
     navigate(`/explore?filter=title:${searchContent}`)
     setSearchContent('')
-    
+
   }
 
   // useEffect(() => {
@@ -103,8 +103,8 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
           <NavLink className="logo-font clean-link" to="/">
             Ninerr<span className="logo-point">.</span>
           </NavLink>
-          <form className={subNavbar || currLocation !== '/' ? 
-            'navbar-search-box ' : 
+          <form className={subNavbar || currLocation !== '/' ?
+            'navbar-search-box ' :
             'navbar-search-box hidden'}>
             <div className='search-box-icon'><i><FaSearch /></i> </div>
             <input onChange={handleChange} value={searchContent} type="search" name="search-box" placeholder="Find Services" />
@@ -113,7 +113,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
         </div>
 
 
-        <nav className="flex align-center space-between">
+        <nav className="side-bar flex align-center space-between">
           <NavLink className="clean-link" to="/about">
             About
           </NavLink>
@@ -151,8 +151,8 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
         "sub-nav hidden" :
         (navsDisappear ? "sub-nav no-sticky" : "sub-nav")
       }>
-     
-    
+
+
         {/* <span>Graphics & Design</span>
         <span>Digital Marketing</span>
         <span>Writing & Translation</span>
@@ -176,7 +176,6 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
 function mapStateToProps(state) {
   return {
     gig: state.gigModule.page,
-    users: state.userModule.users,
     user: state.userModule.user,
     isLoading: state.systemModule.isLoading,
   }
