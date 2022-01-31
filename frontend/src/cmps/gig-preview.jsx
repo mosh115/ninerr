@@ -8,6 +8,14 @@ import { AvatarPicture } from './user-avatar-picture';
 
 
 export function GigPreview({ gig }) {
+
+    function getNumOfRaters() {
+        let raters = gig.owner.raters;
+        let num = raters;
+        if (raters > 1000 && raters < 1300) num = '1K+'
+        if (raters >= 1300 && raters < 1400) num = '2K+'
+        return num
+    }
     // console.log(gig);
 
     const images = gig.imgUrls.map(img => { return { original: img } })
@@ -40,7 +48,7 @@ export function GigPreview({ gig }) {
                     <FaStar className='star' />
                     {/* <span className='star'>{star}</span> */}
                     <p className='rating'>{gig.owner.rate} </p>
-                    <p className='raters'>({gig.owner.raters})</p>
+                    <p className='raters'>({getNumOfRaters()})</p>
                 </section>
                 <footer className='footer flex'>
                     <FaHeart className='heart' />

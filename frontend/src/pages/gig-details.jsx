@@ -59,8 +59,9 @@ function _GigDetails({ user, addOrder }) {
             status: "pending"
         }
 
-        console.log(newOrder);
+        // console.log(newOrder);
         addOrder(newOrder)
+
     }
 
 
@@ -68,15 +69,15 @@ function _GigDetails({ user, addOrder }) {
         return utilService.getRandomIntInclusive(1, 80)
     }
 
-    function getNumOfRaters() {
-        let raters = gig.owner.raters;
-        let num = raters;
-        if (raters > 1000 && raters < 1300) num = '1K+'
-        if (raters >= 1300 && raters < 1400) num = '2K+'
-        return num
-    }
+    // function getNumOfRaters() {
+    //     let raters = gig.owner.raters;
+    //     let num = raters;
+    //     if (raters > 1000 && raters < 1300) num = '1K+'
+    //     if (raters >= 1300 && raters < 1400) num = '2K+'
+    //     return num
+    // }
 
-   
+
 
     if (!gig || !userSeller) return <Loader />
     const images = gig.imgUrls.map(img => { return { original: img, thumbnail: img } })
@@ -95,12 +96,12 @@ function _GigDetails({ user, addOrder }) {
                     <p className='seller-level'>{gig.owner.level} <span className='stop'>|</span></p>
                     <ReactStars classNames="stars" count={+gig.owner.rate} size={15} color="#ffb33e" activeColor="#ffb33e" edit={false} />
                     <b className='rating'>{gig.owner.rate} </b>
-                    <p className='raters'>({getNumOfRaters()})<span className='stop'>|</span></p>
+                    <p className='raters'>({gig.owner.raters})<span className='stop'>|</span></p>
                     <p className='qweue'><span>{getRandomNum()}</span> Orders in Queue</p>
                 </div>
 
                 <div className='gallery'>
-                    <ImageGallery items={images} showThumbnails={true} showPlayButton={false}/>
+                    <ImageGallery items={images} showThumbnails={true} showPlayButton={false} />
                 </div>
 
 

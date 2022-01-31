@@ -42,14 +42,15 @@ function connectSockets(http, session) {
         socket.on('user-watch', userId => {
             socket.join('watching:' + userId)
         })
-        socket.on('test', msg => {
-            console.log(msg);
-            // gIo.to
-            // socket.join('watching:' + userId)
-            gIo.to(socket.userId).emit('testing', msg)
-        })
         socket.on('unset-user-socket', () => {
             delete socket.userId
+        })
+        socket.on('add order', order => {
+            console.log('new order added', order);
+            // gIo.to
+            // socket.join('watching:' + userId)
+            // gIo.to(socket.userId).emit('order-added', order)
+            broadcast({ type: 'order-added', order, room: null, userId: socket.userId })
         })
 
     })
@@ -72,7 +73,7 @@ async function emitToUser({ type, data, userId }) {
 
 // Send to all sockets BUT not the current socket 
 async function broadcast({ type, data, room = null, userId }) {
-    console.log('BROADCASTING', JSON.stringify(arguments));
+    // console.log('BROADCASTING', JSON.stringify(arguments));
     const excludedSocket = await _getUserSocket(userId)
     if (!excludedSocket) {
         // logger.debug('Shouldnt happen, socket not found')
