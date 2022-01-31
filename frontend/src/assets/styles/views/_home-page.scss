@@ -151,6 +151,9 @@
             font-size: 2em;
         }
     }
+    .popular-services-carousel{
+        // display: none;
+    }
     .more-details-about-us {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -237,4 +240,72 @@
         }
         margin-bottom: 2em;
     }
+    @media (max-width: 900px) {
+        width: 100vw;
+        overflow: hidden;
+        .hero-wrapper {
+            width: 100vw;
+            background-color: #023a15;
+            height: 55vh;
+            .hero-background{
+                display: none;
+            }
+            .hero-content{
+                &.main-container {
+                    
+                    position: static;
+                    margin-top: 100px;
+                    
+                    h1{
+                        width: 100%;
+                        margin-top: 1vh;
+                        padding-top: 1em;
+                        margin-bottom: 0px;
+                        padding-bottom: 30px;
+                        font-size: 2em;
+                        height: fit-content;
+                        line-height: 1.3em;
+                    }
+                    .popular-categories{
+                        display: none;
+                    }
+                    .home-page-search-box{
+                        display: grid;
+                        grid-template-columns: 1fr 8fr;
+                        grid-template-rows: 1fr 0.5fr 1fr;
+                        .search-box-icon{
+                            grid-area: 1/1/2/2;
+                            width: 100%;
+                            height: 40px;
+                            // border-right: none;
+                        }
+                        input{
+                            grid-area: 1/2/2/3;
+                            width: 100%;
+                            border-bottom-right-radius: 5px;
+                            border-top-right-radius: 5px;
+                            // border-left: none;
+                        }
+                        button{
+                            margin-top: 10px;
+                            grid-area: 2/1/3/3;
+                            width: 100%;
+                            height: 40px;
+                            border-top-left-radius: 5px;
+                            border-bottom-left-radius: 5px;
+                        }
+
+
+                    }
+                }
+            }
+        }
+        .popular-services{
+            display: none;
+        }
+        .popular-services-carousel{
+            display: block;
+        }
+    }
+    
 }

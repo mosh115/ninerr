@@ -44,7 +44,7 @@ function _AppFooter() {
           <NavLink className="clean-link" to="/">
             <span className="logo-font"> Ninerr. </span>
           </NavLink>
-          <span>© Ninerr International Ltd. 2022</span>
+          <span className="copyright">© Ninerr International Ltd. 2022</span>
         </div>
         <ul className="clean-list social-nav">
           <li className="icon-wrap">

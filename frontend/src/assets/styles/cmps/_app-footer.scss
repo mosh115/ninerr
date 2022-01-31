@@ -67,4 +67,11 @@
       }
     }
   }
+  @media (max-width: 900px) {
+    width: 100vw;
+    .footer-links, .copyright{
+        display: none;
+    }
+   
+}
 }

@@ -5,6 +5,7 @@ import { NavLink, useLocation, useNavigate, Link } from "react-router-dom"
 
 // import routes from "../routes"
 import { FaSearch } from "react-icons/fa"
+import { HiMenu } from "react-icons/hi"
 // this is for the nav bar to change bcg color when scrolling
 import { useState, useEffect } from "react"
 
@@ -33,7 +34,7 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
   const [navbar, setNavbar] = useState(false)
   const [subNavbar, setSubNavbar] = useState(false)
   const [navsDisappear, setNavsDisappear] = useState(false)
-
+ 
   //* gets the current page's path
   let currLocation = useLocation().pathname
 
@@ -88,17 +89,20 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
   //   if (isSignIn) document.body.style.overflow = 'hidden';
   //   else document.body.style.overflow = 'unset';
   // }, [isSignIn])
-
+  
+ 
   return (
     <header className="app-header">
       <div className=
         {(currLocation === '/' && !navbar) ?
           "navbar nav-container flex align-center space-between" :
-
           (!navsDisappear ?
             "navbar white nav-container flex align-center space-between" :
             "navbar white nav-container flex align-center space-between no-sticky")
         } >
+        <div className="hamburger">
+          <HiMenu />
+        </div>
         <div className="logo-and-search-box">
           <NavLink className="logo-font clean-link" to="/">
             Ninerr<span className="logo-point">.</span>
@@ -113,17 +117,15 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
         </div>
 
 
-        <nav className="side-bar flex align-center space-between">
-          <NavLink className="clean-link" to="/about">
+        {/* <nav className="side-bar flex align-center space-between"> */}
+        <nav className="flex align-center space-between">
+          <NavLink className="about clean-link" to="/about">
             About
           </NavLink>
-          <NavLink className="clean-link" to="/explore">
+          <NavLink className="explore clean-link" to="/explore">
             Explore
           </NavLink>
-          {/* <NavLink className="clean-link" to="/sign-up-seller">
-            Become A Seller
-          </NavLink> */}
-          {!user && <React.Fragment><div className="pointer" onClick={() => { toggleSignIn(true) }}>
+          {!user && <React.Fragment><div className=" sign-in pointer" onClick={() => { toggleSignIn(true) }}>
             Sign in
           </div>
             <div className="join pointer" onClick={() => { toggleSignIn(true); toggleSignUp(true) }}>
@@ -152,14 +154,6 @@ function _AppHeader({ setFilter, onLogin, onSignup, onLogout, user }) {
         (navsDisappear ? "sub-nav no-sticky" : "sub-nav")
       }>
 
-
-        {/* <span>Graphics & Design</span>
-        <span>Digital Marketing</span>
-        <span>Writing & Translation</span>
-        <span>Video & Animation</span>
-        <span>Music & Audio</span>
-        <span>Programming & Tech</span>
-        <span>Business</span> */}
         {['Website design', 'Wordpress', 'Logo design', 'Music', 'Voice Over', 'Translating'].map((tag, idx) =>
           <span key={idx}><Link to={`/explore?filter=tags:${tag}`}>{tag}</Link></span>
         )}

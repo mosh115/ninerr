@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { useNavigate, Link, NavLink } from "react-router-dom";
 
-// import { NavLink, useLocation } from "react-router-dom"
 import { FaSearch, FaRegCheckCircle, FaStar } from "react-icons/fa"
 
 import HeroImage1 from '../assets/img/home-page/19-9-4.jpg';
@@ -10,14 +9,11 @@ import HeroImage2 from '../assets/img/home-page/20-9-4.jpg';
 import HeroImage3 from '../assets/img/home-page/4-9-4.jpg';
 import HeroImage4 from '../assets/img/home-page/21-9-4.jpg';
 import HeroImage5 from '../assets/img/home-page/28-9-4.jpg';
-// import HeroImage6 from '../assets/img/home-page/27.jpg';
-// import HeroImage7 from '../assets/img/home-page/6.jpg';
-// import HeroImage8 from '../assets/img/home-page/98.png';
-// import HeroImage9 from '../assets/img/home-page/99.png';
 import workingWomen from '../assets/img/home-page/16.jpg';
 import FreeLancerImage from '../assets/img/home-page/14.jpg';
 
 import { PopularServiceList } from '../cmps/popular-service-list'
+import {PoplarServiceCard} from '../cmps/popular-service-card'
 import { GigApp } from '../pages/gig-app'
 import { ExploreMarketPlace } from '../cmps/explore-market-place'
 import { onSetPage, setFilter } from '../store/gig.actions'
@@ -152,6 +148,11 @@ function _HomePage({ setFilter }) {
                 <h2>Popular professional services</h2>
                 <PopularServiceList />
             </section>
+            {/* <section className='popular-services-carousel main-layout'>
+                <h2>Popular professional services</h2>
+                <PopularServiceCard />
+            </section> */}
+
 
             <section className='full'>
                 <div className='more-details-about-us '>
