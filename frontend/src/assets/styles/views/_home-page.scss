@@ -1,5 +1,5 @@
-.home-page{
-    .hero-wrapper{
+.home-page {
+    .hero-wrapper {
         // display: flex;
         // flex-direction: column;
         // display: grid;
@@ -7,30 +7,32 @@
         // grid-template-rows: 2fr 1fr;
         height: 100vh;
         position: relative;
-        .hero-background{
+        .hero-background {
             // height: 10vh;
             transition: 1000ms;
             // margin-bottom: 2em;
-            &.transparent{
-                opacity: 0
+            &.transparent {
+                opacity: 0;
             }
-            img{width: 100%;}
+            img {
+                width: 100%;
+            }
             position: absolute;
             top: 0;
             left: 0;
             z-index: 1;
             // position: relative;
             // margin-bottom: 2em;
-            .seller-name{
+            .seller-name {
                 // grid-area: 2/2/3/3;
                 position: absolute;
                 right: 40px;
                 bottom: 20px;
                 color: $clr6;
                 font-weight: 700;
-                text-shadow: 0px 0px 8px rgba(0,0,0,0.75);
-                text-shadow: 0px 0px 8px rgba(0,0,0,1);
-                .stars{
+                text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.75);
+                text-shadow: 0px 0px 8px rgba(0, 0, 0, 1);
+                .stars {
                     display: flex;
                     flex-direction: row;
                     gap: 2px;
@@ -38,35 +40,35 @@
                 }
             }
         }
-        .hero-content{
+        .hero-content {
             position: absolute;
             top: 80px;
             // left: 100px;
             z-index: 2;
             color: $clr6;
-            
-            h1{
+
+            h1 {
                 margin-top: 25vh;
                 font-size: 2.8em;
                 line-height: 56px;
                 // todo: download fonts
-                font-family: Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
+                font-family: Macan, Helvetica Neue, Helvetica, Arial, sans-serif;
                 font-weight: 700;
                 padding-bottom: 24px;
             }
-            .curly-word-style{
+            .curly-word-style {
                 font-family: MeriendaOne-One;
                 font-weight: 400;
             }
             // form{
-            .home-page-search-box{
+            .home-page-search-box {
                 height: 2.8em;
-                display:  flex;
+                display: flex;
                 flex-direction: row;
                 align-items: center;
                 padding: 0%;
                 width: 100%;
-                .search-box-icon{
+                .search-box-icon {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -77,11 +79,11 @@
                     border-top-left-radius: 5px;
                     margin: 0%;
                 }
-                i{
+                i {
                     padding-top: 5px;
                     color: $clr3;
                 }
-                button{
+                button {
                     margin: 0%;
                     border-bottom-right-radius: 5px;
                     border-top-right-radius: 5px;
@@ -91,34 +93,32 @@
                     height: 100%;
                     font-size: 1em;
                     font-weight: 700;
-                    &:hover{
+                    &:hover {
                         filter: brightness(0.85);
                     }
                 }
-                input{
+                input {
                     border: none;
                     height: 100%;
                     width: 100%;
                     font-size: 1em;
                     margin: 0%;
-                    
                 }
-                input:focus{
+                input:focus {
                     outline: none;
-                    
                 }
             }
-            .popular-categories{
+            .popular-categories {
                 display: flex;
                 gap: 1em;
                 padding-top: 24px;
-                span{
+                span {
                     font-size: 14px;
                     font-weight: 600;
                     border: solid 0.5px $clr6;
                     border-radius: 2em;
                     padding-inline: 1em;
-                    &:hover{
+                    &:hover {
                         background-color: $clr6;
                         color: $clr3;
                         cursor: pointer;
@@ -129,7 +129,7 @@
         // margin-bottom: 10em;
     }
 
-    .social-proof-line{
+    .social-proof-line {
         // position: sticky;
         // top: 200px;
         // left: 200px;
@@ -144,14 +144,14 @@
         gap: 1.5em;
         font-size: 1.3em;
     }
-   
-    .popular-services{
+
+    .popular-services {
         margin-top: 3em;
-        h2{
+        h2 {
             font-size: 2em;
         }
     }
-    .more-details-about-us{
+    .more-details-about-us {
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;
@@ -159,55 +159,70 @@
         padding-inline-start: 32px;
         padding-inline-end: 32px;
         background-color: $clr11;
-        margin-bottom: 2em;
+        // margin-bottom: 2em;
         // line-height: 3em;
         font-weight: 400;
-        .content{
+        .content {
             padding-right: 15%;
             display: flex;
             flex-direction: column;
-            gap: 1em;
+            gap: 24px;
         }
-        span{
+        span {
             margin-right: 1em;
         }
-        h2{
+        h2 {
+            line-height: 120%;
             color: $clr9;
             font-size: 2em;
-            margin-bottom: 1.25em;
+            // padding-bottom: 24px;
+            // margin-bottom: 1.25em;
+            font-weight: 700;
         }
-        h3,h4{
-            font-size: 1.125em;
-            line-height: 1.625em;
-        }
-        h3{
-            color: $clr9;
+        h6 {
+            span {
+                margin-right: 10px;
+                color: rgb(122, 125, 133);
+            }
 
+            svg {
+                transform: translateY(4px);
+                width: 24px;
+                height: 24px;
+            }
+            display: flex;
+            align-items: center;
+            font-size: 1.125em;
+            line-height: 140%;
+            color: $clr9;
+        }
+        p {
+            font-size: 1.125em;
+            font-weight: 400;
         }
     }
-    .explore-market-place{
-        h2{
+    .explore-market-place {
+        h2 {
             padding-top: 2em;
             font-size: 2em;
             // padding-bottom: 2em;
         }
         padding-bottom: 3em;
-
     }
 
-    .find-the-talent{
+    .find-the-talent {
         padding-left: 96px;
         color: $clr6;
         font-size: 2em;
         display: grid;
         grid-template-columns: 1fr 1fr;
         background-color: #b3bec4;
-        .content{
+        .content {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
-            button{
+            button {
                 margin-top: 2.5em;
                 // justify-self: flex-start;
                 text-align: left;
@@ -215,12 +230,11 @@
                 font-weight: 700;
                 border-radius: 5px;
                 background-color: $clr1;
-                &:hover{
+                &:hover {
                     filter: brightness(0.85);
                 }
             }
         }
         margin-bottom: 2em;
     }
-    
 }

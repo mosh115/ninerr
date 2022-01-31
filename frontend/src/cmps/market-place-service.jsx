@@ -3,12 +3,13 @@ import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
 
 
-export function MarketPlaceService({title, icon}) {
-   
+export function MarketPlaceService({ title, img }) {
+
+
     return (
-        <article >       
+        <article >
             <li className='market-place-service'>
-                <i>{icon}</i>
+                <i><img src={img} /></i>
                 <hr />
                 <h3>{title}</h3>
             </li>
