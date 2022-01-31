@@ -43,7 +43,7 @@ function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
         const fetchGigs = async () => {
             try {
                 const gigs = await loadGigs()
-                console.log('from mount, async', gigs);
+                // console.log('from mount, async', gigs);
                 setFilteredGigs(gigs)
             }
             catch (err) {
@@ -68,7 +68,7 @@ function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
     }, [daysToDelivery, sellerLevel])
 
     const filterGigs = () => {
-        console.log('gigs 1', gigs);
+        // console.log('gigs 1', gigs);
         let filteredGigs = gigs.filter((gig) => gig.daysToMake <= daysToDelivery)
         if (sellerLevel[0] !== 'all') {
             filteredGigs = gigs.filter((gig) => {
@@ -77,7 +77,7 @@ function _GigApp({ loadGigs, gigs, setFilter, storeFilterBy }) {
                 else return false
             })
         }
-        console.log('filteredGigs 2', filteredGigs);
+        // console.log('filteredGigs 2', filteredGigs);
         setFilteredGigs2(filteredGigs)
     }
 

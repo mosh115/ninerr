@@ -33,9 +33,9 @@ function _GigDetails({ user, addOrder }) {
 
     async function loadGigAndSeller() {
         let gig = await gigService.getById(gigId)
-        console.log('gig', gig);
+        // console.log('gig', gig);
         const seller = await userService.getById(gig.owner._id)
-        console.log('seller', seller);
+        // console.log('seller', seller);
         setGig(gig)
         setUserSeller(seller)
     }
@@ -76,7 +76,7 @@ function _GigDetails({ user, addOrder }) {
         return num
     }
 
-
+   
 
     if (!gig || !userSeller) return <Loader />
     const images = gig.imgUrls.map(img => { return { original: img, thumbnail: img } })
@@ -100,7 +100,7 @@ function _GigDetails({ user, addOrder }) {
                 </div>
 
                 <div className='gallery'>
-                    <ImageGallery items={images} showThumbnails={true} showPlayButton={false} />
+                    <ImageGallery items={images} showThumbnails={true} showPlayButton={false}/>
                 </div>
 
 

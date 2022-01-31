@@ -21,7 +21,7 @@ export function AvatarPicture({ user, size }) {
             }
             {user.imgUrl &&
                 <div className="user-picture" style={{ width: size, height: size }}>
-                    <img src={`${user.imgUrl}`}  alt={<p>{name[0].toUpperCase()}</p>} />
+                    <img src={`${user.imgUrl}`} alt={<p>{name[0].toUpperCase()}</p>} />
                 </div>
             }
         </div>
